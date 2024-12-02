@@ -1,3 +1,2 @@
-# Rubrica
-Progetto ingegneria del software
-funziona?
+# **Progetto Ingegneria del Software**
+## Gruppo 22
