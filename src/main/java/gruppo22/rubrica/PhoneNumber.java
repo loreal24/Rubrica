@@ -7,6 +7,7 @@ package gruppo22.rubrica;
 
 import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -14,34 +15,43 @@ import java.util.LinkedList;
  */
 public class PhoneNumber {
     
-    private LinkedList<String> phoneNumbers;
+    private List<String> phoneNumbers;
     private int maxSize;
+    Checker checker;
     
     public PhoneNumber(){
         this.phoneNumbers = new LinkedList<>();
-        this.maxSize= 3; 
+        this.maxSize= 3;
+        this.checker = new PhoneChecker();
     }
     
-    public PhoneNumber(LinkedList<String> phoneNumbers){
+    public PhoneNumber(List<String> phoneNumbers){
         this.phoneNumbers = new LinkedList<>();
         this.maxSize = 3;
     }
     
     public void addPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException{
-        if(phoneNumber == null)
-            throw new InvalidPhoneNumberException("Numero di telefono non valido! ");
         
-        if(phoneNumbers.size() < maxSize){
-            phoneNumbers.add(phoneNumber);
+        
+        if(phoneNumber == null)
+            throw new InvalidPhoneNumberException("Numero di telefono non esistente! ");
+        
+        if(checker.isValid(phoneNumber)){
+            if(phoneNumbers.size() < maxSize){
+                phoneNumbers.add(phoneNumber);
+            }else{
+              System.out.println("Non puoi aggiungere più di " + maxSize + " numeri di telefono per lo stesso contatto");
+            }
         }else{
-            System.out.println("Non puoi aggiungere più di " + maxSize + " numeri di telefono per lo stesso contatto");
+            throw new InvalidPhoneNumberException("Numero di telefono non valido! ");
         }
     }
     
     public String removePhoneNumber(String phoneNumber) throws InvalidPhoneNumberException{
         String removed = phoneNumber;
         if(phoneNumbers.remove(phoneNumber)){
-            return "Il numero " + removed + " è stato rimosso con successo";
+            System.out.println("Il numero di telefono " + removed + " è stato rimosso correttamente." );
+            return removed;
         }
         else
             throw new InvalidPhoneNumberException("Numero di telefono nullo!");
