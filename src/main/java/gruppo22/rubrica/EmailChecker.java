@@ -9,7 +9,7 @@ package gruppo22.rubrica;
  *
  * @author loreal
  */
-public class EmailChecker implements Checker{
+public class EmailChecker implements Checker {
 	@Override
 	public boolean isValid(String email){
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
