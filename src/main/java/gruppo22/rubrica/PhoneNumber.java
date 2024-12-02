@@ -31,9 +31,11 @@ public class PhoneNumber {
         this.checker = new PhoneChecker();
     }
     
+	public List<String> getPhoneNumbers() {
+		return this.phoneNumbers;
+	}
+
     public void addPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException{
-        
-        
         if(phoneNumber == null)
             throw new InvalidPhoneNumberException("Numero di telefono non esistente! ");
         

@@ -30,6 +30,10 @@ public class Email {
         this.maxSize = 3;
         this.checker = new EmailChecker();
     }
+
+	public List<String> getEmailList() {
+		return this.emailList;
+	}
     
     public void addEmail(String email) throws InvalidEmailException{
         if(email == null)
