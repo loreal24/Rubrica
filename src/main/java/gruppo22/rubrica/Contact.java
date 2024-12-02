@@ -9,7 +9,6 @@
 package gruppo22.rubrica;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
-import java.awt.Image;
 
 
 public class Contact {
@@ -21,17 +20,15 @@ public class Contact {
     
     /**
      * @brief Constructor
-     * @pre 'name!="" && surname!=""' The input name or surname can't be empty
+     * @pre 'name!="" && surname!=""' The input name and surname cannot both be blank
      *
-     * @param[in] name
-     * @param[in] surname
-     * @param[in] email
-     * @param[in] phoneNumber
-     * @param[in] description 
+     * @param[in] name A String that represents the contact name
+     * @param[in] surname A String that represents the contact surname
+     * @param[in] email An object that represents the list of email of the contact
+     * @param[in] phoneNumber An object that represent the list of phonenumber of the contact
+     * @param[in] description A String that represents the description of the contact
      */
-    public Contact(String name, String surname, Email email, PhoneNumber phoneNumber, String description)/*throws InvalidContactException*/{
-        //if(name.equals("") && surname.equals(""))
-            //throw new InvalidContactException("I campi nome e cognome non possono essere entrambi vuoti");
+    public Contact(String name, String surname, Email email, PhoneNumber phoneNumber, String description){
         this.name=name;
         this.surname=surname;
         this.email=email;
@@ -39,57 +36,57 @@ public class Contact {
         this.description=description;
     }
      /**
-      * 
-      * @return 
+      * @brief Returns the contact name
+      * @return A String that represents the contact name
       */
      public String getName(){
          return this.name;
      }
      /**
-      * 
-      * @param name 
+      * @brief Set the contact name
+      * @param[in] name A String that represents the contact name
       */
      public void setName(String name){
          this.name=name;
      }
      /**
-      * 
-      * @return 
+      * @brief Returns the contact surname
+      * @return A String that represents the contact surname
       */
      public String getSurname(){
          return this.surname;
      }
      /**
-      * 
-      * @param surname 
+      * @brief Set the contact surname
+      * @param[in] surname A String that represents the contact surname
       */
      public void setSurname(String surname){
          this.surname=surname;
      }
      /**
-      * 
-      * @return 
+      * @brief Return the contact email
+      * @return An object that represents the list of email of the contact
       */
      public Email getEmail(){
          return this.email;
      }
      /**
-      * 
-      * @return 
+      * @brief Return the contact phonenumber
+      * @return An object that represent the list of phonenumber of the contact
       */
      public PhoneNumber getPhoneNumber(){
          return this.phoneNumber;
      }
      /**
-      * 
-      * @return 
+      * @brief Return the description of the contact
+      * @return A String that represent the description of the contact
       */
      public String getDescription(){
          return this.description;
      }
      /**
-      * 
-      * @param description 
+      * @brief Set the description of the contact
+      * @param[in] description A String that represents the description of the contact
       */
      public void setDescription(String description){
          this.description=description;
