@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class PhoneNumber {
     
-    private List<String> phoneNumbers;
-    private int maxSize;
-    Checker checker;
+    private final List<String> phoneNumbers;
+    private final int maxSize;
+    private final Checker checker;
     
     public PhoneNumber(){
         this.phoneNumbers = new LinkedList<>();
