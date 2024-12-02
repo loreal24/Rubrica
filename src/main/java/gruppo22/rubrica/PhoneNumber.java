@@ -28,6 +28,7 @@ public class PhoneNumber {
     public PhoneNumber(List<String> phoneNumbers){
         this.phoneNumbers = new LinkedList<>();
         this.maxSize = 3;
+        this.checker = new PhoneChecker();
     }
     
     public void addPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException{
