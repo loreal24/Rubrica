@@ -2,7 +2,7 @@
 *@file Contact.java
 *@brief This file contains the implementation of the Contact feature
 *
-*More deetailed information about the file and its role in the project.
+*More detailed information about the file and its role in the project.
 *@author simon
 *@date December 2, 2024
 */
