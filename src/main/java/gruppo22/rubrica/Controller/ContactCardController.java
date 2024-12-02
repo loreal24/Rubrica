@@ -1,9 +1,10 @@
-package gruppo22.rubrica;
+package gruppo22.rubrica.Controller;
 
+import gruppo22.rubrica.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class PrimaryController {
+public class ContactCardController {
 
     @FXML
     private void switchToSecondary() throws IOException {
