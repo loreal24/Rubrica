@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @file ContactList.java
+ * @brief Il file contiene l'implementazione della lista dei contatti
+ * @author loreal
  */
 package gruppo22.rubrica;
 
@@ -17,16 +17,20 @@ import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.image.Image;
 
-/**
- *
- * @author loreal
- */
 public class ContactList {
 	private final List<Contact> contacts; 
 
+	/*
+	 * @brief Default Constructor 
+	*/
 	public ContactList() {
 		contacts = new LinkedList<>();	
 	}
+
+	/**
+	 * @brief Allows to add a contact to the list 
+	 * @param[in] c, specifies the contact to add to the list
+	*/
 
 	public void addContact(Contact c) throws InvalidContactException {
 		if(c != null)
@@ -35,6 +39,10 @@ public class ContactList {
 			throw new InvalidContactException("Contatto non valido oppure null");
 	}
 
+	/**
+	 * @brief Allows to remove a contact from the list 
+	 * @param[in] c, specifies the contact to remove from the list
+	*/
 	public void removeContact(Contact c) throws InvalidContactException {
 		if(c != null)
 			contacts.remove(c);
@@ -42,10 +50,21 @@ public class ContactList {
 			throw new InvalidContactException("Contatto non valido oppure null");
 	}
 
-	public Contact getContact(Contact c) {
-		return (Contact) contacts.toArray()[contacts.indexOf(c)];
+	/**
+	 * @brief Allows to get the index of a specific contact
+	 * @param[in] c specifies the specific contact you want to know the index of
+	 * @return The index of a specific contact 
+	 */
+	public int getIndex(Contact c) {
+		return contacts.indexOf(c);
 	}
 
+	/**
+	 * @brief Allows to save to file the information in the ContactList
+	 * @param[in] filename
+	 * @throws FileNotFoundException
+	 * @throws IOException 
+	 */
 	public void salvaDOS(String filename) throws FileNotFoundException, IOException {
 		FileOutputStream fos = new FileOutputStream(filename);
 		DataOutputStream dos = new DataOutputStream(fos);
@@ -81,6 +100,13 @@ public class ContactList {
 		}
 	}
 
+	/**
+	 * @brief Allows to read from file and save information into a new ContactList
+	 * @param[in] nomeFile
+	 * @return A new ContactList containing the informations in the file
+	 * @throws FileNotFoundException
+	 * @throws IOException 
+	 */
 	public static ContactList leggiDIS(String nomeFile) throws FileNotFoundException, IOException {
 		FileInputStream fis = new FileInputStream(nomeFile);
 		DataInputStream dis = new DataInputStream(fis);

@@ -12,7 +12,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.SearchBarController">
    <center>
    	<StackPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -26,6 +25,9 @@
    		  <StackPane.margin>
    			 <Insets right="20.0" />
    		  </StackPane.margin>
+               <image>
+                  <Image url="@../../../../../../../Downloads/searchIcon.png" />
+               </image>
    	   </ImageView>
    	</children>
    	</StackPane>
