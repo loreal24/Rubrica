@@ -25,8 +25,10 @@ public abstract class ContactList {
 	*/
 
 	public void addContact(Contact c) throws InvalidContactException {
-		if(c != null)
+		if(c != null){
 			contacts.add(c);
+                        contacts.sort(new ContactComparator());
+                }
 		else 
 			throw new InvalidContactException("Contatto non valido oppure null");
 	}
