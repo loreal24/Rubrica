@@ -1,6 +1,6 @@
 package gruppo22.rubrica.Controller;
 
-import gruppo22.rubrica.App;
+import gruppo22.rubrica.App.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 

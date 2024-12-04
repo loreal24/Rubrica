@@ -1,4 +1,4 @@
-package gruppo22.rubrica;
+package gruppo22.rubrica.App;
 
 import gruppo22.rubrica.View.MainView;
 import javafx.application.Application;
