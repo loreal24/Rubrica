@@ -8,8 +8,6 @@
 */
 package gruppo22.rubrica;
 
-import gruppo22.rubrica.Exceptions.InvalidContactException;
-
 
 public class Contact {
     private String name;
