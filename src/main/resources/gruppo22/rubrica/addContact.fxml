@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane minHeight="600.0" minWidth="500.0" prefHeight="510.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <content>
+      <VBox alignment="TOP_CENTER" minHeight="510.0" minWidth="500.0" prefHeight="510.0" prefWidth="500.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+            </ImageView>
+            <TextField maxWidth="300.0" promptText="Nome...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Cognome...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Cellulare_1...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Email_1...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Cellulare_2...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Email_2...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Cellulare_3...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField maxWidth="300.0" promptText="Email_3...">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
