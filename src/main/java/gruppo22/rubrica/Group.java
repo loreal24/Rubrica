@@ -71,6 +71,11 @@ public class Group extends ContactList {
     }
 
 
+    /**
+     * @brief Allows to save group information in a file
+     * @param[in] filename
+     * @throws IOException 
+     */
 	public void saveVCF(String filename) throws IOException {
 
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
@@ -131,9 +136,9 @@ public class Group extends ContactList {
 	}
 
 	/**
-	 * @brief Allows to read contacts information from a file
+	 * @brief Allows to read group information from a file
 	 * @param[in] nomeFile
-	 * @return A ContactList instance with the information from the specified 
+	 * @return A Group instance with the information from the specified 
 	 * file
 	 * @throws IOException
 	 * @throws InvalidEmailException
