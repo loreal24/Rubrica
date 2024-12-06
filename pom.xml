@@ -26,7 +26,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>gruppo22.rubrica.App</mainClass>
+                    <mainClass>gruppo22.rubrica.App.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
