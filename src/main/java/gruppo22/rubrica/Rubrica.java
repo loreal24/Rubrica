@@ -13,6 +13,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rubrica extends ContactList{
 	/**
@@ -125,4 +127,25 @@ public class Rubrica extends ContactList{
         }
 		return c;
 	}
+        
+        /**
+         * @brief Allows to filter a list of contacts using a substring of the first or last name
+         * @param query A String that represents a substring of the first or last name
+         * @param contacts The List of contact we want filter
+         * @return the List of contact filtered from a query
+         */
+        public List<Contact> contactFilter(String query, List<Contact> contacts) {
+        List<Contact> contattiFiltrati = new ArrayList<>();
+        if (query == null || query.isEmpty()) {
+            contattiFiltrati.addAll(contacts);
+        } else {
+            for (Contact contatto : contacts) {
+                if (contatto.getName().toLowerCase().contains(query.toLowerCase()) ||
+                    contatto.getSurname().toLowerCase().contains(query.toLowerCase())) {
+                    contattiFiltrati.add(contatto);
+                }
+            }
+        }
+        return contattiFiltrati;
+    }
 }
