@@ -1,15 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file Checker.java
+ * @brief This file contains an interface, generalizing a checker for phonenumbers
+ * and emails
+ * @author loreal
  */
 package gruppo22.rubrica;
 
-/**
- *
- * @author loreal
- */
 public interface Checker {
+	/**
+	 * @brief Abstract method
+	 * @param s The string to check the validity of
+	 * @return true if string is valid, false if it's not valid
+	 */
+
 	public boolean isValid(String s);
 	
 }
