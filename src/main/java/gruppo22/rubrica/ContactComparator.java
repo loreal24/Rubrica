@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file ContactComparator.java
+ * @brief The file contains the implementation of the comparator for the 
+ * Contacts 
+ * @author simon 
  */
 package gruppo22.rubrica;
 
 import java.util.Comparator;
 
-/**
- *
- * @author simon
- */
 public class ContactComparator implements Comparator<Contact>{
-
+	/**
+	 * @param c1 The first contact to compare
+	 * @param c2 The second contact to compare
+	 * @return The result is negative if c1 comes before c2, positive if c2 
+	 * comes before c1, zero if c1 and c2 are equal
+	 */
     @Override
     public int compare(Contact c1, Contact c2) {
         if(!c1.getName().equals(c2.getName()))
