@@ -8,17 +8,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gruppo22.rubrica.Controller.ErrorModalController">
+<AnchorPane id="AnchorPane" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.ErrorModalController">
    <children>
       <VBox alignment="BOTTOM_CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0">
          <children>
-            <Label alignment="CENTER" minHeight="100.0" minWidth="400.0" text="Label" textAlignment="JUSTIFY">
+            <Label fx:id="errorLabel" alignment="CENTER" minHeight="100.0" minWidth="400.0" text="Label" textAlignment="JUSTIFY">
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="BOTTOM_CENTER" minWidth="100.0" mnemonicParsing="false" text="OK" textAlignment="JUSTIFY">
+            <Button fx:id="goBackButton" alignment="BOTTOM_CENTER" minWidth="100.0" mnemonicParsing="false" text="OK" textAlignment="JUSTIFY">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
