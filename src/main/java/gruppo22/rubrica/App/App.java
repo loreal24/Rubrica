@@ -41,6 +41,7 @@ public class App extends Application {
 
 
 		controller.setContactList(rubrica);
+		controller.setStage(stage);
 
 
 

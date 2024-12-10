@@ -32,7 +32,8 @@ public class PhoneNumber {
      * @param[in] phoneNumbers A List that represent a list of string that represent the phonenumber of the contact.
      */
     public PhoneNumber(List<String> phoneNumbers){
-        this.phoneNumbers = new LinkedList<>();
+		this.phoneNumbers = new LinkedList<>();
+		this.phoneNumbers.addAll(phoneNumbers);
         this.maxSize = 3;
         this.checker = new PhoneChecker();
     }

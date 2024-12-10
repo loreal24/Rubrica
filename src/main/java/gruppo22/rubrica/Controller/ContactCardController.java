@@ -17,8 +17,8 @@ public class ContactCardController {
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
-		nameLabel.setText(contact.getSurname() + " " + contact.getName());
-		numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
+		nameLabel.setText(this.contact.getSurname() + " " + this.contact.getName());
+		numberLabel.setText(this.contact.getPhoneNumber().getPhoneNumbers().get(0));
 	}	
 	
 }

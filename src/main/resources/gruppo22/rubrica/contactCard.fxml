@@ -12,7 +12,7 @@
 
 <!-- Commento -->
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="600.0" style="-fx-background-color: #365b6d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.ContactCardController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="500.0" style="-fx-background-color: #365b6d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.ContactCardController">
    <children>
       <VBox alignment="CENTER" prefHeight="140.0" prefWidth="100.0">
          <children>
