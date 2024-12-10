@@ -44,8 +44,9 @@ public class App extends Application {
 		controller.setStage(stage);
 
 
-
-        scene = new Scene(new MainView(), 650, 800);
+        MainView mainView = new MainView();
+        scene = new Scene(mainView, 650, 800);
+        mainView.setContactList(rubrica);
         stage.setScene(scene);
         stage.show();
     }

@@ -5,6 +5,7 @@
  */
 package gruppo22.rubrica.View;
 
+import gruppo22.rubrica.Model.ContactList;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,12 +17,13 @@ import javafx.scene.layout.VBox;
 public class MainView extends VBox {
 	HeaderView header;
 	SearchBarView search;
-	ContactListView contactList;
+	ContactListView contactListView;
+        ContactList contactList;
 
 	public MainView() {
-		header = new HeaderView();
+		header = new HeaderView(contactList);
 		search = new SearchBarView();
-		contactList = new ContactListView();
+		contactListView = new ContactListView();
 
 		setAlignment(Pos.CENTER);
 
@@ -29,11 +31,14 @@ public class MainView extends VBox {
 		box.setAlignment(Pos.CENTER);
 
 		VBox v = new VBox();
-		v.getChildren().addAll(header, search, contactList);
+		v.getChildren().addAll(header, search, contactListView);
 
 		box.getChildren().addAll(v);
 
 		getChildren().add(box);
 
 	}
+        public void setContactList(ContactList contactList){
+            this.contactList = contactList;
+        }
 }
