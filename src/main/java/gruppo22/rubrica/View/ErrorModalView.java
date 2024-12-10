@@ -28,7 +28,7 @@ public class ErrorModalView extends Pane{
 		//loader.setController(getClass().getResource("ErrorModalController.java"));
 		try{
 			Parent root = loader.load();
-                        //controller = loader.getController();
+                        controller = loader.getController();
 			getChildren().add(root);
 		} catch (IOException e) {
 			e.printStackTrace();

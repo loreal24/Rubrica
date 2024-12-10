@@ -8,75 +8,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.AddContactController">
+<AnchorPane minHeight="800.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane minHeight="600.0" minWidth="500.0" prefHeight="510.0" prefWidth="500.0">
-         <content>
-            <VBox alignment="TOP_CENTER" minHeight="510.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0">
-               <children>
-                  <GridPane prefHeight="30.0" prefWidth="500.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+      <VBox alignment="CENTER" prefHeight="800.0" prefWidth="800.0">
+         <children>
+            <ScrollPane minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0">
+              <content>
+                <AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Salva" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Annulla" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <VBox alignment="CENTER" minHeight="600.0" minWidth="800.0" spacing="50.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></ImageView>
+                              <TextField maxWidth="400.0" minWidth="400.0" promptText="Nome..." />
+                              <TextField maxWidth="400.0" promptText="Cognome..." />
+                              <TextField maxWidth="400.0" promptText="Numero di telefono N.1..." />
+                              <TextField maxWidth="400.0" promptText="E-mail N.1..." />
+                              <TextField layoutX="210.0" layoutY="522.0" maxWidth="400.0" promptText="Numero di telefono N.2..." />
+                              <TextField layoutX="210.0" layoutY="566.0" maxWidth="400.0" promptText="E-mail N.2..." />
+                              <TextField layoutX="210.0" layoutY="645.0" maxWidth="400.0" promptText="Numero di telefono N.3..." />
+                              <TextField layoutX="210.0" layoutY="732.0" maxWidth="400.0" promptText="E-mail N.3..." />
+                           </children>
+                        </VBox>
                      </children>
-                  </GridPane>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets top="80.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <TextField maxWidth="300.0" promptText="Nome...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Cognome...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Cellulare_1...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Email_1...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Cellulare_2...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Email_2...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Cellulare_3...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField maxWidth="300.0" promptText="Email_3...">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </TextField>
+                  </AnchorPane>
+              </content>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox alignment="CENTER" minHeight="200.0" minWidth="600.0">
+               <children>
+                  <Button alignment="CENTER" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" text="Annulla">
+                     <HBox.margin>
+                        <Insets right="150.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" text="Salva">
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
-            </VBox>
-         </content>
-      </ScrollPane>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
