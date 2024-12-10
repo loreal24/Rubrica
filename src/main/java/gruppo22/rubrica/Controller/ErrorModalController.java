@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,6 +29,29 @@ public class ErrorModalController implements Initializable {
     
     @FXML
     Button goBackButton;
+    
+    @FXML
+    public void close(){
+        goBackButton.setOnAction(e-> {
+        Stage stage = (Stage) goBackButton.getScene().getWindow();
+        stage.close();
+        });
+    }
+    
+    /*private void closeWindow() {
+        // Ottieni la finestra corrente (Stage) e chiudila
+        Stage stage = (Stage) goBackButton.getScene().getWindow();
+        stage.close();
+    }
+    */
+     public void setErrorMessage(String errorMessage) {
+        if (errorLabel != null) {
+            errorLabel.setText(errorMessage); // Imposta il testo dell'etichetta
+        }
+    }
+    
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

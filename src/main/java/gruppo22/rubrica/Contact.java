@@ -8,6 +8,8 @@
 */
 package gruppo22.rubrica;
 
+import gruppo22.rubrica.Exceptions.InvalidContactException;
+
 
 public class Contact {
     private String name;
@@ -26,7 +28,9 @@ public class Contact {
      * @param[in] phoneNumber An object that represent the list of phonenumber of the contact
      * @param[in] description A String that represents the description of the contact
      */
-    public Contact(String name, String surname, Email email, PhoneNumber phoneNumber, String description){
+    public Contact(String name, String surname, Email email, PhoneNumber phoneNumber, String description) throws InvalidContactException{
+        if(name.isEmpty() && surname.isEmpty())
+            throw new InvalidContactException("Il nome e il cognome non possono essere entrambi vuoti!!");
         this.name=name;
         this.surname=surname;
         this.email=email;
