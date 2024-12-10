@@ -16,12 +16,12 @@ import javafx.scene.layout.VBox;
 public class MainView extends VBox {
 	HeaderView header;
 	SearchBarView search;
-	ContactCardView card;
+	ContactListView contactList;
 
 	public MainView() {
 		header = new HeaderView();
 		search = new SearchBarView();
-		card = new ContactCardView();
+		contactList = new ContactListView();
 
 		setAlignment(Pos.CENTER);
 
@@ -29,7 +29,7 @@ public class MainView extends VBox {
 		box.setAlignment(Pos.CENTER);
 
 		VBox v = new VBox();
-		v.getChildren().addAll(header, search, card);
+		v.getChildren().addAll(header, search, contactList);
 
 		box.getChildren().addAll(v);
 

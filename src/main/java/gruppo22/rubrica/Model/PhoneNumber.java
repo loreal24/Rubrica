@@ -5,7 +5,7 @@
  * @author lpane
  * @date December 6, 2024
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
 import java.util.LinkedList;
