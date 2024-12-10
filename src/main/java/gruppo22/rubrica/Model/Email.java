@@ -32,7 +32,8 @@ public class Email {
      * @param[in] emailList A List that contains a list of string that represent the email of the contact.
      */
     public Email(List<String> emailList){
-        this.emailList = emailList;
+        this.emailList = new LinkedList<>();
+        this.emailList.addAll(emailList);
         this.maxSize = 3;
         this.checker = new EmailChecker();
     }

@@ -5,9 +5,21 @@
  */
 package gruppo22.rubrica.Controller;
 
+import gruppo22.rubrica.Model.Contact;
+import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Email;
+import gruppo22.rubrica.Exceptions.InvalidContactException;
+import gruppo22.rubrica.Exceptions.InvalidEmailException;
+import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
+import gruppo22.rubrica.Model.PhoneNumber;
+import gruppo22.rubrica.View.ErrorModalView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -15,10 +27,89 @@ import javafx.fxml.Initializable;
  * @author simon
  */
 public class AddContactController implements Initializable {
+    
+    private ContactList contactList;
+    
+    @FXML
+    Button cancelButton, saveButton;
+    
+    @FXML
+    TextField inputName, inputSurname, inputPhoneNumber_1, inputPhoneNumber_2, inputPhoneNumber_3,  inputEmail_1, inputEmail_2, inputEmail_3, inputDescription;
+    
+    
+    
+    @FXML
+    public void cancelButtonAction(){
+        cancelButton.setOnAction(e-> {
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        });
+    }
+    
+    @FXML
+    public void saveButton() throws InvalidContactException {
+        saveButton.setOnAction(e -> {
+            try {
 
+                String name = inputName.getText().trim();
+                String surname = inputSurname.getText().trim();
+                if (name.isEmpty() && surname.isEmpty()) {
+                    throw new InvalidContactException("Il nome e il cognome non possono essere entrambi vuoti!!");
+                }
+
+                PhoneNumber phoneNumber = getInputPhoneNumber();
+                Email email = getInputEmail();
+                String description = inputDescription.getText().trim();
+                
+                Contact contact = new Contact(name,surname,email,phoneNumber,description);
+                contactList.addContact(contact);
+                
+            } catch (InvalidContactException ice) {
+                ErrorModalView errorModal = new ErrorModalView();
+                errorModal.showModal("Invalid Contact Exception",(Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");
+
+            } catch (InvalidPhoneNumberException ipne){
+                ErrorModalView errorModal = new ErrorModalView();
+                errorModal.showModal("Invalid PhoneNumber Exception",(Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");
+            } catch (InvalidEmailException iee){
+                ErrorModalView errorModal = new ErrorModalView();
+                errorModal.showModal("Invalid Email Exception",(Stage) saveButton.getScene().getWindow(), "Inserire una email valida!!");
+            }
+        });
+    }
+    
+    private PhoneNumber getInputPhoneNumber() throws InvalidPhoneNumberException {
+        String phoneNumber_1 = inputPhoneNumber_1.getText().trim();
+        String phoneNumber_2 = inputPhoneNumber_2.getText().trim();
+        String phoneNumber_3 = inputPhoneNumber_3.getText().trim();
+        PhoneNumber phoneNumber = new PhoneNumber();
+
+        phoneNumber.addPhoneNumber(phoneNumber_1);
+        phoneNumber.addPhoneNumber(phoneNumber_2);
+        phoneNumber.addPhoneNumber(phoneNumber_3);
+
+        return phoneNumber;
+    }
+
+    private Email getInputEmail() throws InvalidEmailException {
+        String email_1 = inputEmail_1.getText().trim();
+        String email_2 = inputEmail_2.getText().trim();
+        String email_3 = inputEmail_3.getText().trim();
+        Email email = new Email();
+
+        email.addEmail(email_1);
+        email.addEmail(email_2);
+        email.addEmail(email_3);
+
+        return email;
+    }
     /**
      * Initializes the controller class.
      */
+    
+    public void setContactList(ContactList contactList){
+        this.contactList = contactList;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
