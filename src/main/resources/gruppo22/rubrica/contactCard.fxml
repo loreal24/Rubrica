@@ -25,8 +25,8 @@
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="380.0">
          <children>
-            <Label text="Cognome Nome" textFill="WHITE" />
-            <Label layoutX="27.0" layoutY="72.0" text="+39 132 456 1829" textFill="WHITE" />
+            <Label fx:id="nameLabel" text="Cognome Nome" textFill="WHITE" />
+            <Label fx:id="numberLabel" layoutX="27.0" layoutY="72.0" text="+39 132 456 1829" textFill="WHITE" />
          </children>
       </VBox>
       <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="140.0" prefWidth="100.0">

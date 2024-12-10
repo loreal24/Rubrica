@@ -8,15 +8,17 @@ package gruppo22.rubrica.Model;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public abstract class ContactList {
-	protected final List<Contact> contacts; 
+	protected final ObservableList<Contact> contacts; 
 
 	/*
 	 * @brief Default Constructor 
 	*/
 	public ContactList() {
-		contacts = new LinkedList<>();	
+		contacts = FXCollections.observableArrayList();	
 	}
 
 	/**
@@ -52,4 +54,8 @@ public abstract class ContactList {
 	public int getIndex(Contact c) {
 		return contacts.indexOf(c);
 	}
+
+	 public ObservableList<Contact> getContacts() {
+        return contacts;
+    }
 }

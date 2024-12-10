@@ -14,10 +14,14 @@ import javafx.scene.layout.Pane;
  *
  * @author loreal
  */
-public class ContactCardView extends Pane {
-		public ContactCardView(){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactCard.fxml"));
-
-		loader.setController(getClass().getResource("ContactCardController.java"));
+public class ContactListView extends Pane {
+		public ContactListView(){
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));
+		try{
+			Parent root = loader.load();
+			getChildren().add(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}		
 }
