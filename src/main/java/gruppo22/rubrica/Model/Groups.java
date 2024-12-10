@@ -4,7 +4,7 @@
  * the user.
  * @author loreal
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -4,7 +4,7 @@
  * phone numbers
  * @author loreal
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 public class PhoneChecker implements Checker {
 	/**

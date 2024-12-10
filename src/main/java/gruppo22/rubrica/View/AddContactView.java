@@ -5,8 +5,8 @@
  */
 package gruppo22.rubrica.View;
 
-import gruppo22.rubrica.Contact;
-import gruppo22.rubrica.ContactList;
+import gruppo22.rubrica.Model.Contact;
+import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Controller.AddContactController;
 import java.awt.ScrollPane;
 import java.io.IOException;

@@ -3,7 +3,7 @@
  * @brief The file contains the abstract implementation of a List of Contacts 
  * @author loreal
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import java.util.LinkedList;

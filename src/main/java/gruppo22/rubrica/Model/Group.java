@@ -6,7 +6,7 @@
  * @author simon
  * @date December 2, 2024
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Exceptions.InvalidEmailException;

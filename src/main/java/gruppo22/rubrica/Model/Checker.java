@@ -4,7 +4,7 @@
  * and emails
  * @author loreal
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 public interface Checker {
 	/**

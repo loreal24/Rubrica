@@ -3,7 +3,7 @@
  * @brief The file extends ContactList with the method to save and read files.
  * @author loreal
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Exceptions.InvalidEmailException;

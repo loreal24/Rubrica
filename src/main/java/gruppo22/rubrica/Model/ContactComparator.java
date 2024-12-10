@@ -4,7 +4,7 @@
  * Contacts 
  * @author simon 
  */
-package gruppo22.rubrica;
+package gruppo22.rubrica.Model;
 
 import java.util.Comparator;
 

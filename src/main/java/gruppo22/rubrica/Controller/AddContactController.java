@@ -5,13 +5,13 @@
  */
 package gruppo22.rubrica.Controller;
 
-import gruppo22.rubrica.Contact;
-import gruppo22.rubrica.ContactList;
-import gruppo22.rubrica.Email;
+import gruppo22.rubrica.Model.Contact;
+import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Email;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Exceptions.InvalidEmailException;
 import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
-import gruppo22.rubrica.PhoneNumber;
+import gruppo22.rubrica.Model.PhoneNumber;
 import gruppo22.rubrica.View.ErrorModalView;
 import java.net.URL;
 import java.util.ResourceBundle;
