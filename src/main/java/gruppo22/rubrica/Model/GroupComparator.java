@@ -15,9 +15,20 @@ public class GroupComparator implements Comparator<Group>{
 	 * @return The result is negative if g1 comes before g2, positive if g2 
 	 * comes before g1, zero if g1 and g2 are equal
 	 */
-    @Override
+   @Override
     public int compare(Group g1, Group g2) {
-        return g1.getName().compareTo(g2.getName());
+        String name1 = g1.getName();
+        String name2 = g2.getName();
+
+        if (name1 == null && name2 == null) {
+            return 0; 
+        }
+        if (name1 == null) {
+            return -1;
+        }
+        if (name2 == null) {
+            return 1;
+        }
+        return name1.compareTo(name2);
     }
-    
 }
