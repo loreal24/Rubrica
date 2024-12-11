@@ -13,10 +13,7 @@ import gruppo22.rubrica.Exceptions.InvalidEmailException;
 import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
 import gruppo22.rubrica.Model.PhoneNumber;
 import gruppo22.rubrica.View.ErrorModalView;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -113,4 +110,9 @@ public class AddContactController{
     }
     
     
+    @FXML
+    public void initialize() throws InvalidContactException{
+        handlerSaveButton();
+        handlerCancelButtonAction();
+    }
 }

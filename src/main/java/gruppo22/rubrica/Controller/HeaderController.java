@@ -22,12 +22,14 @@ public class HeaderController {
     public void handlerAddButton(){
         addButton.setOnAction(e-> {
             System.out.println("sono nell'header" + contactList);
-            AddContactView view = new AddContactView(contactList);
-            Scene scene = new Scene(view);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
+            AddContactView view = new AddContactView();
+            view.showModal("Aggiungi Contatto", (Stage) addButton.getScene().getWindow(), contactList);
         });
+    }
+    
+    @FXML
+    public void initialize(){
+        handlerAddButton();
     }
     
    

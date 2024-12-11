@@ -33,7 +33,7 @@
                   <Font name="System Bold" size="64.0" />
                </font>
             </Label>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#handlerAddButton" text="Button" GridPane.columnIndex="1" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#handlerAddButton" text="Aggiungi Contatto" GridPane.columnIndex="1" />
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="15.0" />

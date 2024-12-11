@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author simon
  */
-public class ErrorModalController implements Initializable {
+public class ErrorModalController{
 
     /**
      * Initializes the controller class.
@@ -51,11 +51,11 @@ public class ErrorModalController implements Initializable {
     }
     
     
+    @FXML
+    public void initialize(){
+       close();
+    }
     
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
 }

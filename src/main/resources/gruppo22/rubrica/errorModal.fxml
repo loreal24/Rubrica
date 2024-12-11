@@ -17,7 +17,7 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="goBackButton" alignment="BOTTOM_CENTER" minWidth="100.0" mnemonicParsing="false" text="OK" textAlignment="JUSTIFY">
+            <Button fx:id="goBackButton" alignment="BOTTOM_CENTER" minWidth="100.0" mnemonicParsing="false" onAction="#close" text="OK" textAlignment="JUSTIFY">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
@@ -26,4 +26,3 @@
       </VBox>
    </children>
 </AnchorPane>
-
