@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.DeleteModalController">
    <children>
       <Label graphicTextGap="0.0" text="Vuoi eliminare definitivamente questo contatto?">
          <font>
@@ -18,8 +18,8 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Annulla" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Conferma" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Annulla" onAction="#undoDelete" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Conferma" onAction="#confirmDelete" />
          </children>
          <opaqueInsets>
             <Insets />

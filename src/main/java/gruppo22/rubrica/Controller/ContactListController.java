@@ -75,8 +75,6 @@ public class ContactListController {
 		
 	
 		contactListView.setCellFactory(param -> new ListCell<Contact>() {
-			protected void print(Contact contact, boolean empty) {
-			}
 			@Override
 			protected void updateItem(Contact contact, boolean empty) {
 				super.updateItem(contact, empty);
@@ -142,7 +140,8 @@ public class ContactListController {
 		hbox.setOnMouseClicked((MouseEvent event) -> {
 			System.out.println("Vista Dettagliata");
 
-			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact);
+
+			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts);
 		});
 		
 		return hbox;

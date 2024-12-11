@@ -5,13 +5,18 @@
  */
 package gruppo22.rubrica.Controller;
 
+import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
+import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.View.DeleteModalView;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -21,7 +26,7 @@ import javafx.stage.Stage;
  */
 public class VisualizeContactController {
 	@FXML
-	Button closeButton;
+	Button deleteButton;
 	@FXML
 	Label nameLabel;
 	@FXML
@@ -38,6 +43,7 @@ public class VisualizeContactController {
 	Label emailLabel3;
 
 	private Contact contact;
+	private ContactList rubrica;
 	private Stage stage;
 
 	/**
@@ -53,6 +59,17 @@ public class VisualizeContactController {
 */
 	}	
 
+	@FXML
+	public void handleDelete(MouseEvent event) throws InvalidContactException, IOException {
+			DeleteModalView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			stage.close();
+	}
+
+	@FXML
+	public void handleModify(MouseEvent event) throws InvalidContactException, IOException {
+			DeleteModalView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			stage.close();
+	}
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
@@ -60,6 +77,11 @@ public class VisualizeContactController {
 		numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
 		emailLabel.setText(contact.getEmail().getEmailList().get(0));
 	}
+
+	public void setContactList(ContactList rubrica){
+		this.rubrica = rubrica;
+	}
+
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;

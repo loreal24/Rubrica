@@ -7,6 +7,7 @@ package gruppo22.rubrica.View;
 
 import gruppo22.rubrica.Controller.VisualizeContactController;
 import gruppo22.rubrica.Model.Contact;
+import gruppo22.rubrica.Model.ContactList;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +28,7 @@ public class VisualizeContactView extends Pane{
 	private Parent root;
 
 
-	public static void showModal(String message, Stage ownerStage, Contact contact) {
+	public static void showModal(String message, Stage ownerStage, Contact contact, ContactList rubrica) {
         try {
             FXMLLoader loader = new FXMLLoader(VisualizeContactView.class.getResource("/src/main/resources/gruppo22/rubrica/visualizeContact.fxml"));
             Parent modalRoot = loader.load();
@@ -35,6 +36,7 @@ public class VisualizeContactView extends Pane{
             // Ottieni il controller e imposta il messaggio
             VisualizeContactController controller = loader.getController();
             controller.setContact(contact);
+            controller.setContactList(rubrica);
 
             // Crea un nuovo stage per il dialogo modale
             Stage modalStage = new Stage();
