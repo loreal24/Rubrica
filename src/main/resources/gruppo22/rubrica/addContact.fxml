@@ -26,6 +26,7 @@
                               <TextField fx:id="inputSurname" maxWidth="400.0" promptText="Cognome..." />
                               <TextField fx:id="inputPhoneNumber_1" maxWidth="400.0" promptText="Numero di telefono N.1..." />
                               <TextField fx:id="inputEmail_1" maxWidth="400.0" promptText="E-mail N.1..." />
+                              <TextField fx:id="inputDescription" maxWidth="400.0" promptText="Descrizione..." />
                               <TextField fx:id="inputPhoneNumber_2" layoutX="210.0" layoutY="522.0" maxWidth="400.0" promptText="Numero di telefono N.2..." />
                               <TextField fx:id="inputEmail_2" layoutX="210.0" layoutY="566.0" maxWidth="400.0" promptText="E-mail N.2..." />
                               <TextField fx:id="inputPhoneNumber_3" layoutX="210.0" layoutY="645.0" maxWidth="400.0" promptText="Numero di telefono N.3..." />

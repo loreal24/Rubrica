@@ -5,6 +5,7 @@
  */
 package gruppo22.rubrica.View;
 
+
 import gruppo22.rubrica.Model.ContactList;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -16,12 +17,16 @@ import javafx.scene.layout.VBox;
  */
 public class MainView extends VBox {
 	HeaderView header;
+       
 	SearchBarView search;
 	ContactListView contactListView;
         ContactList contactList;
 
 	public MainView() {
+            
+           
 		header = new HeaderView();
+                
 		search = new SearchBarView();
 		contactListView = new ContactListView();
 

@@ -13,13 +13,15 @@ import javafx.stage.Stage;
 
 public class HeaderController {
     
-    private ContactList contactList;
+    //private ContactList contactList;
+    public static ContactList contactList;
     @FXML
     Button addButton; 
     
     @FXML
     public void handlerAddButton(){
         addButton.setOnAction(e-> {
+            System.out.println("sono nell'header" + contactList);
             AddContactView view = new AddContactView(contactList);
             Scene scene = new Scene(view);
             Stage stage = new Stage();
@@ -28,7 +30,12 @@ public class HeaderController {
         });
     }
     
-    public void setContactList(ContactList contactList){
+   
+            
+            
+            
+    /*public void setContactList(ContactList contactList){
+        System.out.println("Sono nel metodo ContactList dell'headerController " + contactList);
         this.contactList=contactList;
-    }
+    }*/
 }

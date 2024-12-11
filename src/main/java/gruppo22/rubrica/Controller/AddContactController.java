@@ -62,7 +62,10 @@ public class AddContactController{
                 String description = inputDescription.getText().trim();
                 
                 Contact contact = new Contact(name,surname,email,phoneNumber,description);
+                System.out.println(contactList);
                 contactList.addContact(contact);
+                ContactListController contactListController = new ContactListController();
+                contactListController.setContactList(contactList);
                 Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();
             } catch (InvalidContactException ice) {
