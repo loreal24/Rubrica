@@ -52,8 +52,8 @@ public class Email {
     * @throws InvalidEmailException 
     */
     public void addEmail(String email) throws InvalidEmailException{
-        if(email == null)
-            throw new InvalidEmailException("E-mail non esistente! ");
+        if(email.isEmpty())
+            return;
         
         if(checker.isValid(email)){
             if(emailList.size() < maxSize){

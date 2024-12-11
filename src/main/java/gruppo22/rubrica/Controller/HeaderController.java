@@ -18,7 +18,7 @@ public class HeaderController {
     Button addButton; 
     
     @FXML
-    public void handleraddButton(){
+    public void handlerAddButton(){
         addButton.setOnAction(e-> {
             AddContactView view = new AddContactView(contactList);
             Scene scene = new Scene(view);

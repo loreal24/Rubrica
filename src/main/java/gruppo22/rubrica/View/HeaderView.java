@@ -17,14 +17,13 @@ import javafx.scene.layout.Pane;
  * @author loreal
  */
 public class HeaderView extends Pane {
-	public HeaderView(ContactList contactList){
+	public HeaderView(){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));
 
 		loader.setController(getClass().getResource("HeaderController.java"));
 		try{
 			Parent root = loader.load();
-                        HeaderController controller = loader.getController();
-                        controller.setContactList(contactList);
+                       
 			getChildren().add(root);
 		} catch (IOException e) {
 			e.printStackTrace();

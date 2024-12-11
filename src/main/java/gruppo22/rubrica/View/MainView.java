@@ -21,7 +21,7 @@ public class MainView extends VBox {
         ContactList contactList;
 
 	public MainView() {
-		header = new HeaderView(contactList);
+		header = new HeaderView();
 		search = new SearchBarView();
 		contactListView = new ContactListView();
 

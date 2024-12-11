@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author simon
  */
-public class AddContactController implements Initializable {
+public class AddContactController{
     
     private ContactList contactList;
     
@@ -39,7 +39,7 @@ public class AddContactController implements Initializable {
     
     
     @FXML
-    public void cancelButtonAction(){
+    public void handlerCancelButtonAction(){
         cancelButton.setOnAction(e-> {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
@@ -47,7 +47,7 @@ public class AddContactController implements Initializable {
     }
     
     @FXML
-    public void saveButton() throws InvalidContactException {
+    public void handlerSaveButton() throws InvalidContactException {
         saveButton.setOnAction(e -> {
             try {
 
@@ -63,7 +63,8 @@ public class AddContactController implements Initializable {
                 
                 Contact contact = new Contact(name,surname,email,phoneNumber,description);
                 contactList.addContact(contact);
-                
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                stage.close();
             } catch (InvalidContactException ice) {
                 ErrorModalView errorModal = new ErrorModalView();
                 errorModal.showModal("Invalid Contact Exception",(Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");
@@ -103,16 +104,11 @@ public class AddContactController implements Initializable {
 
         return email;
     }
-    /**
-     * Initializes the controller class.
-     */
+    
     
     public void setContactList(ContactList contactList){
         this.contactList = contactList;
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    
     
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gruppo22.rubrica.View;
 
 import gruppo22.rubrica.Controller.ErrorModalController;
@@ -10,48 +5,40 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- *
- * @author simon
- */
-public class ErrorModalView extends Pane{
+public class ErrorModalView {
     
     private ErrorModalController controller;
     
-    public ErrorModalView(){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/errorModal.fxml"));
-
-		//loader.setController(getClass().getResource("ErrorModalController.java"));
-		try{
-			Parent root = loader.load();
-                        controller = loader.getController();
-			getChildren().add(root);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-    // Recupera il controller per poter settare il messaggio
-    public ErrorModalController getController() {
-        return controller;
+    // Costruttore che carica la vista FXML
+    public ErrorModalView() {
+        // Non c'è bisogno di estendere Pane, visto che stai creando una finestra separata
     }
-    
+
     // Mostra la finestra modale
     public void showModal(String title, Stage ownerStage, String errorMessage) {
-        Stage modalStage = new Stage();
-        modalStage.setTitle(title);
-        modalStage.initModality(Modality.WINDOW_MODAL); // Imposta la finestra come modale
-        modalStage.initOwner(ownerStage); // Impedisce l'interazione con il parent stage fino alla chiusura
+        try {
+            // Carica la vista FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gruppo22/rubrica/errorModal.fxml"));
+            Parent root = loader.load();  // Carica il nodo root dal file FXML
 
-        // Setta il messaggio di errore nel controller
-        controller.setErrorMessage(errorMessage);
+            // Recupera il controller e setta il messaggio di errore
+            controller = loader.getController();
+            controller.setErrorMessage(errorMessage);
 
-        // Crea la scena e imposta la vista
-        modalStage.setScene(new Scene( (Parent) getChildren().get(0)));
-        modalStage.showAndWait(); // Mostra la finestra modale e blocca l'interazione finché non viene chiusa
+            // Crea e configura il stage modale
+            Stage modalStage = new Stage();
+            modalStage.setTitle(title);
+            modalStage.initModality(Modality.WINDOW_MODAL);  // Imposta la finestra come modale
+            modalStage.initOwner(ownerStage);  // Impedisce interazione con il parent stage
+
+            // Crea la scena e imposta la vista FXML
+            modalStage.setScene(new Scene(root));
+            modalStage.showAndWait();  // Mostra la finestra modale
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -52,8 +52,8 @@ public class PhoneNumber {
      * @throws InvalidPhoneNumberException 
      */
     public void addPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException{
-        if(phoneNumber == null)
-            throw new InvalidPhoneNumberException("Numero di telefono non esistente! ");
+        if(phoneNumber.isEmpty())
+            return;
         
         if(checker.isValid(phoneNumber)){
             if(phoneNumbers.size() < maxSize){

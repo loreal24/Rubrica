@@ -1,6 +1,7 @@
 package gruppo22.rubrica.App;
 
 import gruppo22.rubrica.Controller.ContactListController;
+import gruppo22.rubrica.Controller.HeaderController;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
@@ -42,11 +43,16 @@ public class App extends Application {
 
 		controller.setContactList(rubrica);
 		controller.setStage(stage);
+                
+                FXMLLoader loader_1 = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));	
 
+		Object load_1 = loader_1.load();
+		HeaderController controller_1 = loader_1.getController();
+                controller_1.setContactList(rubrica);
 
         MainView mainView = new MainView();
         scene = new Scene(mainView, 650, 800);
-        mainView.setContactList(rubrica);
+        
         stage.setScene(scene);
         stage.show();
     }

@@ -25,6 +25,7 @@ public class AddContactView extends Pane{
 		loader.setController(getClass().getResource("AddContactController.java"));
 		try{
 			Parent root = loader.load();
+                        System.out.println(contactList);
                         AddContactController controller = loader.getController();
                         controller.setContactList(contactList);
 			getChildren().add(root);
