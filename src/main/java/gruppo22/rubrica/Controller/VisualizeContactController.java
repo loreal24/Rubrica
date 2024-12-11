@@ -8,7 +8,9 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.View.AddToGroupModalView;
 import gruppo22.rubrica.View.DeleteModalView;
+import gruppo22.rubrica.View.ModifyContactView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,13 +63,19 @@ public class VisualizeContactController {
 
 	@FXML
 	public void handleDelete(MouseEvent event) throws InvalidContactException, IOException {
-			DeleteModalView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			DeleteModalView.showModal("Delete", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
 			stage.close();
 	}
 
 	@FXML
 	public void handleModify(MouseEvent event) throws InvalidContactException, IOException {
-			DeleteModalView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			ModifyContactView.showModal("Modify", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			stage.close();
+	}
+
+	@FXML
+	public void handleAddToGroup(MouseEvent event) throws InvalidContactException, IOException {
+			AddToGroupModalView.showModal("Add To Group", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
 			stage.close();
 	}
 

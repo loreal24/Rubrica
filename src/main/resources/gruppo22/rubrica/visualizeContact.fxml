@@ -19,7 +19,7 @@
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
          </graphic></Button>
-      <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="37.0" text="preferiti">
+      <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="37.0" text="preferiti" onMouseClicked="#handleAddToGroup" >
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
          </graphic></Button>

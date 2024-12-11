@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gruppo22.rubrica.Controller.AddToGroupModalController">
+   <children>
+      <ListView layoutX="50.0" layoutY="39.0" prefHeight="293.0" prefWidth="500.0" fx:id="listView" />
+      <Button layoutX="350.0" layoutY="375.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" text="Conferma" onMouseClicked="#handleConfirm"/>
+      <Button layoutX="100.0" layoutY="375.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" text="Annulla" onMouseClicked="#handleUndo"  />
+   </children>
+</AnchorPane>

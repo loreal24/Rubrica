@@ -156,7 +156,7 @@ public class ContactListController {
 		Task<ObservableList<Contact>> task = new Task<ObservableList<Contact>>() {
 			@Override
 			protected ObservableList<Contact> call() throws Exception {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 
 				return contacts.getContacts();
 			}

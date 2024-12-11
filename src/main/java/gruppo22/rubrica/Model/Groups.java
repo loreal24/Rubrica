@@ -8,15 +8,17 @@ package gruppo22.rubrica.Model;
 
 import java.util.LinkedList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Groups {
-	private List<Group> groups;
+	private ObservableList<Group> groups;
 
 	/**
 	 * @brief Default Constructor
 	 */
 	public Groups() {
-		groups = new LinkedList<>();
+		groups = FXCollections.observableArrayList();
 	}
 
 	/**
@@ -37,5 +39,9 @@ public class Groups {
 		if(!groups.isEmpty()) {
 			groups.remove(g);
 		}
+	}
+	
+	public ObservableList<Group> getGroups() {
+		return groups;
 	}
 }
