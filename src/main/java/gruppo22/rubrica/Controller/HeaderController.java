@@ -16,7 +16,7 @@ public class HeaderController {
     //private ContactList contactList;
     public static ContactList contactList;
     @FXML
-    Button addButton; 
+    Button addButton, visualizeGroupsButton; 
     
     @FXML
     public void handlerAddButton(){
@@ -28,8 +28,16 @@ public class HeaderController {
     }
     
     @FXML
+    public void handlerVisualizeGroupsButton(){
+        visualizeGroupsButton.setOnAction(e->{
+            
+        });
+    }
+    
+    @FXML
     public void initialize(){
         handlerAddButton();
+        handlerVisualizeGroupsButton();
     }
     
    
