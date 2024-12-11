@@ -26,7 +26,7 @@
    			 <Insets right="20.0" />
    		  </StackPane.margin>
                <image>
-                  <Image url="@../../../../../../../Downloads/searchIcon.png" />
+                  <Image url="@/images/searchIcon.png" />
                </image>
    	   </ImageView>
    	</children>

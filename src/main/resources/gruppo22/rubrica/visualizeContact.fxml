@@ -11,23 +11,36 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.VisualizeContactController">
    <children>
-      <Button fx:id="deleteButton" onMouseClicked="#handleDelete"  layoutX="429.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="delete">
+      <Button fx:id="deleteButton" onMouseClicked="#handleDelete"  layoutX="429.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="" style="-fx-background-color: transparent"  >
          <graphic>
-            <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
+			 <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+				 <image>
+					 <Image url="@/images/removeIcon.png"/>
+				 </image>
+			 </ImageView>
          </graphic></Button>
-      <Button layoutX="358.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="37.0" text="modify" onMouseClicked="#handleModify">
+      <Button layoutX="358.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="37.0" text="" onMouseClicked="#handleModify" style="-fx-background-color: transparent">
          <graphic>
-            <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
+			 <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+				 <image>
+					 <Image url="@/images/modifyIcon.png"/>
+				 </image>
+
+			 </ImageView>
          </graphic></Button>
-      <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="37.0" text="preferiti" onMouseClicked="#handleAddToGroup" >
+      <Button layoutX="55.0" layoutY="39.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="37.0" text="" onMouseClicked="#handleAddToGroup" style="-fx-background-color: transparent">
          <graphic>
-            <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" />
+			 <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+				 <image>
+					 <Image url="@/images/groupIcon.png"/>
+				 </image>
+			 </ImageView>
          </graphic></Button>
       <Pane layoutX="175.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/contact.png" />
+                  <Image url="@/images/contact.png" />
                </image></ImageView>
          </children>
       </Pane>

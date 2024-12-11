@@ -22,13 +22,13 @@ public class MainView extends VBox {
 	ContactListView contactListView;
         ContactList contactList;
 
-	public MainView() {
+	public MainView(ContactList rubrica) {
             
            
 		header = new HeaderView();
                 
 		search = new SearchBarView();
-		contactListView = new ContactListView();
+		contactListView = new ContactListView(rubrica);
 
 		setAlignment(Pos.CENTER);
 

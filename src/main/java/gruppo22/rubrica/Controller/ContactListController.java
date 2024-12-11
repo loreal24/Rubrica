@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -52,27 +53,17 @@ public class ContactListController {
 
 	private Stage stage;
 
+	public ContactListController(ContactList contacts) {
+		System.out.println("COSTRUTTREOREORE");	
+		this.contacts = contacts;
+	}
+
 	@FXML
 	public void initialize() throws InvalidContactException {
 		List numbers = new LinkedList();
 		numbers.add("089825713");
 
-		List emails = new LinkedList();
-		emails.add("franco23@gmail.com");
 
-		contacts = new Rubrica();
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		contacts.addContact(new Contact("Marco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
-		setContactList(contacts);
-		
 	
 		contactListView.setCellFactory(param -> new ListCell<Contact>() {
 			@Override
@@ -87,6 +78,8 @@ public class ContactListController {
 				}
 			}
 		});
+
+		contactListView.setItems(contacts.getContacts());
 	}
 
 
@@ -105,7 +98,7 @@ public class ContactListController {
 		leftVBox.setAlignment(javafx.geometry.Pos.CENTER);
 		leftVBox.setPrefHeight(140.0);
 		leftVBox.setPrefWidth(100.0);
-		ImageView leftImageView = new ImageView();
+		ImageView leftImageView = new ImageView(new Image("/images/contact.png"));
 		leftImageView.setFitHeight(100.0);
 		leftImageView.setFitWidth(100.0);
 		leftImageView.setPreserveRatio(true);
@@ -139,6 +132,8 @@ public class ContactListController {
 
 		hbox.setOnMouseClicked((MouseEvent event) -> {
 			System.out.println("Vista Dettagliata");
+			System.out.println("COntatdat" + contact);
+			System.out.println("adfOntatdat" + contacts.getContacts());
 
 
 			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts);

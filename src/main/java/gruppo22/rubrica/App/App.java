@@ -28,21 +28,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InvalidContactException, InterruptedException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));	
-
-		Object load = loader.load();
-		ContactListController controller = loader.getController();
 		ContactList rubrica = new Rubrica();
 
 		List numbers = new LinkedList();
 		numbers.add("089825713");
 
-		rubrica.addContact(new Contact("Franco", "B", new Email(), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
+		List emails = new LinkedList();
+		emails.add("franco23@gmail.com");
+
+		rubrica.addContact(new Contact("Franco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
 
 
 
-		controller.setContactList(rubrica);
-		controller.setStage(stage);
                 
                 //FXMLLoader loader_1 = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));	
 
@@ -50,9 +47,9 @@ public class App extends Application {
 		//HeaderController controller_1 = loader_1.getController();
                 System.out.println("Sono nell'App : " + rubrica);
                 //controller_1.setContactList(rubrica);
-                HeaderController.contactList=rubrica;
+                //HeaderController.contactList=rubrica;
 
-        MainView mainView = new MainView();
+        MainView mainView = new MainView(rubrica);
         scene = new Scene(mainView, 650, 800);
         
         stage.setScene(scene);
