@@ -9,6 +9,7 @@ import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
+import gruppo22.rubrica.View.ContactListView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -16,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -49,7 +52,11 @@ public class GroupListController {
 					setGraphic(null);
 					setText(null);
 				} else {
-					setGraphic(new Label(group.getName()));
+					Label label = new Label(group.getName());
+					param.setOnMouseClicked((MouseEvent event) ->{
+						ContactListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow() , group, groups);
+					});
+					setGraphic(label);
 				}
 			}
 		});

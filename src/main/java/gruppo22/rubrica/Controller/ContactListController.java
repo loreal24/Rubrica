@@ -118,4 +118,8 @@ public class ContactListController {
 		
 		return hbox;
 	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
 }

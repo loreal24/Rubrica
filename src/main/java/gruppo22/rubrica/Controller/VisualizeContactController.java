@@ -65,7 +65,7 @@ public class VisualizeContactController {
 
 	@FXML
 	public void handleDelete(MouseEvent event) throws InvalidContactException, IOException {
-			DeleteModalView.showModal("Delete", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			DeleteModalView.showModal("Delete", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica, groups);
 			stage.close();
 	}
 
