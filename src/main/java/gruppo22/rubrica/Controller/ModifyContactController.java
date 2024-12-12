@@ -151,6 +151,7 @@ public class ModifyContactController{
         this.inputSurname.setText(this.contact.getSurname());
         setInputPhoneNumber();
         setInputEmail();
+        this.inputDescription.setText(this.contact.getDescription());
     }
     
     
