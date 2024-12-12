@@ -84,8 +84,63 @@ public class VisualizeContactController {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 		nameLabel.setText(contact.getSurname() + " " + contact.getName());
-		numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
-		emailLabel.setText(contact.getEmail().getEmailList().get(0));
+		if(!contact.getPhoneNumber().getPhoneNumbers().isEmpty()){
+			numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
+			if(contact.getPhoneNumber().getPhoneNumbers().size() == 2){
+				numberLabel2.setText(contact.getPhoneNumber().getPhoneNumbers().get(1));
+				numberLabel3.setText("");
+			}
+			else
+			{
+				numberLabel2.setText("");
+				numberLabel3.setText("");
+			}
+			if(contact.getPhoneNumber().getPhoneNumbers().size() == 3)
+			{
+				numberLabel2.setText(contact.getPhoneNumber().getPhoneNumbers().get(1));
+				numberLabel3.setText(contact.getPhoneNumber().getPhoneNumbers().get(2));
+			}
+			else
+			{
+				numberLabel2.setText("");
+				numberLabel3.setText("");
+			}
+		}
+		else
+		{
+			numberLabel.setText("");
+			numberLabel2.setText("");
+			numberLabel3.setText("");
+		}
+
+		if(!contact.getEmail().getEmailList().isEmpty()){
+			emailLabel.setText(contact.getEmail().getEmailList().get(0));
+			if(contact.getEmail().getEmailList().size() == 2){
+				emailLabel2.setText(contact.getEmail().getEmailList().get(1));
+				emailLabel3.setText("");
+			}
+			else
+			{
+				emailLabel2.setText("");
+				emailLabel3.setText("");
+			}
+			if(contact.getEmail().getEmailList().size() == 3)
+			{
+				emailLabel2.setText(contact.getEmail().getEmailList().get(1));
+				emailLabel3.setText(contact.getEmail().getEmailList().get(2));
+			}
+			else
+			{
+				emailLabel2.setText("");
+				emailLabel3.setText("");
+			}
+		}
+		else
+		{
+			emailLabel.setText("");
+			emailLabel2.setText("");
+			emailLabel3.setText("");
+		}
 	}
 
 	public void setContactList(ContactList rubrica){
