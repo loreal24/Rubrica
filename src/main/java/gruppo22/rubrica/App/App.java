@@ -43,6 +43,8 @@ public class App extends Application {
 		Groups groups = new Groups();
 		groups.addGroup(new Group("Nome", "Descrizione"));
 
+		boolean groupView = false;
+
 
                 
                 //FXMLLoader loader_1 = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));	
@@ -52,8 +54,9 @@ public class App extends Application {
                 System.out.println("Sono nell'App : " + rubrica);
                 //controller_1.setContactList(rubrica);
                 HeaderController.contactList=rubrica;
+                HeaderController.groupView=groupView;
 
-        MainView mainView = new MainView(rubrica,groups);
+        MainView mainView = new MainView(rubrica,groups, groupView);
         scene = new Scene(mainView, 650, 800);
         
         stage.setScene(scene);

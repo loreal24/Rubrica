@@ -8,26 +8,9 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
-import gruppo22.rubrica.Model.Email;
 import gruppo22.rubrica.Model.Groups;
-import gruppo22.rubrica.Model.PhoneNumber;
-import gruppo22.rubrica.Model.Rubrica;
 import gruppo22.rubrica.View.VisualizeContactView;
-import java.io.IOException;
-import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -37,9 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -63,11 +44,6 @@ public class ContactListController {
 
 	@FXML
 	public void initialize() throws InvalidContactException {
-		List numbers = new LinkedList();
-		numbers.add("089825713");
-
-
-	
 		contactListView.setCellFactory(param -> new ListCell<Contact>() {
 			@Override
 			protected void updateItem(Contact contact, boolean empty) {
@@ -142,37 +118,4 @@ public class ContactListController {
 		
 		return hbox;
 	}
-
-	public void setContactList(ContactList contactList) {
-        this.contacts = contactList;
-		loadContactsAsync();	
-	}
-
-	private void loadContactsAsync() {
-		Task<ObservableList<Contact>> task = new Task<ObservableList<Contact>>() {
-			@Override
-			protected ObservableList<Contact> call() throws Exception {
-				Thread.sleep(1000);
-
-				return contacts.getContacts();
-			}
-		};
-
-
-		task.setOnSucceeded(event -> {
-			contactListView.setItems(task.getValue());
-		});
-
-		task.setOnFailed(event -> {
-			Throwable exception = task.getException();
-			exception.printStackTrace();
-		});
-
-		new Thread(task).start();
-	}
-
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
 }

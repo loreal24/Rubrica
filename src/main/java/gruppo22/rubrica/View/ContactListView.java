@@ -22,7 +22,6 @@ public class ContactListView extends Pane {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));
 		try{
 			loader.setControllerFactory((param) -> {
-				System.out.println("Creazieon Costruttore");
 				return new ContactListController(rubrica, groups);
 			});
 			Parent root = loader.load();
