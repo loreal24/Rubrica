@@ -47,7 +47,7 @@ public class App extends Application {
 		//HeaderController controller_1 = loader_1.getController();
                 System.out.println("Sono nell'App : " + rubrica);
                 //controller_1.setContactList(rubrica);
-                //HeaderController.contactList=rubrica;
+                HeaderController.contactList=rubrica;
 
         MainView mainView = new MainView(rubrica);
         scene = new Scene(mainView, 650, 800);
