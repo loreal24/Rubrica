@@ -9,6 +9,7 @@ import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Email;
+import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.Model.PhoneNumber;
 import gruppo22.rubrica.Model.Rubrica;
 import gruppo22.rubrica.View.VisualizeContactView;
@@ -51,11 +52,13 @@ public class ContactListController {
 
 	private ContactList contacts;
 
+	private Groups groups;
+
 	private Stage stage;
 
-	public ContactListController(ContactList contacts) {
-		System.out.println("COSTRUTTREOREORE");	
+	public ContactListController(ContactList contacts, Groups groups) {
 		this.contacts = contacts;
+		this.groups = groups;
 	}
 
 	@FXML
@@ -132,11 +135,9 @@ public class ContactListController {
 
 		hbox.setOnMouseClicked((MouseEvent event) -> {
 			System.out.println("Vista Dettagliata");
-			System.out.println("COntatdat" + contact);
-			System.out.println("adfOntatdat" + contacts.getContacts());
 
 
-			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts);
+			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts, groups);
 		});
 		
 		return hbox;

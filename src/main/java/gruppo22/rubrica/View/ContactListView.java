@@ -7,6 +7,7 @@ package gruppo22.rubrica.View;
 
 import gruppo22.rubrica.Controller.ContactListController;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Groups;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,12 +18,12 @@ import javafx.scene.layout.Pane;
  * @author loreal
  */
 public class ContactListView extends Pane {
-	public ContactListView(ContactList rubrica){
+	public ContactListView(ContactList rubrica, Groups groups){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));
 		try{
 			loader.setControllerFactory((param) -> {
 				System.out.println("Creazieon Costruttore");
-				return new ContactListController(rubrica);
+				return new ContactListController(rubrica, groups);
 			});
 			Parent root = loader.load();
 			getChildren().add(root);

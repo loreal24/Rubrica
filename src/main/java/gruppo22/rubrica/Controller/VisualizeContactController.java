@@ -8,6 +8,7 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.AddToGroupModalView;
 import gruppo22.rubrica.View.DeleteModalView;
 import gruppo22.rubrica.View.ModifyContactView;
@@ -47,6 +48,7 @@ public class VisualizeContactController {
 	private Contact contact;
 	private ContactList rubrica;
 	private Stage stage;
+	private Groups groups;
 
 	/**
 	 * Initializes the controller class.
@@ -75,7 +77,7 @@ public class VisualizeContactController {
 
 	@FXML
 	public void handleAddToGroup(MouseEvent event) throws InvalidContactException, IOException {
-			AddToGroupModalView.showModal("Add To Group", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+			AddToGroupModalView.showModal("Add To Group", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, groups);
 			stage.close();
 	}
 
@@ -93,6 +95,10 @@ public class VisualizeContactController {
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public void setGroups(Groups groups) {
+		this.groups = groups;
 	}
 }
 
