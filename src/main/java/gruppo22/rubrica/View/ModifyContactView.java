@@ -16,13 +16,14 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class ModifyContactView extends Pane {
-	public static void showModal(String message, Stage ownerStage, Contact contact, ContactList rubrica) throws IOException {
+	public static void showModal(String message, Stage ownerStage) throws IOException {
 		try{
 			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/modifyContact.fxml"));
 			Parent modalRoot = loader.load();
+                        
 			ModifyContactController controller = loader.getController();	
-			controller.setContact(contact);
-			controller.setContactList(rubrica);
+			//controller.setContactList(rubrica);
+                        //controller.setContact(contact);
 
 			Stage modalStage = new Stage();
 			modalStage.setTitle("Dialogo Modale");

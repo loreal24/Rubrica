@@ -69,7 +69,10 @@ public class VisualizeContactController {
 
 	@FXML
 	public void handleModify(MouseEvent event) throws InvalidContactException, IOException {
-			ModifyContactView.showModal("Modify", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, rubrica);
+           ModifyContactController.contact = contact;
+            ModifyContactController.rubrica = rubrica;
+			ModifyContactView.showModal("Modify", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow());
+                        
 			stage.close();
 	}
 

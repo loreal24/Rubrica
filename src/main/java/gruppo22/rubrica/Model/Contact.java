@@ -72,12 +72,19 @@ public class Contact {
      public Email getEmail(){
          return this.email;
      }
+     
+     public void setEmail(Email email){
+         this.email = email;
+     }
      /**
       * @brief Return the contact phonenumber
       * @return An object that represent the list of phonenumber of the contact
       */
      public PhoneNumber getPhoneNumber(){
          return this.phoneNumber;
+     }
+     public void setPhoneNumber(PhoneNumber phoneNumber){
+         this.phoneNumber = phoneNumber;
      }
      /**
       * @brief Return the description of the contact

@@ -52,7 +52,7 @@ public class ContactListController {
 	private ContactList contacts;
 
 	private Stage stage;
-
+        
 	public ContactListController(ContactList contacts) {
 		System.out.println("COSTRUTTREOREORE");	
 		this.contacts = contacts;
@@ -174,4 +174,4 @@ public class ContactListController {
 		this.stage = stage;
 	}
 
-}
+        }
