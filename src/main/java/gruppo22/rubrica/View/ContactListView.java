@@ -6,6 +6,7 @@
 package gruppo22.rubrica.View;
 
 import gruppo22.rubrica.Controller.ContactListController;
+import gruppo22.rubrica.Controller.SearchBarController;
 import gruppo22.rubrica.Controller.VisualizeContactController;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
@@ -27,7 +28,9 @@ public class ContactListView extends Pane {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));
 		try{
 			loader.setControllerFactory((param) -> {
-				return new ContactListController(rubrica, groups);
+				ContactListController controller = new ContactListController(rubrica, groups);
+				SearchBarController.controller = controller;
+				return controller;
 			});
 			Parent root = loader.load();
 			getChildren().add(root);

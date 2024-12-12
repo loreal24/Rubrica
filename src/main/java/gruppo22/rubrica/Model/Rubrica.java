@@ -134,6 +134,7 @@ public class Rubrica extends ContactList{
          * @param contacts The List of contact we want filter
          * @return the List of contact filtered from a query
          */
+	/*
         public List<Contact> contactFilter(String query, List<Contact> contacts) {
         List<Contact> contattiFiltrati = new ArrayList<>();
         if (query == null || query.isEmpty()) {
@@ -147,5 +148,5 @@ public class Rubrica extends ContactList{
             }
         }
         return contattiFiltrati;
-    }
+    }*/
 }

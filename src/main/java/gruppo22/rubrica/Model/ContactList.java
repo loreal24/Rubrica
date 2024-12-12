@@ -6,6 +6,7 @@
 package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -55,7 +56,25 @@ public abstract class ContactList {
 		return contacts.indexOf(c);
 	}
 
-	 public ObservableList<Contact> getContacts() {
+	public ObservableList<Contact> getContacts() {
         return contacts;
+    }
+
+	public ContactList contactFilter(String query, List<Contact> contacts) {
+        List<Contact> contattiFiltrati = new ArrayList<>();
+        if (query == null || query.isEmpty()) {
+            contattiFiltrati.addAll(contacts);
+        } else {
+            for (Contact contatto : contacts) {
+                if (contatto.getName().toLowerCase().contains(query.toLowerCase()) ||
+                    contatto.getSurname().toLowerCase().contains(query.toLowerCase())) {
+                    contattiFiltrati.add(contatto);
+                }
+            }
+        }
+
+		ContactList contactList = new Rubrica();
+		contactList.getContacts().addAll(contattiFiltrati);
+        return contactList;
     }
 }
