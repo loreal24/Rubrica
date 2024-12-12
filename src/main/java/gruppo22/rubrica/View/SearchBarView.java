@@ -7,6 +7,7 @@ package gruppo22.rubrica.View;
 
 import gruppo22.rubrica.Controller.SearchBarController;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Groups;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +18,11 @@ import javafx.scene.layout.Pane;
  * @author loreal
  */
 public class SearchBarView extends Pane {
-	public SearchBarView(ContactList rubrica){
+	public SearchBarView(ContactList rubrica, Groups groups){
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/searchBar.fxml"));
 			loader.setControllerFactory((param -> {
-				return new SearchBarController(rubrica);
+				return new SearchBarController(rubrica, groups);
 			}));
 
 			Parent root = loader.load();

@@ -6,6 +6,7 @@
  */
 package gruppo22.rubrica.Model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -44,4 +45,20 @@ public class Groups {
 	public ObservableList<Group> getGroups() {
 		return groups;
 	}
+
+	public Groups contactFilter(String query, List<Group> groups) {
+        List<Group> filteredGroups= new ArrayList<>();
+        if (query == null || query.isEmpty()) {
+            filteredGroups.addAll(groups);
+        } else {
+            for (Group group: groups) {
+                if (group.getName().toLowerCase().contains(query.toLowerCase()))
+                    filteredGroups.add(group);
+            }
+        }
+
+		Groups g = new Groups();
+		g.getGroups().addAll(filteredGroups);
+        return g;
+    }
 }

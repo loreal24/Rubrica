@@ -34,7 +34,7 @@ public class GroupsListController {
 	private ContactList rubrica;
 
 	@FXML
-	private ListView<Group> groupListView;
+	private ListView<Group> groupsListView;
 
 	public GroupsListController(ContactList rubrica, Groups groups){
 		this.rubrica = rubrica;
@@ -45,7 +45,7 @@ public class GroupsListController {
 	 */
 	@FXML
 	public void initialize() {
-		groupListView.setCellFactory(param -> new ListCell<Group>() {
+		groupsListView.setCellFactory(param -> new ListCell<Group>() {
 			@Override
 			protected void updateItem(Group group, boolean empty) {
 				super.updateItem(group, empty);
@@ -63,7 +63,10 @@ public class GroupsListController {
 			}
 		});
 
-		groupListView.setItems(groups.getGroups());
+		groupsListView.setItems(groups.getGroups());
 	}	
 	
+	public void filterList(String query) {
+        groupsListView.setItems(groups.contactFilter(query, groups.getGroups()).getGroups());
+	}
 }

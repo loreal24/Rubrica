@@ -6,6 +6,7 @@
 package gruppo22.rubrica.Controller;
 
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.Model.Rubrica;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -21,29 +23,49 @@ import javafx.scene.input.KeyEvent;
  */
 public class SearchBarController {
 	private ContactList rubrica;
-	public static ContactListController controller;
+	private Groups groups;
+	public static ContactListController contactListController;
+	public static GroupsListController groupsListController;
 
 	@FXML 
-	private TextField searchTextField;
+	private TextField contactTextField, groupTextField;
 
-	public SearchBarController(ContactList rubrica) {
+	@FXML
+	private StackPane groupSearch, contactSearch;
+
+	public SearchBarController(ContactList rubrica, Groups groups) {
 		this.rubrica = (Rubrica)rubrica;
+		this.groups = groups;
 	} 
 
 	/**
-	 * Initializes the controller class.
+	 * Initializes the contactListController class.
 	 */
 	@FXML
 	public void initialize() {
-		searchTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-			controller.filterList(newValue);
+		HeaderController.groupSearch=groupSearch;
+		HeaderController.contactSearch=contactSearch;
+
+		contactTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+			contactListController.filterList(newValue);
 		});
-        searchTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+        contactTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // If newValue is false, the TextField lost focus
-				searchTextField.setText("a");
-				searchTextField.setText("");
+				contactTextField.setText("a");
+				contactTextField.setText("");
             }
         });
+
+		groupTextField.textProperty().addListener((observable, oldValue, newValue) ->{
+			groupsListController.filterList(newValue);
+		});
+        groupTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // If newValue is false, the TextField lost focus
+				groupTextField.setText("a");
+				groupTextField.setText("");
+            }
+        });
+
 	}	
 
 

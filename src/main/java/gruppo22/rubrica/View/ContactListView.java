@@ -29,7 +29,7 @@ public class ContactListView extends Pane {
 		try{
 			loader.setControllerFactory((param) -> {
 				ContactListController controller = new ContactListController(rubrica, groups);
-				SearchBarController.controller = controller;
+				SearchBarController.contactListController = controller;
 				return controller;
 			});
 			Parent root = loader.load();

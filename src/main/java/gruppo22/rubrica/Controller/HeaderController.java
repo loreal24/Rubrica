@@ -15,7 +15,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,6 +30,8 @@ public class HeaderController {
     public static GroupsListView groupListView;
 	public static Groups groups;
     public static VBox v;
+	public static StackPane contactSearch, groupSearch;
+
     @FXML
     Button addButton, visualizeGroupsButton, addGroupButton; 
 
@@ -55,6 +59,8 @@ public class HeaderController {
 			groupView = !groupView;
 			if(groupView) {
 				visualizeGroupsButton.setText("Contatti");
+				v.getChildren().remove(contactSearch);
+				v.getChildren().add(groupSearch);
 				v.getChildren().remove(contactListView);
 				v.getChildren().add(groupListView);
 				addGroupButton.setVisible(true);
@@ -62,6 +68,8 @@ public class HeaderController {
 			}
 			else {
 				visualizeGroupsButton.setText("Gruppi");
+				v.getChildren().remove(groupSearch);
+				v.getChildren().add(contactSearch);
 				v.getChildren().remove(groupListView);
 				v.getChildren().add(contactListView);
 				addButton.setVisible(true);

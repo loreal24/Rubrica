@@ -32,7 +32,7 @@ public class MainView extends VBox {
            
 		header = new HeaderView();
                 
-		search = new SearchBarView(rubrica);
+		search = new SearchBarView(rubrica, groups);
 		contactListView = new ContactListView(rubrica, groups);
 		groupListView = new GroupsListView(rubrica, groups);
 

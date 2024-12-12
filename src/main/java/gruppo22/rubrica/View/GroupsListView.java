@@ -1,5 +1,6 @@
 package gruppo22.rubrica.View;
 import gruppo22.rubrica.Controller.GroupsListController;
+import gruppo22.rubrica.Controller.SearchBarController;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
 import java.io.IOException;
@@ -16,7 +17,9 @@ public class GroupsListView extends Pane {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/groupsList.fxml"));
 		try{
 			loader.setControllerFactory((param) -> {
-				return new GroupsListController(rubrica, groups);
+				GroupsListController controller = new GroupsListController(rubrica, groups);
+				SearchBarController.groupsListController=controller;
+				return controller;
 			});
 			Parent root = loader.load();
 			getChildren().add(root);

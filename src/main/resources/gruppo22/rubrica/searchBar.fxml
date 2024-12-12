@@ -14,9 +14,26 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.SearchBarController">
    <center>
-   	<StackPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+   	<StackPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="contactSearch">
    	<children>
-   	   <TextField minWidth="600.0" prefHeight="50.0" prefWidth="600.0" promptText="Cerca..." style="-fx-border-radius: 45; -fx-border-width: 2; -fx-border-color: black; -fx-background-color: #F2F2F2;" fx:id="searchTextField"  >
+   	   <TextField minWidth="600.0" prefHeight="50.0" prefWidth="600.0" promptText="Cerca tra i contatti..." style="-fx-border-radius: 45; -fx-border-width: 2; -fx-border-color: black; -fx-background-color: #F2F2F2;" fx:id="contactTextField"  >
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </TextField>
+   	   <ImageView fitHeight="45.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+   		  <StackPane.margin>
+   			 <Insets right="20.0" />
+   		  </StackPane.margin>
+               <image>
+                  <Image url="@/images/searchIcon.png" />
+               </image>
+   	   </ImageView>
+   	</children>
+   	</StackPane>
+   	<StackPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="groupSearch">
+   	<children>
+   	   <TextField minWidth="600.0" prefHeight="50.0" prefWidth="600.0" promptText="Cerca tra i gruppi..." style="-fx-border-radius: 45; -fx-border-width: 2; -fx-border-color: black; -fx-background-color: #F2F2F2;" fx:id="groupTextField"  >
                <StackPane.margin>
                   <Insets />
                </StackPane.margin>
