@@ -16,7 +16,7 @@
    <center>
    	<StackPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER">
    	<children>
-   	   <TextField minWidth="600.0" prefHeight="50.0" prefWidth="600.0" promptText="Cerca..." style="-fx-border-radius: 45; -fx-border-width: 2; -fx-border-color: black; -fx-background-color: white;">
+   	   <TextField minWidth="600.0" prefHeight="50.0" prefWidth="600.0" promptText="Cerca..." style="-fx-border-radius: 45; -fx-border-width: 2; -fx-border-color: black; -fx-background-color: #F2F2F2;">
                <StackPane.margin>
                   <Insets />
                </StackPane.margin>

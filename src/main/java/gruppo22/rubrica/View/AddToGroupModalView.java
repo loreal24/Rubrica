@@ -3,6 +3,7 @@ package gruppo22.rubrica.View;
 import gruppo22.rubrica.Controller.AddToGroupModalController;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Groups;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,14 +17,14 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class AddToGroupModalView extends Pane {
-	public static void showModal(String message, Stage ownerStage, Contact contact, ContactList rubrica) throws IOException {
+	public static void showModal(String message, Stage ownerStage, Contact contact, Groups groups) throws IOException {
 		try{
 			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/addToGroupModal.fxml"));
 			Parent modalRoot = loader.load();
 			AddToGroupModalController controller = loader.getController();	
 			controller.setContact(contact);
-			controller.setContactList(rubrica);
 			controller.setStage(ownerStage);
+			controller.setGroups(groups);
 
 			Stage modalStage = new Stage();
 			modalStage.setTitle("Dialogo Modale");

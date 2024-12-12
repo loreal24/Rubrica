@@ -45,19 +45,6 @@ public class AddToGroupModalController {
 	 */
 	@FXML
 	public void initialize() {
-		groups = new Groups();
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-		groups.addGroup(new Group("NOMONE", "DESCRIZIONONE"));
-
-		setGroups(groups);
-
 		listView.setCellFactory(param -> new ListCell<Group>() {
 			@Override
 			protected void updateItem(Group group, boolean empty) {
@@ -94,8 +81,8 @@ public class AddToGroupModalController {
 	public void handleConfirm() throws InvalidContactException {
 		Group selected = listView.getSelectionModel().getSelectedItem();
 
-		selected.addContact(contact);
-		System.out.println(selected.getContacts().toString());
+		groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
+		System.out.println(groups.getGroups().get(0).getContacts());
 		stage.close();
 		
 	}

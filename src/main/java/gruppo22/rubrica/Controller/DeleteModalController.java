@@ -8,6 +8,10 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Group;
+import gruppo22.rubrica.Model.Groups;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -19,6 +23,7 @@ import javafx.stage.Stage;
 public class DeleteModalController {
 	private Contact contact;
 	private ContactList rubrica;
+	private Groups groups;
 	private Stage stage;
 
 	/**
@@ -41,8 +46,20 @@ public class DeleteModalController {
 		this.rubrica = rubrica;
 	}
 
+	public void setGroups(Groups groups) {
+		this.groups = groups;
+	}
+
 	@FXML
 	public void confirmDelete() throws InvalidContactException {
+		groups.getGroups().forEach((Group group) -> {
+			if(group.getContacts().contains(contact))
+				try {
+					group.removeContact(contact);
+			} catch (InvalidContactException ex) {
+				Logger.getLogger(DeleteModalController.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		});
 		rubrica.removeContact(contact);
 		stage.close();
 	}

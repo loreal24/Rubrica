@@ -6,6 +6,8 @@ import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Email;
+import gruppo22.rubrica.Model.Group;
+import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.Model.PhoneNumber;
 import gruppo22.rubrica.Model.Rubrica;
 import gruppo22.rubrica.View.MainView;
@@ -38,6 +40,10 @@ public class App extends Application {
 
 		rubrica.addContact(new Contact("Franco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
 
+		Groups groups = new Groups();
+		groups.addGroup(new Group("Nome", "Descrizione"));
+
+		boolean groupView = false;
 
 
                 
@@ -48,8 +54,9 @@ public class App extends Application {
                 System.out.println("Sono nell'App : " + rubrica);
                 //controller_1.setContactList(rubrica);
                 HeaderController.contactList=rubrica;
+                HeaderController.groupView=groupView;
 
-        MainView mainView = new MainView(rubrica);
+        MainView mainView = new MainView(rubrica,groups, groupView);
         scene = new Scene(mainView, 650, 800);
         
         stage.setScene(scene);
