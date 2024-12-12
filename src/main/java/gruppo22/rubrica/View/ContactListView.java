@@ -36,27 +36,4 @@ public class ContactListView extends Pane {
 		}
 	}		
 
-	public static void showModal(String message, Stage ownerStage, ContactList rubrica, Groups groups) {
-        try {
-            FXMLLoader loader = new FXMLLoader(ContactListView.class.getResource("/src/main/resources/gruppo22/rubrica/contactList.fxml"));
-			loader.setControllerFactory((param) -> {
-				return new ContactListController(rubrica, groups);
-			});
-
-            Parent modalRoot = loader.load();
-
-            // Ottieni il controller e imposta il messaggio
-
-            // Crea un nuovo stage per il dialogo modale
-            Stage modalStage = new Stage();
-            modalStage.setTitle("Dialogo Modale");
-            modalStage.initModality(Modality.WINDOW_MODAL);
-            modalStage.initOwner(ownerStage);
-
-            modalStage.setScene(new Scene(modalRoot));
-            modalStage.showAndWait(); // Mostra il modale e aspetta che venga chiuso
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

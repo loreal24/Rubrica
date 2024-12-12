@@ -39,6 +39,11 @@ public class AddToGroupModalController {
 	
 	private Groups groups;
 
+	public AddToGroupModalController(Stage stage, Contact contact, Groups groups){
+		this.groups = groups;
+		this.stage = stage;
+		this.contact = contact;
+	}
 
 	/**
 	 * Initializes the controller class.
@@ -58,6 +63,9 @@ public class AddToGroupModalController {
 				}
 			}
 		});
+
+		listView.setItems(groups.getGroups());
+
 	}	
 
 	public void setContact(Contact contact) {
@@ -70,7 +78,6 @@ public class AddToGroupModalController {
 
 	public void setGroups(Groups groups){
 		this.groups = groups;
-		loadGroupsAsync();
 	}
 
 	public void setStage(Stage modalStage) {
@@ -80,9 +87,16 @@ public class AddToGroupModalController {
 	@FXML
 	public void handleConfirm() throws InvalidContactException {
 		Group selected = listView.getSelectionModel().getSelectedItem();
+		System.out.println(selected.getName());
+
+		System.out.println(groups.getGroups());
 
 		groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
-		System.out.println(groups.getGroups().get(0).getContacts());
+
+		groups.getGroups().forEach((Group group) -> {
+			System.out.println(group.getContacts());
+		});
+		//System.out.println(groups.getGroups().get(groups.getGroups().indexOf(selected)));
 		stage.close();
 		
 	}
@@ -92,29 +106,4 @@ public class AddToGroupModalController {
 		stage.close();
 	}
 
-
-	private void loadGroupsAsync() {
-		Task<ObservableList<Group>> task = new Task<ObservableList<Group>>() {
-			@Override
-			protected ObservableList<Group> call() throws Exception {
-				Thread.sleep(1000);
-
-				return groups.getGroups();
-			}
-		};
-
-
-		task.setOnSucceeded(event -> {
-			listView.setItems(task.getValue());
-		});
-
-		task.setOnFailed(event -> {
-			Throwable exception = task.getException();
-			exception.printStackTrace();
-		});
-
-		new Thread(task).start();
-	}
-
-	
 }

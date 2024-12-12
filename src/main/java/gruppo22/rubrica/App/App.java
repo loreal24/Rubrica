@@ -55,6 +55,7 @@ public class App extends Application {
                 //controller_1.setContactList(rubrica);
                 HeaderController.contactList=rubrica;
                 HeaderController.groupView=groupView;
+                HeaderController.groups=groups;
 
         MainView mainView = new MainView(rubrica,groups, groupView);
         scene = new Scene(mainView, 650, 800);

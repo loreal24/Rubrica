@@ -1,6 +1,7 @@
 package gruppo22.rubrica.View;
 
-import gruppo22.rubrica.Controller.AddToGroupModalController;
+import gruppo22.rubrica.Controller.AddGroupModalController;
+import gruppo22.rubrica.Controller.DeleteModalController;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
@@ -12,21 +13,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- *
- * @author loreal
- */
-public class AddToGroupModalView extends Pane {
-	public static void showModal(String message, Stage ownerStage, Contact contact, Groups groups) throws IOException {
+public class AddGroupModalView extends Pane {
+	public static void showModal(String message, Stage ownerStage, Groups groups) throws IOException {
 		try{
-			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/addToGroupModal.fxml"));
+			FXMLLoader loader = new FXMLLoader(AddGroupModalView.class.getResource("/src/main/resources/gruppo22/rubrica/addGroupModal.fxml"));
+			Stage modalStage = new Stage();
 			loader.setControllerFactory((param) -> {
-				return new AddToGroupModalController(ownerStage, contact, groups);
+				return new AddGroupModalController(modalStage, groups);
 			});
 			Parent modalRoot = loader.load();
 
-			Stage modalStage = new Stage();
-			modalStage.setTitle("Dialogo Modale");
+			modalStage.setTitle("Aggiungi Gruppo");
 			modalStage.initModality(Modality.WINDOW_MODAL);
 			modalStage.initOwner(ownerStage);
 

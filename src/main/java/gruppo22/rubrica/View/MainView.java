@@ -22,7 +22,7 @@ public class MainView extends VBox {
        
 	SearchBarView search;
 	ContactListView contactListView;
-	GroupListView groupListView;
+	GroupsListView groupListView;
 	ContactList contactList;
 	Groups groups;
 
@@ -34,7 +34,7 @@ public class MainView extends VBox {
                 
 		search = new SearchBarView();
 		contactListView = new ContactListView(rubrica, groups);
-		groupListView = new GroupListView(rubrica, groups);
+		groupListView = new GroupsListView(rubrica, groups);
 
 		HeaderController.contactListView = contactListView;
 		HeaderController.groupListView = groupListView;
