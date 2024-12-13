@@ -114,6 +114,9 @@ public class HeaderController {
         fileChooser.setTitle("Save File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("vCard File", "*.vcf"));
 		File destination = fileChooser.showSaveDialog(null);
+                
+                if(destination == null)
+                    return;
 
         // Show save file dialog
         if (exportFile != null) {

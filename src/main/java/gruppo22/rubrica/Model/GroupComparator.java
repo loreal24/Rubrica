@@ -29,6 +29,6 @@ public class GroupComparator implements Comparator<Group>{
         if (name2 == null) {
             return 1;
         }
-        return name1.compareTo(name2);
+        return name1.toLowerCase().compareTo(name2.toLowerCase());
     }
 }
