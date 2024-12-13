@@ -11,6 +11,8 @@ import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.VisualizeContactView;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -32,8 +34,14 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class GroupListController {
+
+	public static ListView<Group> groupsListView;
+
 	@FXML 
 	private ListView<Contact> groupListView;
+
+	@FXML
+	private Button removeGroupButton;
 
 	private Group group;
 
@@ -43,10 +51,13 @@ public class GroupListController {
 
 	private Stage stage;
 
-	public GroupListController(ContactList contacts, Group group) {
+	public GroupListController(ContactList contacts, Group group, Groups groups, Stage stage) {
 		this.contacts = contacts;
 		this.group = group;
+		this.groups = groups;
+		this.stage = stage;
 	}
+
 
 	@FXML
 	public void initialize() throws InvalidContactException {
@@ -120,6 +131,7 @@ public class GroupListController {
 			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts, groups);
 		});
 
+
 		button.setOnMouseClicked((MouseEvent event) -> {
 			try {
 				group.removeContact(contact);
@@ -135,5 +147,20 @@ public class GroupListController {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public void removeGroup(MouseEvent event) {
+		if(group.getContacts() != null)
+		{
+			List<Contact> list = new LinkedList<>();
+			group.getContacts().forEach((Contact c)-> {
+				list.add(c);
+			});
+			group.getContacts().removeAll(list);
+		}
+		System.out.println(group.getName());
+		groups.removeGroup(group);
+		groupsListView.setItems(groups.getGroups());
+		stage.close();
 	}
 }

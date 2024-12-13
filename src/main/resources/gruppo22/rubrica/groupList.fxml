@@ -6,7 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane minHeight="300.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.GroupListController" style="-fx-background-color: #365b6d;">
-	<ListView fx:id="groupListView" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" />
+<AnchorPane minHeight="300.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.GroupListController">
+   <children>
+   	<ListView fx:id="groupListView" layoutX="7.0" layoutY="7.0" prefHeight="385.0" prefWidth="585.0" />
+      <Button fx:id="removeGroupButton" layoutX="197.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#removeGroup" prefHeight="27.0" prefWidth="207.0" style="-fx-background-color: white; -fx-text-fill: #365b6d; -fx-border-color: #365b6d;" text="Rimuovi Gruppo" />
+   </children>
 </AnchorPane>

@@ -21,11 +21,12 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class GroupListView {
-	public static void showModal(String message, Stage ownerStage, ContactList rubrica, Group group) {
+	public static void showModal(String message, Stage ownerStage, ContactList rubrica, Group group, Groups groups) {
         try {
             FXMLLoader loader = new FXMLLoader(ContactListView.class.getResource("/src/main/resources/gruppo22/rubrica/groupList.fxml"));
+            Stage modalStage = new Stage();
 			loader.setControllerFactory((param) -> {
-				return new GroupListController(rubrica, group);
+				return new GroupListController(rubrica, group, groups, modalStage);
 			});
 
             Parent modalRoot = loader.load();
@@ -33,7 +34,6 @@ public class GroupListView {
             // Ottieni il controller e imposta il messaggio
 
             // Crea un nuovo stage per il dialogo modale
-            Stage modalStage = new Stage();
             modalStage.setTitle("Dialogo Modale");
             modalStage.initModality(Modality.WINDOW_MODAL);
             modalStage.initOwner(ownerStage);

@@ -47,6 +47,7 @@ public class GroupsListController {
 	 */
 	@FXML
 	public void initialize() {
+		GroupListController.groupsListView = groupsListView;
 		groupsListView.setCellFactory(param -> new ListCell<Group>() {
 			@Override
 			protected void updateItem(Group group, boolean empty) {
@@ -63,7 +64,7 @@ public class GroupsListController {
 					pane.setStyle("-fx-background-color: #365b6d;");
 					pane.setOnMouseClicked((MouseEvent event) ->{
 						System.out.println();
-						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), rubrica, group);
+						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), rubrica, group, groups);
 					});
 					setGraphic(pane);
 				}
