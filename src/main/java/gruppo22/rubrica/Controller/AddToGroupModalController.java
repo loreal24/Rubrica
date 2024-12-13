@@ -10,6 +10,7 @@ import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
+import gruppo22.rubrica.View.ErrorModalView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -91,7 +92,13 @@ public class AddToGroupModalController {
 
 		System.out.println(groups.getGroups());
 
-		groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
+		if(!groups.getGroups().get(groups.getGroups().indexOf(selected)).getContacts().contains(contact))
+			groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
+		else
+		{
+			ErrorModalView errorModal = new ErrorModalView();
+			errorModal.showModal("Errore",(Stage) listView.getScene().getWindow(), "Il Contatto è già presente nel gruppo e non può essere aggiunto");
+		}
 
 		groups.getGroups().forEach((Group group) -> {
 			System.out.println(group.getContacts());

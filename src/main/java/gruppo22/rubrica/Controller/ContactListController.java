@@ -10,8 +10,6 @@ import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.VisualizeContactView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

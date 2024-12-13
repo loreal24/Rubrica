@@ -269,8 +269,6 @@ public class Group extends ContactList {
 				}
 			}
 
-
-			c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 		}
         } catch (IOException e) {
             e.printStackTrace(); 
