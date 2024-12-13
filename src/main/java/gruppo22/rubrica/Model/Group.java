@@ -170,14 +170,14 @@ public class Group extends ContactList {
 			PhoneNumber phoneNumber = new PhoneNumber();
 			if (riga.startsWith("BEGIN:VCARD")) {
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			} 
 			if(riga.startsWith("VERSION:")){
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
@@ -188,39 +188,74 @@ public class Group extends ContactList {
 				if(fullname.length > 1)
 					nome = fullname[1];
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga ==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			}
 			if(riga.startsWith("N:")){
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			}
 			if (riga.startsWith("EMAIL:")) {
+				System.out.println(riga);
 				email.addEmail(riga.substring(6));
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
-			} 
+				else if(riga.startsWith("EMAIL:")){
+				System.out.println(riga);
+					email.addEmail(riga.substring(6));
+					riga = br.readLine();
+					if(riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}	
+					else if(riga.startsWith("EMAIL:")) {
+				System.out.println(riga);
+						email.addEmail(riga.substring(6));
+						riga = br.readLine();
+						if(riga == null){
+							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+							System.out.println(c.getContacts());
+							break;
+						}
+					}
+				}
+			}
 			if (riga.startsWith("TEL:")) {
 				phoneNumber.addPhoneNumber(riga.substring(4));
-				System.out.println(riga.substring(4));
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga ==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
+				}
+				else if(riga.startsWith("TEL:")) {
+					phoneNumber.addPhoneNumber(riga.substring(4));
+					riga = br.readLine();	
+					if(riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
+					else if (riga.startsWith("TEL:")){
+						phoneNumber.addPhoneNumber(riga.substring(4));
+						riga = br.readLine();	
+						if(riga == null) {
+							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+							break;
+						}
+					}
 				}
 			} 
 			if (riga.startsWith("NOTE:")) {
 				descrizione = riga.substring(5);
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
@@ -228,11 +263,12 @@ public class Group extends ContactList {
 			if (riga.startsWith("END:VCARD")) {
 				System.out.println("Fine del contatto.\n");
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			}
+
 
 			c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 		}
