@@ -117,24 +117,36 @@ public class Rubrica extends ContactList{
 					break;
 				}
 			}
-			if (riga.startsWith("FN:")) {
-				fullname = riga.substring(3).split(" ");
-				cognome = fullname[0];
-				if(fullname.length > 1)
-					nome = fullname[1];
-				riga = br.readLine();
-				if(riga ==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-			}
-			if(riga.startsWith("N:")){
-				riga = br.readLine();
-				if(riga==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-			}
+                        if (riga.startsWith("FN:")) {
+                            fullname = riga.substring(3).trim().split(" ", 2); 
+                            if (fullname.length == 2) {
+                                cognome = fullname[0]; // Primo elemento come cognome
+                                nome = fullname[1];    // Secondo elemento come nome
+                            } else if (fullname.length == 1) {
+                                nome = fullname[0];    // Se c'è un solo elemento, consideralo come nome
+                            }
+                            riga = br.readLine();
+                            if (riga == null) {
+                                c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+                                break;
+                            }
+                        }
+                        
+                        if (riga.startsWith("N:")) {
+                            String[] nFields = riga.substring(2).trim().split(";");
+                            // Imposta il cognome solo se il campo non è vuoto
+                            cognome = (nFields.length > 0 && !nFields[0].isEmpty()) ? nFields[0] : null;
+                            // Imposta il nome solo se il campo non è vuoto
+                            nome = (nFields.length > 1 && !nFields[1].isEmpty()) ? nFields[1] : null;
+
+                            riga = br.readLine();
+                            if (riga == null) {
+                                c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+                                break;
+                            }
+                        }
+
+
 			if (riga.startsWith("EMAIL:")) {
 				System.out.println(riga);
 				email.addEmail(riga.substring(6));
