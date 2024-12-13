@@ -11,6 +11,7 @@ import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -25,6 +26,8 @@ public class MainView extends VBox {
 	GroupsListView groupListView;
 	ContactList contactList;
 	Groups groups;
+
+	public static StackPane contactSearch;
 
 
 	public MainView(ContactList rubrica, Groups groups, boolean groupView) {
@@ -46,7 +49,7 @@ public class MainView extends VBox {
 
 		VBox v = new VBox();
 		
-		v.getChildren().addAll(header, search, contactListView);
+		v.getChildren().addAll(header, contactSearch,contactListView);
 		box.getChildren().addAll(v);
 		getChildren().add(box);
 

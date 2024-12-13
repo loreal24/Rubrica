@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 public class AddGroupModalController {
 
 	private Groups groups;
+
+	public static TextField groupSearch;
 	private Stage stage;
 
 	@FXML
@@ -56,6 +58,9 @@ public class AddGroupModalController {
 	public void handleConfirm() {
 		Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
 		groups.addGroup(group);
+		groupSearch.setText("a");
+		groupSearch.setText("");
+		
 		stage.close();
 	}
 

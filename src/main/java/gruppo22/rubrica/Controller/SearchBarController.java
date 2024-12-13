@@ -8,6 +8,7 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.Model.Rubrica;
+import gruppo22.rubrica.View.MainView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -45,6 +46,9 @@ public class SearchBarController {
 	public void initialize() {
 		HeaderController.groupSearch=groupSearch;
 		HeaderController.contactSearch=contactSearch;
+		MainView.contactSearch=contactSearch;
+		AddContactController.contactSearch = contactTextField;
+		AddGroupModalController.groupSearch=groupTextField;
 
 		contactTextField.textProperty().addListener((observable, oldValue, newValue) ->{
 			contactListController.filterList(newValue);

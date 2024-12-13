@@ -16,6 +16,7 @@ import gruppo22.rubrica.View.ErrorModalView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -26,6 +27,9 @@ import javafx.stage.Stage;
 public class AddContactController{
     
     private ContactList contactList;
+
+	public static TextField contactSearch;
+
     
     @FXML
     Button cancelButton, saveButton;
@@ -61,6 +65,8 @@ public class AddContactController{
                 Contact contact = new Contact(name,surname,email,phoneNumber,description);
                 System.out.println(contactList);
                 contactList.addContact(contact);
+				contactSearch.setText("a");
+				contactSearch.setText("");
                 
                 Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();
