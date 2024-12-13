@@ -1,13 +1,23 @@
 package gruppo22.rubrica.Controller;
 
 import gruppo22.rubrica.App.App;
+import gruppo22.rubrica.Exceptions.InvalidContactException;
+import gruppo22.rubrica.Exceptions.InvalidEmailException;
+import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Groups;
+import gruppo22.rubrica.Model.Rubrica;
 import gruppo22.rubrica.View.AddContactView;
 import gruppo22.rubrica.View.AddGroupModalView;
 import gruppo22.rubrica.View.ContactListView;
 import gruppo22.rubrica.View.GroupsListView;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class HeaderController {
@@ -77,7 +88,19 @@ public class HeaderController {
 			}
         });
     }
+
+	@FXML
+	public void handleExport() throws IOException {
+		exportToFile(new File("rubrica.vcf"));	
+
+	}
     
+
+	@FXML
+	public void handleImport() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
+		importFromFile();
+	}
+
     @FXML
     public void initialize(){
 		addGroupButton.setVisible(false);
@@ -85,8 +108,66 @@ public class HeaderController {
         handlerVisualizeGroupsButton();
     }
     
-   
-            
+	private void exportToFile(File exportFile) throws FileNotFoundException, IOException {
+		((Rubrica)contactList).saveVCF("rubrica.vcf");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("vCard File", "*.vcf"));
+		File destination = fileChooser.showSaveDialog(null);
+
+        // Show save file dialog
+        if (exportFile != null) {
+            try (FileInputStream fis = new FileInputStream(exportFile);
+             FileOutputStream fos = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+        }
+        }
+    }
+
+	private void importFromFile() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File to Import");
+        File sourceFile = fileChooser.showOpenDialog(null);
+
+        // Check if a source file was selected
+        if (sourceFile != null) {
+            // Create a File object for the hardcoded destination file
+            File destinationFile = new File("rubrica.vcf");
+
+            try {
+                copyFile(sourceFile, destinationFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+		ContactList list = Rubrica.readVCF("rubrica.vcf");
+
+		list.getContacts().forEach((Contact contact) -> {
+			if(!contactList.getContacts().contains(contact)) try {
+				contactList.addContact(contact);
+			} catch (InvalidContactException ex) {
+				Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		});
+
+	}
+
+    private void copyFile(File source, File destination) throws IOException {
+        // Use FileInputStream and FileOutputStream to copy the file content
+        try (FileInputStream fis = new FileInputStream(source);
+             FileOutputStream fos = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+        }
+    }        
             
             
     /*public void setContactList(ContactList contactList){

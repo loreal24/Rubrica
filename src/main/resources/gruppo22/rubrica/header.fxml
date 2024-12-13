@@ -21,9 +21,10 @@
    <children>
       <GridPane prefHeight="50.0" VBox.vgrow="NEVER">
         <columnConstraints>
-          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="394.0" minWidth="274.0" prefWidth="274.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="207.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="394.0" minWidth="211.0" prefWidth="211.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="110.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="129.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="80.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -36,7 +37,13 @@
             </Label>
             <Button fx:id="addButton" mnemonicParsing="false" onAction="#handlerAddButton" text="Aggiungi Contatto" textAlignment="JUSTIFY" GridPane.columnIndex="2" />
             <Button fx:id="addGroupButton" mnemonicParsing="false" onMouseClicked="#handlerAddGroupButton" text="Aggiungi Gruppo" textAlignment="JUSTIFY" GridPane.columnIndex="2" />
-            <Button fx:id="visualizeGroupsButton" mnemonicParsing="false" onAction="#handlerVisualizeGroupsButton" prefHeight="37.0" prefWidth="100.0" text="Gruppi" GridPane.columnIndex="1" />
+            <Button fx:id="visualizeGroupsButton" mnemonicParsing="false" onAction="#handlerVisualizeGroupsButton" prefHeight="22.0" prefWidth="100.0" text="Gruppi" GridPane.columnIndex="1" />
+            <MenuButton mnemonicParsing="false" text="Menu" GridPane.columnIndex="3">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleImport" text="Importa" />
+                <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Esporta" />
+              </items>
+            </MenuButton>
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="15.0" />
