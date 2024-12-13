@@ -21,11 +21,11 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class GroupListView {
-	public static void showModal(String message, Stage ownerStage, ContactList rubrica, Groups groups) {
+	public static void showModal(String message, Stage ownerStage, ContactList rubrica, Group group) {
         try {
             FXMLLoader loader = new FXMLLoader(ContactListView.class.getResource("/src/main/resources/gruppo22/rubrica/groupList.fxml"));
 			loader.setControllerFactory((param) -> {
-				return new GroupListController(rubrica, groups);
+				return new GroupListController(rubrica, group);
 			});
 
             Parent modalRoot = loader.load();

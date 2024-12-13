@@ -69,9 +69,7 @@ public class ContactListController {
 		hbox.setMaxHeight(Double.NEGATIVE_INFINITY);
 		hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
 		hbox.setMinHeight(110);
-		hbox.setMinWidth(500);
-		hbox.setPrefHeight(110.0);
-		hbox.setPrefWidth(500.0);
+		hbox.setMinWidth(550);
 		hbox.setStyle("-fx-background-color: #365b6d;");
 
 		// Creazione del primo VBox (immagine a sinistra)

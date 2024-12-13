@@ -63,7 +63,7 @@ public class GroupsListController {
 					pane.setStyle("-fx-background-color: #365b6d;");
 					pane.setOnMouseClicked((MouseEvent event) ->{
 						System.out.println();
-						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), group, groups);
+						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), rubrica, group);
 					});
 					setGraphic(pane);
 				}

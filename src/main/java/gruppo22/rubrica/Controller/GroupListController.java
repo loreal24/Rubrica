@@ -8,9 +8,13 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
+import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.VisualizeContactView;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -31,15 +35,17 @@ public class GroupListController {
 	@FXML 
 	private ListView<Contact> groupListView;
 
+	private Group group;
+
 	private ContactList contacts;
 
 	private Groups groups;
 
 	private Stage stage;
 
-	public GroupListController(ContactList contacts, Groups groups) {
+	public GroupListController(ContactList contacts, Group group) {
 		this.contacts = contacts;
-		this.groups = groups;
+		this.group = group;
 	}
 
 	@FXML
@@ -52,25 +58,23 @@ public class GroupListController {
 					setGraphic(null);
 					setText(null);
 				} else {
-					Pane pane = createContactCard(contact);
+					Pane pane = createContactCard(contact, group);
 					setGraphic(pane);
 				}
 			}
 		});
 
-		groupListView.setItems(contacts.getContacts());
+		groupListView.setItems(group.getContacts());
 
 	}
 
 
-	private Pane createContactCard(Contact contact) {
+	private Pane createContactCard(Contact contact, Group group) {
 		HBox hbox = new HBox();
 		hbox.setMaxHeight(Double.NEGATIVE_INFINITY);
 		hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
 		hbox.setMinHeight(110);
-		hbox.setMinWidth(500);
-		hbox.setPrefHeight(110.0);
-		hbox.setPrefWidth(500.0);
+		hbox.setMinWidth(550);
 		hbox.setStyle("-fx-background-color: #365b6d;");
 
 		// Creazione del primo VBox (immagine a sinistra)
@@ -101,11 +105,10 @@ public class GroupListController {
 		rightVBox.setAlignment(javafx.geometry.Pos.CENTER);
 		rightVBox.setPrefHeight(140.0);
 		rightVBox.setPrefWidth(100.0);
-		ImageView rightImageView = new ImageView();
-		rightImageView.setFitHeight(100.0);
-		rightImageView.setFitWidth(100.0);
-		rightImageView.setPreserveRatio(true);
-		rightVBox.getChildren().add(rightImageView);
+		Button button = new Button("Rimuovi");
+		button.minHeight(100.0);
+		button.minWidth(100.0);
+		rightVBox.getChildren().add(button);
 
 		// Aggiunta dei VBox all'HBox
 		hbox.getChildren().addAll(leftVBox, centerVBox, rightVBox);
@@ -115,6 +118,16 @@ public class GroupListController {
 
 
 			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts, groups);
+		});
+
+		button.setOnMouseClicked((MouseEvent event) -> {
+			try {
+				group.removeContact(contact);
+				groupListView.setItems(group.getContacts());
+
+			} catch (InvalidContactException ex) {
+				Logger.getLogger(GroupListController.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		});
 		
 		return hbox;
