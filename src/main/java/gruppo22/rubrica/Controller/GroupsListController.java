@@ -20,6 +20,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -53,7 +55,12 @@ public class GroupsListController {
 					setGraphic(null);
 					setText(null);
 				} else {
-					Pane pane = new Pane(new Label(group.getName()));
+					Label nameLabel = new Label(group.getName());
+					nameLabel.setTextFill(Paint.valueOf("#ffffff"));
+					Label descriptionLabel = new Label(group.getDescription());
+					descriptionLabel.setTextFill(Paint.valueOf("#ffffff"));
+					Pane pane = new VBox(nameLabel, descriptionLabel);
+					pane.setStyle("-fx-background-color: #365b6d;");
 					pane.setOnMouseClicked((MouseEvent event) ->{
 						System.out.println();
 						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), group, groups);

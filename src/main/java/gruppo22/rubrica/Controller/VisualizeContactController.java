@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -44,6 +45,8 @@ public class VisualizeContactController {
 	Label numberLabel3;
 	@FXML
 	Label emailLabel3;
+	@FXML
+	Text descriptionText;
 
 	private Contact contact;
 	private ContactList rubrica;
@@ -143,6 +146,13 @@ public class VisualizeContactController {
 			emailLabel.setText("");
 			emailLabel2.setText("");
 			emailLabel3.setText("");
+		}
+
+		if(!contact.getDescription().isEmpty()){
+			descriptionText.setText(contact.getDescription());
+		}
+		else{
+			descriptionText.setText("");
 		}
 	}
 
