@@ -148,17 +148,21 @@ public class HeaderController {
 		ContactList list = Rubrica.readVCF("rubrica.vcf");
 
 		list.getContacts().forEach((Contact contact) -> {
-			if(!contactList.getContacts().contains(contact)) try {
+			try {
 				contactList.addContact(contact);
 			} catch (InvalidContactException ex) {
 				Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
 			}
+			System.out.println(contactList.getContacts());
+			((TextField)contactSearch.getChildren().get(0)).setText("a");
+			((TextField)contactSearch.getChildren().get(0)).setText("");
 		});
 
 	}
 
     private void copyFile(File source, File destination) throws IOException {
         // Use FileInputStream and FileOutputStream to copy the file content
+		System.out.println(source.toString());
         try (FileInputStream fis = new FileInputStream(source);
              FileOutputStream fos = new FileOutputStream(destination)) {
             byte[] buffer = new byte[1024];

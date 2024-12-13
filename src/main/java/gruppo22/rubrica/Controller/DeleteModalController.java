@@ -13,6 +13,7 @@ import gruppo22.rubrica.Model.Groups;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,8 @@ public class DeleteModalController {
 	private ContactList rubrica;
 	private Groups groups;
 	private Stage stage;
+
+	public static TextField contactTextField;
 
 	/**
 	 * Initializes the controller class.
@@ -61,6 +64,9 @@ public class DeleteModalController {
 			}
 		});
 		rubrica.removeContact(contact);
+		contactTextField.setText("a");
+		contactTextField.setText("");
+		
 		stage.close();
 	}
 

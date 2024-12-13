@@ -38,13 +38,13 @@ public class Rubrica extends ContactList{
 				bw.write("VERSION:3.0");
 				bw.newLine();
 
+
 				if(c.getName() != null && c.getSurname() != null){
 					bw.write("FN:"+ c.getSurname() + " " + c.getName());
 					bw.newLine();
 					bw.write("N:" + c.getSurname() + ";" + c.getName()+";;;");
 					bw.newLine();
 				}
-					
 				else if(c.getName() != null){
 					bw.write("FN:" + c.getName());
 					bw.newLine();
@@ -98,21 +98,21 @@ public class Rubrica extends ContactList{
 		ContactList c = new Rubrica();
 		 try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
 		String riga;
-		while ((riga = br.readLine()) != null) {
+		while ((riga = br.readLine()) != null){
 			// Stampa la riga letta
 			String nome="", cognome="", descrizione="", fullname[];
 			Email email = new Email();
 			PhoneNumber phoneNumber = new PhoneNumber();
 			if (riga.startsWith("BEGIN:VCARD")) {
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			} 
 			if(riga.startsWith("VERSION:")){
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
@@ -123,39 +123,74 @@ public class Rubrica extends ContactList{
 				if(fullname.length > 1)
 					nome = fullname[1];
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga ==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			}
 			if(riga.startsWith("N:")){
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
 			}
 			if (riga.startsWith("EMAIL:")) {
+				System.out.println(riga);
 				email.addEmail(riga.substring(6));
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
-			} 
+				else if(riga.startsWith("EMAIL:")){
+				System.out.println(riga);
+					email.addEmail(riga.substring(6));
+					riga = br.readLine();
+					if(riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}	
+					else if(riga.startsWith("EMAIL:")) {
+				System.out.println(riga);
+						email.addEmail(riga.substring(6));
+						riga = br.readLine();
+						if(riga == null){
+							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+							System.out.println(c.getContacts());
+							break;
+						}
+					}
+				}
+			}
 			if (riga.startsWith("TEL:")) {
 				phoneNumber.addPhoneNumber(riga.substring(4));
-				System.out.println(riga.substring(4));
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga ==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
+				}
+				else if(riga.startsWith("TEL:")) {
+					phoneNumber.addPhoneNumber(riga.substring(4));
+					riga = br.readLine();	
+					if(riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
+					else if (riga.startsWith("TEL:")){
+						phoneNumber.addPhoneNumber(riga.substring(4));
+						riga = br.readLine();	
+						if(riga == null) {
+							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+							break;
+						}
+					}
 				}
 			} 
 			if (riga.startsWith("NOTE:")) {
 				descrizione = riga.substring(5);
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga==null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
@@ -163,7 +198,7 @@ public class Rubrica extends ContactList{
 			if (riga.startsWith("END:VCARD")) {
 				System.out.println("Fine del contatto.\n");
 				riga = br.readLine();
-				if((riga = br.readLine())==null) {
+				if(riga == null) {
 					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 					break;
 				}
