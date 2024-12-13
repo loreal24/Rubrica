@@ -11,10 +11,15 @@ import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.VisualizeContactView;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -161,6 +166,22 @@ public class GroupListController {
 		System.out.println(group.getName());
 		groups.removeGroup(group);
 		groupsListView.setItems(groups.getGroups());
+
+		Path filePath = Paths.get(group.getName()+".vcf");
+
+		  try {
+            // Controlla se il file esiste
+            if (Files.exists(filePath)) {
+                // Cancella il file
+                Files.delete(filePath);
+                System.out.println("File cancellato: " + filePath);
+            } else {
+                System.out.println("Il file non esiste: " + filePath);
+            }
+        } catch (IOException e) {
+            System.err.println("Errore durante la cancellazione del file: " + e.getMessage());
+        }
+
 		stage.close();
 	}
 }

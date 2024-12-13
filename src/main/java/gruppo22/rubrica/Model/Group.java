@@ -79,9 +79,9 @@ public class Group extends ContactList {
 	public void saveVCF(String filename) throws IOException {
 
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
-			bw.write("NOME: " + this.name);
+			bw.write("NOME:" + this.name);
 			bw.newLine();
-			bw.write("DESCRIZIONE: " + this.description);
+			bw.write("DESCRIZIONE:" + this.description);
 			bw.newLine();
 			for(Contact c: contacts) {
 				bw.write("BEGIN:VCARD");
@@ -109,16 +109,16 @@ public class Group extends ContactList {
 					bw.newLine();
 				}
 
-				for(int i = 0; i < 3; i++){
+				for(int i = 0; i < c.getEmail().getEmailList().size(); i++){
 					if (c.getEmail().getEmailList().toArray()[i] != null){
 						bw.write("EMAIL:"+ c.getEmail().getEmailList().toArray()[i].toString());
 						bw.newLine();
 					}
 				}
 
-				for(int i = 0; i < 3; i++){
+				for(int i = 0; i < c.getPhoneNumber().getPhoneNumbers().size(); i++){
 					if (c.getPhoneNumber().getPhoneNumbers().toArray()[i] != null){
-						bw.write("TEL:+39" + c.getPhoneNumber().getPhoneNumbers().toArray()[i].toString());
+						bw.write("TEL:" + c.getPhoneNumber().getPhoneNumbers().toArray()[i].toString());
 						bw.newLine();
 					}
 				}
@@ -155,9 +155,12 @@ public class Group extends ContactList {
 			String nomeGruppo, descrizioneGruppo;
 			if(riga.startsWith("NOME")) {
 				c.setName(riga.substring(5));
+				riga = br.readLine();
+				if((riga = br.readLine())==null) break;
 			}
 			if(riga.startsWith("DESCRIZIONE")) {
-				c.setDescription(riga.substring(11));
+				c.setDescription(riga.substring(12));
+				if((riga = br.readLine())==null) break;
 			}
 
 
@@ -166,20 +169,69 @@ public class Group extends ContactList {
 			Email email = new Email();
 			PhoneNumber phoneNumber = new PhoneNumber();
 			if (riga.startsWith("BEGIN:VCARD")) {
-				System.out.println("Inizio di un nuovo contatto:");
-			} else if (riga.startsWith("FN:")) {
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			} 
+			if(riga.startsWith("VERSION:")){
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			}
+			if (riga.startsWith("FN:")) {
 				fullname = riga.substring(3).split(" ");
 				cognome = fullname[0];
 				if(fullname.length > 1)
 					nome = fullname[1];
-			} else if (riga.startsWith("EMAIL:")) {
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			}
+			if(riga.startsWith("N:")){
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			}
+			if (riga.startsWith("EMAIL:")) {
 				email.addEmail(riga.substring(6));
-			} else if (riga.startsWith("TEL:")) {
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			} 
+			if (riga.startsWith("TEL:")) {
 				phoneNumber.addPhoneNumber(riga.substring(4));
-			} else if (riga.startsWith("NOTE:")) {
+				System.out.println(riga.substring(4));
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			} 
+			if (riga.startsWith("NOTE:")) {
 				descrizione = riga.substring(5);
-			} else if (riga.startsWith("END:VCARD")) {
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
+			} 
+			if (riga.startsWith("END:VCARD")) {
 				System.out.println("Fine del contatto.\n");
+				riga = br.readLine();
+				if((riga = br.readLine())==null) {
+					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+					break;
+				}
 			}
 
 			c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
