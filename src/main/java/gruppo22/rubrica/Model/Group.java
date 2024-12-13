@@ -156,11 +156,11 @@ public class Group extends ContactList {
 			if(riga.startsWith("NOME")) {
 				c.setName(riga.substring(5));
 				riga = br.readLine();
-				if((riga = br.readLine())==null) break;
+				if(riga==null) break;
 			}
 			if(riga.startsWith("DESCRIZIONE")) {
 				c.setDescription(riga.substring(12));
-				if((riga = br.readLine())==null) break;
+				if(riga==null) break;
 			}
 
 
