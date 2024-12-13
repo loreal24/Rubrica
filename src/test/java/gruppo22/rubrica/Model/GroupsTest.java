@@ -5,6 +5,7 @@
  */
 package gruppo22.rubrica.Model;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -86,6 +87,9 @@ public class GroupsTest {
         assertFalse(instance.getGroups().contains(group1)); //controlla che "group1" non sia più presente nella lista
     }
     
+    /**
+     *
+     */
     @Test
     public void testRemoveGroupFromEmptyList(){
         System.out.println("removeGroupFromEmptyList");
@@ -93,4 +97,58 @@ public class GroupsTest {
         assertTrue(instance.getGroups().isEmpty()); //controlla che se si tenta di rimuovere un gruppo dalla lista, la lista resta vuota
     }
     
+    @Test
+    void testGetGroups() {
+        System.out.println("getGroups");
+        
+        instance.addGroup(group1);
+        assertEquals(group1, instance.getGroups().get(0)); //verifico che il metodo getGroups restituisca correttamente il gruppo inserito
+    }
+
+    @Test
+    void testContactFilter() {
+        System.out.println("ContactFilter");
+        
+        Group group3 = new Group();
+        group3.setName("Agroup1");
+        
+        instance.addGroup(group1);
+        instance.addGroup(group2);
+        instance.addGroup(group3);
+
+        Groups filteredGroups = instance.contactFilter("Agroup1", instance.getGroups());
+
+        ObservableList<Group> filteredList = filteredGroups.getGroups();
+        assertEquals(2, filteredList.size()); //verifico che il metodo ritorni entrambi i gruppi contenenti la stringa passata
+        assertTrue(filteredList.contains(group1)); //verifico che la lista contenga il gruppo1 
+        assertTrue(filteredList.contains(group3)); //verifico che la lista contenga il gruppo3
+        assertFalse(filteredList.contains(group2)); //verifico che la stringa NON contenga il gruppo2
+  
+    }
+
+    @Test
+    void testContactFilterEmptyQuery() {
+        System.out.println("ContactFilterEmptyQuery");
+
+        instance.addGroup(group1);
+        instance.addGroup(group2);
+
+        Groups filteredGroups = instance.contactFilter("", instance.getGroups());
+
+        ObservableList<Group> filteredList = filteredGroups.getGroups();
+        assertEquals(2, filteredList.size()); //verifico che in caso di stringa vuota la lista filtri tutti i gruppi presenti
+    }
+
+    @Test
+    void testContactFilterNoMatch() {
+        System.out.println("ContactFilterNoMatch");
+
+        instance.addGroup(group1);
+        instance.addGroup(group2);
+
+        Groups filteredGroups = instance.contactFilter("Nonexistent", instance.getGroups());
+
+        ObservableList<Group> filteredList = filteredGroups.getGroups();
+        assertTrue(filteredList.isEmpty()); //verifico che la lista sia vuota quando manca una corrispondenza
+    }
 }
