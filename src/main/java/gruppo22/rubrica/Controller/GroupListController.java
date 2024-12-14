@@ -10,6 +10,7 @@ import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
+import gruppo22.rubrica.View.ModifyGroupView;
 import gruppo22.rubrica.View.VisualizeContactView;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -149,6 +150,14 @@ public class GroupListController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+	public void modifyGroup(MouseEvent event) {
+		try {
+			ModifyGroupView.showModal("Modifica Gruppo", stage, group, groups);
+		} catch (IOException ex) {
+			Logger.getLogger(GroupListController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
     public void removeGroup(MouseEvent event) {
         if (group.getContacts() != null) {

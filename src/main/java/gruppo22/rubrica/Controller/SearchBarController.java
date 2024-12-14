@@ -51,6 +51,7 @@ public class SearchBarController {
         AddContactController.contactSearch = contactTextField;
         AddGroupModalController.groupSearch = groupTextField;
         DeleteModalController.contactTextField = contactTextField;
+		ModifyGroupController.groupSearch = contactTextField;
 
         contactTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             contactListController.filterList(newValue);

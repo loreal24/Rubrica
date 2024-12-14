@@ -35,16 +35,16 @@ import javafx.stage.Stage;
 public class HeaderController {
 
     //private ContactList contactList;
-   // public static ContactList contactList;
-   // public static boolean groupView;
+    public static ContactList contactList;
+    public static boolean groupView;
     public static ContactListView contactListView;
     public static GroupsListView groupListView;
-   // public static Groups groups;
+    public static Groups groups;
     public static VBox v;
     public static StackPane contactSearch, groupSearch;
-    private ContactList contactList;
-    private boolean groupView;
-    private Groups groups;
+   // private ContactList contactList;
+    //private boolean groupView;
+    //private Groups groups;
 
     @FXML
     Button addButton, visualizeGroupsButton, addGroupButton;
@@ -60,6 +60,7 @@ public class HeaderController {
 
     @FXML
     public void handlerAddGroupButton(MouseEvent event) {
+		System.out.println("GEOUPR" + groups.getGroups());
         try {
             AddGroupModalView.showModal("Aggiungi Gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), groups);
         } catch (IOException ex) {
@@ -178,11 +179,13 @@ public class HeaderController {
         }
     }
     
+	/*
     public void initializeData(ContactList contactList, boolean groupView, Groups groups) {
     this.contactList = contactList;
     this.groupView = groupView;
     this.groups = groups;
 }
+*/
 
 
 }

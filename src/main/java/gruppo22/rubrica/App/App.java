@@ -84,13 +84,13 @@ public class App extends Application {
         //Object load_1 = loader_1.load();
         //HeaderController controller_1 = loader_1.getController();
         //controller_1.setContactList(rubrica);
-        //HeaderController.contactList = rubrica;
-        //HeaderController.groupView = groupView;
-        //HeaderController.groups = groups;
+        HeaderController.contactList = rubrica;
+        HeaderController.groupView = groupView;
+        HeaderController.groups = groups;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));
         Parent headerRoot = loader.load();
         HeaderController headerController = loader.getController();
-        headerController.initializeData(rubrica, groupView, groups);
+        //headerController.initializeData(rubrica, groupView, groups);
 
         MainView mainView = new MainView(rubrica, groups, groupView);
         scene = new Scene(mainView, 650, 800);
