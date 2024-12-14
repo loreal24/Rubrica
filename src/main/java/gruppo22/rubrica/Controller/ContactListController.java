@@ -68,7 +68,6 @@ public class ContactListController {
         hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
         hbox.setMinHeight(110);
         hbox.setMinWidth(550);
-        hbox.setStyle("-fx-background-color: #365b6d;");
 
         // Creazione del primo VBox (immagine a sinistra)
         VBox leftVBox = new VBox();
@@ -88,9 +87,10 @@ public class ContactListController {
         centerVBox.setPrefWidth(380.0);
         Label nameLabel = new Label();
         nameLabel.setText(contact.getSurname() + " " + contact.getName());
-        nameLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         Label numberLabel = new Label("");
-        numberLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+		if(contact.getPhoneNumber().getPhoneNumbers().size() > 0)
+			if(!contact.getPhoneNumber().getPhoneNumbers().get(0).isEmpty())
+				numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
         centerVBox.getChildren().addAll(nameLabel, numberLabel);
 
         // Creazione del terzo VBox (immagine a destra)

@@ -19,18 +19,12 @@ public class ModifyContactView extends Pane {
 	public static void showModal(String message, Stage ownerStage) throws IOException {
 		try{
 			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/modifyContact.fxml"));
-			Parent modalRoot = loader.load();
-                        
+			Parent modalRoot = loader.load();                        
 			ModifyContactController controller = loader.getController();	
-			//controller.setContactList(rubrica);
-                        //controller.setContact(contact);
-
 			Stage modalStage = new Stage();
 			modalStage.setTitle("Dialogo Modale");
 			modalStage.initModality(Modality.WINDOW_MODAL);
-			modalStage.initOwner(ownerStage);
-			controller.setStage(modalStage);
-
+			modalStage.initOwner(ownerStage);			
 			modalStage.setScene(new Scene(modalRoot));
 			modalStage.showAndWait();
 		} catch (Exception e) {

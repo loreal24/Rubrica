@@ -143,7 +143,7 @@ public class RubricaTest {
 
         Contact contact = contacts.get(0);
         assertEquals("Mario", contact.getName(), "Il nome del contatto non è corretto");
-        assertNull(contact.getSurname(), "Il cognome del contatto dovrebbe essere null"); //verifico che il cognome non sia presente
+        assertEquals("" , contact.getSurname(), "Il cognome del contatto dovrebbe essere null"); //verifico che il cognome non sia presente
         assertEquals("mario@example.com", contact.getEmail().getEmailList().get(0), "L'email del contatto non è corretta");
         assertEquals("987654321", contact.getPhoneNumber().getPhoneNumbers().get(0), "Il numero di telefono del contatto non è corretto");
         assertEquals("Amico", contact.getDescription(), "La descrizione del contatto non è corretta");

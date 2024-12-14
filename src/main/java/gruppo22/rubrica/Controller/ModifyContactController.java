@@ -13,20 +13,10 @@ import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Email;
 import gruppo22.rubrica.Model.PhoneNumber;
 import gruppo22.rubrica.View.ErrorModalView;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -38,9 +28,7 @@ import javafx.stage.Stage;
 public class ModifyContactController {
 
     public static Contact contact;
-    private ListView<Contact> contactListView;
     public static ContactList rubrica;
-    private Stage stage;
     List<TextField> emailInputFields, phoneNumberInputFields;
 
     @FXML
@@ -141,14 +129,6 @@ public class ModifyContactController {
         this.inputDescription.setText(this.contact.getDescription());
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public void setStage(Stage modalStage) {
-        this.stage = stage;
-    }
-
     private void setInputEmail() {
         Email email = this.contact.getEmail();
         List<String> emailList = email.getEmailList();
@@ -174,9 +154,4 @@ public class ModifyContactController {
             }
         }
     }
-
-    public void setContactList(ContactList rubrica) {
-        this.rubrica = rubrica;
-    }
-
 }

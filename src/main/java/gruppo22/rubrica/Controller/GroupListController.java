@@ -10,6 +10,7 @@ import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
+import gruppo22.rubrica.View.ModifyGroupView;
 import gruppo22.rubrica.View.VisualizeContactView;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -86,10 +87,9 @@ public class GroupListController {
     private Pane createContactCard(Contact contact, Group group) {
         HBox hbox = new HBox();
         hbox.setMaxHeight(Double.NEGATIVE_INFINITY);
-        hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
+        hbox.setMaxWidth(520);
         hbox.setMinHeight(110);
-        hbox.setMinWidth(550);
-        hbox.setStyle("-fx-background-color: #365b6d;");
+        hbox.setMinWidth(520);
 
         // Creazione del primo VBox (immagine a sinistra)
         VBox leftVBox = new VBox();
@@ -109,9 +109,10 @@ public class GroupListController {
         centerVBox.setPrefWidth(380.0);
         Label nameLabel = new Label();
         nameLabel.setText(contact.getSurname() + " " + contact.getName());
-        nameLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         Label numberLabel = new Label("");
-        numberLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+		if(contact.getPhoneNumber().getPhoneNumbers().size() > 0)
+			if(!contact.getPhoneNumber().getPhoneNumbers().get(0).isEmpty())
+				numberLabel.setText(contact.getPhoneNumber().getPhoneNumbers().get(0));
         centerVBox.getChildren().addAll(nameLabel, numberLabel);
 
         // Creazione del terzo VBox (immagine a destra)
@@ -149,6 +150,14 @@ public class GroupListController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+	public void modifyGroup(MouseEvent event) {
+		try {
+			ModifyGroupView.showModal("Modifica Gruppo", stage, group, groups);
+		} catch (IOException ex) {
+			Logger.getLogger(GroupListController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
     public void removeGroup(MouseEvent event) {
         if (group.getContacts() != null) {

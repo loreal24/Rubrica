@@ -7,6 +7,6 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane minHeight="300.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.GroupsListController" style="-fx-background-color: #365b6d;">
+<AnchorPane minHeight="300.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.GroupsListController" >
 	<ListView fx:id="groupsListView" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" />
 </AnchorPane>

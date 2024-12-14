@@ -44,14 +44,6 @@ public class App extends Application {
         ContactList rubrica = Rubrica.readVCF("rubrica.vcf");
         List<ContactList> contactLists = new ArrayList<>();
         List<Groups> groupsList = new ArrayList<>();
-
-        List numbers = new LinkedList();
-        numbers.add("089825713");
-
-        List emails = new LinkedList();
-        emails.add("franco23@gmail.com");
-
-        //rubrica.addContact(new Contact("Franco", "B", new Email(emails), new PhoneNumber(numbers), "Porterai Minecraft, vabè Maincraiff uhm no"));
         Groups groups = new Groups();
 
         Path startDir = Paths.get("./");
@@ -80,18 +72,9 @@ public class App extends Application {
 
         boolean groupView = false;
 
-        //FXMLLoader loader_1 = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));	
-        //Object load_1 = loader_1.load();
-        //HeaderController controller_1 = loader_1.getController();
-        //controller_1.setContactList(rubrica);
-        //HeaderController.contactList = rubrica;
-        //HeaderController.groupView = groupView;
-        //HeaderController.groups = groups;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));
-        Parent headerRoot = loader.load();
-        HeaderController headerController = loader.getController();
-        headerController.initializeData(rubrica, groupView, groups);
-
+        HeaderController.contactList = rubrica;
+        HeaderController.groupView = groupView;
+        HeaderController.groups = groups;
         MainView mainView = new MainView(rubrica, groups, groupView);
         scene = new Scene(mainView, 650, 800);
         stage.setScene(scene);

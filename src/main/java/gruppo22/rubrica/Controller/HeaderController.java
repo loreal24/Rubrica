@@ -26,6 +26,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -35,19 +37,24 @@ import javafx.stage.Stage;
 public class HeaderController {
 
     //private ContactList contactList;
-   // public static ContactList contactList;
-   // public static boolean groupView;
+    public static ContactList contactList;
+    public static boolean groupView;
     public static ContactListView contactListView;
     public static GroupsListView groupListView;
-   // public static Groups groups;
+    public static Groups groups;
     public static VBox v;
     public static StackPane contactSearch, groupSearch;
-    private ContactList contactList;
-    private boolean groupView;
-    private Groups groups;
+   // private ContactList contactList;
+    //private boolean groupView;
+    //private Groups groups;
 
     @FXML
     Button addButton, visualizeGroupsButton, addGroupButton;
+
+	@FXML
+	ImageView visualizeGroupImage;
+
+	private Image contactImage, groupImage;
 
     @FXML
     public void handlerAddButton() {
@@ -60,6 +67,7 @@ public class HeaderController {
 
     @FXML
     public void handlerAddGroupButton(MouseEvent event) {
+		System.out.println("GEOUPR" + groups.getGroups());
         try {
             AddGroupModalView.showModal("Aggiungi Gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), groups);
         } catch (IOException ex) {
@@ -72,7 +80,7 @@ public class HeaderController {
         visualizeGroupsButton.setOnAction(e -> {
             groupView = !groupView;
             if (groupView) {
-                visualizeGroupsButton.setText("Contatti");
+				visualizeGroupImage.setImage(groupImage);
                 v.getChildren().remove(contactSearch);
                 v.getChildren().add(groupSearch);
                 v.getChildren().remove(contactListView);
@@ -80,7 +88,7 @@ public class HeaderController {
                 addGroupButton.setVisible(true);
                 addButton.setVisible(false);
             } else {
-                visualizeGroupsButton.setText("Gruppi");
+				visualizeGroupImage.setImage(contactImage);
                 v.getChildren().remove(groupSearch);
                 v.getChildren().add(contactSearch);
                 v.getChildren().remove(groupListView);
@@ -107,6 +115,9 @@ public class HeaderController {
         addGroupButton.setVisible(false);
         handlerAddButton();
         handlerVisualizeGroupsButton();
+		contactImage = new Image(getClass().getResourceAsStream("/images/contact.png"));
+		groupImage = new Image(getClass().getResourceAsStream("/images/groupIcon.png"));
+		visualizeGroupImage.setImage(contactImage);
     }
 
     private void exportToFile(File exportFile) throws FileNotFoundException, IOException {
@@ -178,11 +189,13 @@ public class HeaderController {
         }
     }
     
+	/*
     public void initializeData(ContactList contactList, boolean groupView, Groups groups) {
     this.contactList = contactList;
     this.groupView = groupView;
     this.groups = groups;
 }
+*/
 
 
 }
