@@ -32,16 +32,16 @@ public class ModifyContactController {
     List<TextField> emailInputFields, phoneNumberInputFields;
 
     @FXML
-    Button cancelButton, saveButton;
+    Button cancelButton, saveButton;//pulsanti per gestire l'annullamento e il salvataggio
 
     @FXML
-    TextField inputName, inputSurname, inputPhoneNumber_1, inputPhoneNumber_2, inputPhoneNumber_3, inputEmail_1, inputEmail_2, inputEmail_3, inputDescription;
+    TextField inputName, inputSurname, inputPhoneNumber_1, inputPhoneNumber_2, inputPhoneNumber_3, inputEmail_1, inputEmail_2, inputEmail_3, inputDescription;//campi di testo per gestire le modifiche
 
     @FXML
     public void handlerCancelButtonAction() {
         cancelButton.setOnAction(e -> {
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
+            Stage stage = (Stage) cancelButton.getScene().getWindow();//recupera la finestra dal pulsante stesso
+            stage.close();//chiude la finestra
         });
     }
 
@@ -50,37 +50,37 @@ public class ModifyContactController {
         saveButton.setOnAction(e -> {
             try {
 
-                String name = inputName.getText().trim();
-                String surname = inputSurname.getText().trim();
-                if (name.isEmpty() && surname.isEmpty()) {
+                String name = inputName.getText().trim();//recupera la stringa del nome dal campo di testo del nome
+                String surname = inputSurname.getText().trim();//recupera la stringa del cognome dal campo di testo del cognome
+                if (name.isEmpty() && surname.isEmpty()) {//se il nome e il cognome sono vuoti lancia l'eccezione
                     throw new InvalidContactException("Il nome e il cognome non possono essere entrambi vuoti!!");
                 }
 
-                PhoneNumber phoneNumber = getInputPhoneNumber();
-                Email email = getInputEmail();
-                String description = inputDescription.getText().trim();
+                PhoneNumber phoneNumber = getInputPhoneNumber();//recupera le stringhe dei numeri di telefono dai campi per i numeri di telefono
+                Email email = getInputEmail();//recupera le stringhe delle email dai campi per le email
+                String description = inputDescription.getText().trim();//recupera la stringa della descrizione dal campo di testo per la descrizione
 
-                this.contact.setName(name);
-                this.contact.setSurname(surname);
-                this.contact.setPhoneNumber(phoneNumber);
-                this.contact.setEmail(email);
-                this.contact.setDescription(description);
+                this.contact.setName(name);//imposta il nuovo nome del contatto
+                this.contact.setSurname(surname);//imposta il nuovo cognome del contatto
+                this.contact.setPhoneNumber(phoneNumber);//imposta i nuovi numeri di telefono del contatto
+                this.contact.setEmail(email);//imposta le nuove email del contatto
+                this.contact.setDescription(description);//imposta la nuova descrizione del contatto
 
-                rubrica.removeContact(contact);
+                rubrica.removeContact(contact);//forza l'aggiornamento della vista rimuovendo e reinserendo il contatto
                 rubrica.addContact(contact);
 
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
-            } catch (InvalidContactException ice) {
-                ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid Contact Exception", (Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");
+                Stage stage = (Stage) saveButton.getScene().getWindow();//recupera la finestra dal pulsante stesso
+                stage.close();//chiude la finestra
+            } catch (InvalidContactException ice) {//cattura l'eccezione se il nome e il cognome sono entrambi vuoti
+                ErrorModalView errorModal = new ErrorModalView();//crea la vista del modale di errore
+                errorModal.showModal("Invalid Contact Exception", (Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");//lancia la vista del modale di errore personalizzata
 
-            } catch (InvalidPhoneNumberException ipne) {
-                ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid PhoneNumber Exception", (Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");
-            } catch (InvalidEmailException iee) {
-                ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid Email Exception", (Stage) saveButton.getScene().getWindow(), "Inserire una email valida!!");
+            } catch (InvalidPhoneNumberException ipne) {//cattura l'eccezione se i numeri di telefono non sono validi
+                ErrorModalView errorModal = new ErrorModalView();//crea la vista del modale di errore
+                errorModal.showModal("Invalid PhoneNumber Exception", (Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");//lancia la vista del modale di errore personalizzata
+            } catch (InvalidEmailException iee) {//cattura l'eccezione se le email non sono valide
+                ErrorModalView errorModal = new ErrorModalView();//crea la vista del modale di errore
+                errorModal.showModal("Invalid Email Exception", (Stage) saveButton.getScene().getWindow(), "Inserire una email valida!!");//lancia la vista del modale di errore personalizzata
             }
         });
     }

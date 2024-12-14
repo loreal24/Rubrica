@@ -27,7 +27,6 @@ import javafx.stage.Stage;
 public class AddContactController {
 
     private ContactList contactList;
-
     public static TextField contactSearch;
 
     @FXML
