@@ -86,13 +86,13 @@ public class ModifyContactController {
     }
 
     private PhoneNumber getInputPhoneNumber() throws InvalidPhoneNumberException {
-       
+
         PhoneNumber phoneNumber = new PhoneNumber();
         for (TextField phoneNumberField : phoneNumberInputFields) {
             String phoneNumberText = phoneNumberField.getText().trim();
             phoneNumber.addPhoneNumber(phoneNumberText);
         }
-       
+
         return phoneNumber;
     }
 
@@ -101,32 +101,27 @@ public class ModifyContactController {
 
         for (TextField emailField : emailInputFields) {
             String emailText = emailField.getText().trim();
-
-            email.addEmail(emailText); // Aggiungi solo se non è vuoto
-
+            email.addEmail(emailText);
         }
-
         return email;
     }
 
     @FXML
     public void initialize() {
-        System.out.println(contact);
-
         emailInputFields = new ArrayList<>();
-        emailInputFields.add(inputEmail_1); // Aggiungi i riferimenti ai campi email
+        emailInputFields.add(inputEmail_1);//aggiunge alla lista i campi di testo per le email per gestirle meglio
         emailInputFields.add(inputEmail_2);
         emailInputFields.add(inputEmail_3);
         phoneNumberInputFields = new ArrayList<>();
-        phoneNumberInputFields.add(inputPhoneNumber_1);
+        phoneNumberInputFields.add(inputPhoneNumber_1);//aggiunge alla lista i campi di testo per i numeri di telefono per gestirli meglio
         phoneNumberInputFields.add(inputPhoneNumber_2);
         phoneNumberInputFields.add(inputPhoneNumber_3);
 
-        this.inputName.setText(this.contact.getName());
-        this.inputSurname.setText(this.contact.getSurname());
-        setInputPhoneNumber();
-        setInputEmail();
-        this.inputDescription.setText(this.contact.getDescription());
+        this.inputName.setText(this.contact.getName());// Inserisce il nome nel campo di testo per il nome
+        this.inputSurname.setText(this.contact.getSurname());// Inserisce il cognome nel campo di testo per il cognome
+        setInputPhoneNumber();//Inserisce le email nei campi di testo per le email
+        setInputEmail();//Inserisce i numeri di telefono nei campi di testo per i numeri di telefono
+        this.inputDescription.setText(this.contact.getDescription());// Inserisce la descrizione nel campo di testo per la descrizione
     }
 
     private void setInputEmail() {
@@ -135,7 +130,7 @@ public class ModifyContactController {
 
         for (int i = 0; i < emailInputFields.size(); i++) {
             if (i < emailList.size() && emailList.get(i) != null) {
-                emailInputFields.get(i).setText(emailList.get(i));
+                emailInputFields.get(i).setText(emailList.get(i));// Inserisce la email nel campo di testo per le email
             } else {
                 emailInputFields.get(i).setText(""); // Svuota il campo se non ci sono email
             }
@@ -148,9 +143,9 @@ public class ModifyContactController {
 
         for (int i = 0; i < phoneNumberInputFields.size(); i++) {
             if (i < phoneNumberList.size() && phoneNumberList.get(i) != null) {
-                phoneNumberInputFields.get(i).setText(phoneNumberList.get(i));
+                phoneNumberInputFields.get(i).setText(phoneNumberList.get(i));// Inserisce il numero di telefono nel campo di testo per i numeri di telefono
             } else {
-                phoneNumberInputFields.get(i).setText(""); // Svuota il campo se non ci sono email
+                phoneNumberInputFields.get(i).setText(""); // Svuota il campo se non ci sono numeri di telefono
             }
         }
     }
