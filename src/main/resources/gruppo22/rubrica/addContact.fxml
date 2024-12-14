@@ -8,20 +8,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="800.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.AddContactController">
+<AnchorPane minHeight="650.0" minWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gruppo22.rubrica.Controller.AddContactController">
    <children>
-      <VBox alignment="CENTER" prefHeight="800.0" prefWidth="800.0">
+      <VBox alignment="CENTER" prefHeight="650.0" prefWidth="500.0">
          <children>
-            <ScrollPane maxHeight="1000.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0">
+            <ScrollPane minHeight="474.0" minWidth="500.0" prefHeight="550.0" prefWidth="500.0">
               <content>
-                <AnchorPane minHeight="1000.0" minWidth="800.0" prefHeight="200.0" prefWidth="200.0">
+                <AnchorPane minHeight="542.0" minWidth="478.0" prefHeight="950.0" prefWidth="478.0">
                      <children>
-                        <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="800.0" minHeight="800.0" minWidth="800.0" spacing="50.0">
+                        <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="500.0" minHeight="650.0" minWidth="500.0" spacing="50.0">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin></ImageView>
+                  									<image>
+                  										<Image url="@/images/contact.png" />
+                  									</image>
+                  							  </ImageView>
                               <TextField fx:id="inputName" maxWidth="400.0" minWidth="400.0" promptText="Nome..." />
                               <TextField fx:id="inputSurname" maxWidth="400.0" promptText="Cognome..." />
                               <TextField fx:id="inputPhoneNumber_1" maxWidth="400.0" promptText="Numero di telefono N.1..." />
@@ -40,20 +41,12 @@
                   <Insets />
                </VBox.margin>
             </ScrollPane>
-            <HBox alignment="CENTER" minHeight="200.0" minWidth="600.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="cancelButton" alignment="CENTER" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handlerCancelButtonAction" text="Annulla">
-                     <HBox.margin>
-                        <Insets right="150.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="saveButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handlerSaveButton" text="Salva">
-                     <HBox.margin>
-                        <Insets left="150.0" />
-                     </HBox.margin>
-                  </Button>
+                  <Button fx:id="saveButton" alignment="CENTER" layoutX="340.0" layoutY="61.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handlerSaveButton" text="Salva" />
+                  <Button fx:id="cancelButton" alignment="CENTER" layoutX="55.0" layoutY="61.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#handlerCancelButtonAction" text="Annulla" />
                </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </VBox>
    </children>

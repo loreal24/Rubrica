@@ -26,6 +26,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -48,6 +50,11 @@ public class HeaderController {
 
     @FXML
     Button addButton, visualizeGroupsButton, addGroupButton;
+
+	@FXML
+	ImageView visualizeGroupImage;
+
+	private Image contactImage, groupImage;
 
     @FXML
     public void handlerAddButton() {
@@ -73,7 +80,7 @@ public class HeaderController {
         visualizeGroupsButton.setOnAction(e -> {
             groupView = !groupView;
             if (groupView) {
-                visualizeGroupsButton.setText("Contatti");
+				visualizeGroupImage.setImage(groupImage);
                 v.getChildren().remove(contactSearch);
                 v.getChildren().add(groupSearch);
                 v.getChildren().remove(contactListView);
@@ -81,7 +88,7 @@ public class HeaderController {
                 addGroupButton.setVisible(true);
                 addButton.setVisible(false);
             } else {
-                visualizeGroupsButton.setText("Gruppi");
+				visualizeGroupImage.setImage(contactImage);
                 v.getChildren().remove(groupSearch);
                 v.getChildren().add(contactSearch);
                 v.getChildren().remove(groupListView);
@@ -108,6 +115,9 @@ public class HeaderController {
         addGroupButton.setVisible(false);
         handlerAddButton();
         handlerVisualizeGroupsButton();
+		contactImage = new Image(getClass().getResourceAsStream("/images/contact.png"));
+		groupImage = new Image(getClass().getResourceAsStream("/images/groupIcon.png"));
+		visualizeGroupImage.setImage(contactImage);
     }
 
     private void exportToFile(File exportFile) throws FileNotFoundException, IOException {
