@@ -25,6 +25,7 @@ public class GroupListView {
         try {
             FXMLLoader loader = new FXMLLoader(ContactListView.class.getResource("/src/main/resources/gruppo22/rubrica/groupList.fxml"));
             Stage modalStage = new Stage();
+            
 			loader.setControllerFactory((param) -> {
 				return new GroupListController(rubrica, group, groups, modalStage);
 			});
