@@ -40,136 +40,131 @@ import javafx.stage.Stage;
  */
 public class GroupListController {
 
-	public static ListView<Group> groupsListView;
+    public static ListView<Group> groupsListView;
 
-	@FXML 
-	private ListView<Contact> groupListView;
+    @FXML
+    private ListView<Contact> groupListView;
 
-	@FXML
-	private Button removeGroupButton;
+    @FXML
+    private Button removeGroupButton;
 
-	private Group group;
+    private Group group;
 
-	private ContactList contacts;
+    private ContactList contacts;
 
-	private Groups groups;
+    private Groups groups;
 
-	private Stage stage;
+    private Stage stage;
 
-	public GroupListController(ContactList contacts, Group group, Groups groups, Stage stage) {
-		this.contacts = contacts;
-		this.group = group;
-		this.groups = groups;
-		this.stage = stage;
-	}
+    public GroupListController(ContactList contacts, Group group, Groups groups, Stage stage) {
+        this.contacts = contacts;
+        this.group = group;
+        this.groups = groups;
+        this.stage = stage;
+    }
 
+    @FXML
+    public void initialize() throws InvalidContactException {
+        groupListView.setCellFactory(param -> new ListCell<Contact>() {
+            @Override
+            protected void updateItem(Contact contact, boolean empty) {
+                super.updateItem(contact, empty);
+                if (empty || contact == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    Pane pane = createContactCard(contact, group);
+                    setGraphic(pane);
+                }
+            }
+        });
 
-	@FXML
-	public void initialize() throws InvalidContactException {
-		groupListView.setCellFactory(param -> new ListCell<Contact>() {
-			@Override
-			protected void updateItem(Contact contact, boolean empty) {
-				super.updateItem(contact, empty);
-				if(empty || contact == null){
-					setGraphic(null);
-					setText(null);
-				} else {
-					Pane pane = createContactCard(contact, group);
-					setGraphic(pane);
-				}
-			}
-		});
+        groupListView.setItems(group.getContacts());
 
-		groupListView.setItems(group.getContacts());
+    }
 
-	}
+    private Pane createContactCard(Contact contact, Group group) {
+        HBox hbox = new HBox();
+        hbox.setMaxHeight(Double.NEGATIVE_INFINITY);
+        hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
+        hbox.setMinHeight(110);
+        hbox.setMinWidth(550);
+        hbox.setStyle("-fx-background-color: #365b6d;");
 
+        // Creazione del primo VBox (immagine a sinistra)
+        VBox leftVBox = new VBox();
+        leftVBox.setAlignment(javafx.geometry.Pos.CENTER);
+        leftVBox.setPrefHeight(140.0);
+        leftVBox.setPrefWidth(100.0);
+        ImageView leftImageView = new ImageView(new Image("/images/contact.png"));
+        leftImageView.setFitHeight(100.0);
+        leftImageView.setFitWidth(100.0);
+        leftImageView.setPreserveRatio(true);
+        leftVBox.getChildren().add(leftImageView);
 
-	private Pane createContactCard(Contact contact, Group group) {
-		HBox hbox = new HBox();
-		hbox.setMaxHeight(Double.NEGATIVE_INFINITY);
-		hbox.setMaxWidth(Double.NEGATIVE_INFINITY);
-		hbox.setMinHeight(110);
-		hbox.setMinWidth(550);
-		hbox.setStyle("-fx-background-color: #365b6d;");
+        // Creazione del secondo VBox (dettagli del contatto)
+        VBox centerVBox = new VBox();
+        centerVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        centerVBox.setPrefHeight(140.0);
+        centerVBox.setPrefWidth(380.0);
+        Label nameLabel = new Label();
+        nameLabel.setText(contact.getSurname() + " " + contact.getName());
+        nameLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        Label numberLabel = new Label("");
+        numberLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        centerVBox.getChildren().addAll(nameLabel, numberLabel);
 
-		// Creazione del primo VBox (immagine a sinistra)
-		VBox leftVBox = new VBox();
-		leftVBox.setAlignment(javafx.geometry.Pos.CENTER);
-		leftVBox.setPrefHeight(140.0);
-		leftVBox.setPrefWidth(100.0);
-		ImageView leftImageView = new ImageView(new Image("/images/contact.png"));
-		leftImageView.setFitHeight(100.0);
-		leftImageView.setFitWidth(100.0);
-		leftImageView.setPreserveRatio(true);
-		leftVBox.getChildren().add(leftImageView);
+        // Creazione del terzo VBox (immagine a destra)
+        VBox rightVBox = new VBox();
+        rightVBox.setAlignment(javafx.geometry.Pos.CENTER);
+        rightVBox.setPrefHeight(140.0);
+        rightVBox.setPrefWidth(100.0);
+        Button button = new Button("Rimuovi");
+        button.minHeight(100.0);
+        button.minWidth(100.0);
+        rightVBox.getChildren().add(button);
 
-		// Creazione del secondo VBox (dettagli del contatto)
-		VBox centerVBox = new VBox();
-		centerVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-		centerVBox.setPrefHeight(140.0);
-		centerVBox.setPrefWidth(380.0);
-		Label nameLabel = new Label();
-		nameLabel.setText(contact.getSurname() + " " + contact.getName());
-		nameLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-		Label numberLabel = new Label("");
-		numberLabel.setTextFill(javafx.scene.paint.Color.WHITE);
-		centerVBox.getChildren().addAll(nameLabel, numberLabel);
+        // Aggiunta dei VBox all'HBox
+        hbox.getChildren().addAll(leftVBox, centerVBox, rightVBox);
 
-		// Creazione del terzo VBox (immagine a destra)
-		VBox rightVBox = new VBox();
-		rightVBox.setAlignment(javafx.geometry.Pos.CENTER);
-		rightVBox.setPrefHeight(140.0);
-		rightVBox.setPrefWidth(100.0);
-		Button button = new Button("Rimuovi");
-		button.minHeight(100.0);
-		button.minWidth(100.0);
-		rightVBox.getChildren().add(button);
+        hbox.setOnMouseClicked((MouseEvent event) -> {
+            System.out.println("Vista Dettagliata");
 
-		// Aggiunta dei VBox all'HBox
-		hbox.getChildren().addAll(leftVBox, centerVBox, rightVBox);
+            VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts, groups);
+        });
 
-		hbox.setOnMouseClicked((MouseEvent event) -> {
-			System.out.println("Vista Dettagliata");
+        button.setOnMouseClicked((MouseEvent event) -> {
+            try {
+                group.removeContact(contact);
+                groupListView.setItems(group.getContacts());
 
+            } catch (InvalidContactException ex) {
+                Logger.getLogger(GroupListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
-			VisualizeContactView.showModal("Visualize", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), contact, contacts, groups);
-		});
+        return hbox;
+    }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
-		button.setOnMouseClicked((MouseEvent event) -> {
-			try {
-				group.removeContact(contact);
-				groupListView.setItems(group.getContacts());
+    public void removeGroup(MouseEvent event) {
+        if (group.getContacts() != null) {
+            List<Contact> list = new LinkedList<>();
+            group.getContacts().forEach((Contact c) -> {
+                list.add(c);
+            });
+            group.getContacts().removeAll(list);
+        }
+        System.out.println(group.getName());
+        groups.removeGroup(group);
+        groupsListView.setItems(groups.getGroups());
 
-			} catch (InvalidContactException ex) {
-				Logger.getLogger(GroupListController.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		});
-		
-		return hbox;
-	}
+        Path filePath = Paths.get(group.getName() + ".vcf");
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-	public void removeGroup(MouseEvent event) {
-		if(group.getContacts() != null)
-		{
-			List<Contact> list = new LinkedList<>();
-			group.getContacts().forEach((Contact c)-> {
-				list.add(c);
-			});
-			group.getContacts().removeAll(list);
-		}
-		System.out.println(group.getName());
-		groups.removeGroup(group);
-		groupsListView.setItems(groups.getGroups());
-
-		Path filePath = Paths.get(group.getName()+".vcf");
-
-		  try {
+        try {
             // Controlla se il file esiste
             if (Files.exists(filePath)) {
                 // Cancella il file
@@ -182,6 +177,6 @@ public class GroupListController {
             System.err.println("Errore durante la cancellazione del file: " + e.getMessage());
         }
 
-		stage.close();
-	}
+        stage.close();
+    }
 }

@@ -7,18 +7,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ContactCardController {
-	@FXML
-	private Label nameLabel;
 
-	@FXML
-	private Label numberLabel;
+    @FXML
+    private Label nameLabel;
 
-	private Contact contact;
+    @FXML
+    private Label numberLabel;
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
-		nameLabel.setText(this.contact.getSurname() + " " + this.contact.getName());
-		numberLabel.setText(this.contact.getPhoneNumber().getPhoneNumbers().get(0));
-	}	
-	
+    private Contact contact;
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+        nameLabel.setText(this.contact.getSurname() + " " + this.contact.getName());
+        numberLabel.setText(this.contact.getPhoneNumber().getPhoneNumbers().get(0));
+    }
+
 }

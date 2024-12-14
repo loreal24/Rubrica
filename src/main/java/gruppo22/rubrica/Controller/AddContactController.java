@@ -24,29 +24,26 @@ import javafx.stage.Stage;
  *
  * @author simon
  */
-public class AddContactController{
-    
+public class AddContactController {
+
     private ContactList contactList;
 
-	public static TextField contactSearch;
+    public static TextField contactSearch;
 
-    
     @FXML
     Button cancelButton, saveButton;
-    
+
     @FXML
-    TextField inputName, inputSurname, inputPhoneNumber_1, inputPhoneNumber_2, inputPhoneNumber_3,  inputEmail_1, inputEmail_2, inputEmail_3, inputDescription;
-    
-    
-    
+    TextField inputName, inputSurname, inputPhoneNumber_1, inputPhoneNumber_2, inputPhoneNumber_3, inputEmail_1, inputEmail_2, inputEmail_3, inputDescription;
+
     @FXML
-    public void handlerCancelButtonAction(){
-        cancelButton.setOnAction(e-> {
+    public void handlerCancelButtonAction() {
+        cancelButton.setOnAction(e -> {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         });
     }
-    
+
     @FXML
     public void handlerSaveButton() throws InvalidContactException {
         saveButton.setOnAction(e -> {
@@ -61,29 +58,29 @@ public class AddContactController{
                 PhoneNumber phoneNumber = getInputPhoneNumber();
                 Email email = getInputEmail();
                 String description = inputDescription.getText().trim();
-                
-                Contact contact = new Contact(name,surname,email,phoneNumber,description);
+
+                Contact contact = new Contact(name, surname, email, phoneNumber, description);
                 System.out.println(contactList);
                 contactList.addContact(contact);
-				contactSearch.setText("a");
-				contactSearch.setText("");
-                
+                contactSearch.setText("a");
+                contactSearch.setText("");
+
                 Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();
             } catch (InvalidContactException ice) {
                 ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid Contact Exception",(Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");
+                errorModal.showModal("Invalid Contact Exception", (Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");
 
-            } catch (InvalidPhoneNumberException ipne){
+            } catch (InvalidPhoneNumberException ipne) {
                 ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid PhoneNumber Exception",(Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");
-            } catch (InvalidEmailException iee){
+                errorModal.showModal("Invalid PhoneNumber Exception", (Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");
+            } catch (InvalidEmailException iee) {
                 ErrorModalView errorModal = new ErrorModalView();
-                errorModal.showModal("Invalid Email Exception",(Stage) saveButton.getScene().getWindow(), "Inserire una email valida!!");
+                errorModal.showModal("Invalid Email Exception", (Stage) saveButton.getScene().getWindow(), "Inserire una email valida!!");
             }
         });
     }
-    
+
     private PhoneNumber getInputPhoneNumber() throws InvalidPhoneNumberException {
         String phoneNumber_1 = inputPhoneNumber_1.getText().trim();
         String phoneNumber_2 = inputPhoneNumber_2.getText().trim();
@@ -109,15 +106,13 @@ public class AddContactController{
 
         return email;
     }
-    
-    
-    public void setContactList(ContactList contactList){
+
+    public void setContactList(ContactList contactList) {
         this.contactList = contactList;
     }
-    
-    
+
     @FXML
-    public void initialize() throws InvalidContactException{
+    public void initialize() throws InvalidContactException {
         handlerSaveButton();
         handlerCancelButtonAction();
     }

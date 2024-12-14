@@ -18,44 +18,40 @@ import javafx.stage.Stage;
  *
  * @author simon
  */
-public class ErrorModalController{
+public class ErrorModalController {
 
     /**
      * Initializes the controller class.
      */
-    
     @FXML
     Label errorLabel;
-    
+
     @FXML
     Button goBackButton;
-    
+
     @FXML
-    public void close(){
-        goBackButton.setOnAction(e-> {
-        Stage stage = (Stage) goBackButton.getScene().getWindow();
-        stage.close();
+    public void close() {
+        goBackButton.setOnAction(e -> {
+            Stage stage = (Stage) goBackButton.getScene().getWindow();
+            stage.close();
         });
     }
-    
+
     /*private void closeWindow() {
         // Ottieni la finestra corrente (Stage) e chiudila
         Stage stage = (Stage) goBackButton.getScene().getWindow();
         stage.close();
     }
-    */
-     public void setErrorMessage(String errorMessage) {
+     */
+    public void setErrorMessage(String errorMessage) {
         if (errorLabel != null) {
             errorLabel.setText(errorMessage); // Imposta il testo dell'etichetta
         }
     }
-    
-    
+
     @FXML
-    public void initialize(){
-       close();
+    public void initialize() {
+        close();
     }
-    
-    
-    
+
 }

@@ -1,14 +1,5 @@
 BEGIN:VCARD
 VERSION:3.0
-FN:Alberghi Antonio
-N:Alberghi;Antonio;;;
-TEL:454545
-TEL:6565656
-TEL:76767676
-NOTE:
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
 FN:Bollino 
 N:Bollino;;;;
 NOTE:
@@ -29,6 +20,15 @@ BEGIN:VCARD
 VERSION:3.0
 FN:manieri enrico
 N:manieri;enrico;;;
+NOTE:
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Rollins Franco
+N:Rollins;Franco;;;
+TEL:454545
+TEL:6565656
+TEL:76767676
 NOTE:
 END:VCARD
 BEGIN:VCARD

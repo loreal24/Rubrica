@@ -22,57 +22,58 @@ import javafx.stage.Stage;
  * @author loreal
  */
 public class DeleteModalController {
-	private Contact contact;
-	private ContactList rubrica;
-	private Groups groups;
-	private Stage stage;
 
-	public static TextField contactTextField;
+    private Contact contact;
+    private ContactList rubrica;
+    private Groups groups;
+    private Stage stage;
 
-	/**
-	 * Initializes the controller class.
-	 */
-	@FXML
-	public void initialize() {
-		// TODO
-	}	
+    public static TextField contactTextField;
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    public void initialize() {
+        // TODO
+    }
 
-	public void setStage(Stage modalStage) {
-		this.stage = modalStage;
-	}
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
-	public void setContactList(ContactList rubrica) {
-		this.rubrica = rubrica;
-	}
+    public void setStage(Stage modalStage) {
+        this.stage = modalStage;
+    }
 
-	public void setGroups(Groups groups) {
-		this.groups = groups;
-	}
+    public void setContactList(ContactList rubrica) {
+        this.rubrica = rubrica;
+    }
 
-	@FXML
-	public void confirmDelete() throws InvalidContactException {
-		groups.getGroups().forEach((Group group) -> {
-			if(group.getContacts().contains(contact))
+    public void setGroups(Groups groups) {
+        this.groups = groups;
+    }
+
+    @FXML
+    public void confirmDelete() throws InvalidContactException {
+        groups.getGroups().forEach((Group group) -> {
+            if (group.getContacts().contains(contact))
 				try {
-					group.removeContact(contact);
-			} catch (InvalidContactException ex) {
-				Logger.getLogger(DeleteModalController.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		});
-		rubrica.removeContact(contact);
-		contactTextField.setText("a");
-		contactTextField.setText("");
-		
-		stage.close();
-	}
+                group.removeContact(contact);
+            } catch (InvalidContactException ex) {
+                Logger.getLogger(DeleteModalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        rubrica.removeContact(contact);
+        contactTextField.setText("a");
+        contactTextField.setText("");
 
-	@FXML
-	public void undoDelete() {
-		stage.close();
-	}
-	
+        stage.close();
+    }
+
+    @FXML
+    public void undoDelete() {
+        stage.close();
+    }
+
 }

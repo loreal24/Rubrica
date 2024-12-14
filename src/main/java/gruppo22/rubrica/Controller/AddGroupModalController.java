@@ -23,50 +23,51 @@ import javafx.stage.Stage;
  */
 public class AddGroupModalController {
 
-	private Groups groups;
+    private Groups groups;
 
-	public static TextField groupSearch;
-	private Stage stage;
+    public static TextField groupSearch;
+    private Stage stage;
 
-	@FXML
-	private TextField groupNameTextField;
+    @FXML
+    private TextField groupNameTextField;
 
-	@FXML
-	private TextArea groupDescriptionTextArea; 
+    @FXML
+    private TextArea groupDescriptionTextArea;
 
-	public AddGroupModalController(Stage ownerStage, Groups groups) {
-		this.stage = ownerStage;
-		this.groups = groups;
-	}
+    public AddGroupModalController(Stage ownerStage, Groups groups) {
+        this.stage = ownerStage;
+        this.groups = groups;
+    }
 
-	/**
-	 * Initializes the controller class.
-	 */
-	@FXML
-	public void initialize(URL url, ResourceBundle rb) {
-	}	
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
-	public void setGroups(Groups groups){
-		this.groups = groups;
-	}
+    public void setGroups(Groups groups) {
+        this.groups = groups;
+    }
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
-	@FXML
-	public void handleConfirm() {
-		Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
-		groups.addGroup(group);
-		groupSearch.setText("a");
-		groupSearch.setText("");
-		
-		stage.close();
-	}
+    @FXML
+    public void handleConfirm() {
+        Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
+        System.out.println(groups);
+        groups.addGroup(group);
+        groupSearch.setText("a");
+        groupSearch.setText("");
 
-	@FXML
-	public void handleUndo() {
-		stage.close();
-	}
-	
+        stage.close();
+    }
+
+    @FXML
+    public void handleUndo() {
+        stage.close();
+    }
+
 }

@@ -33,22 +33,25 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class HeaderController {
-    
+
     //private ContactList contactList;
-    public static ContactList contactList;
-    public static boolean groupView;
+   // public static ContactList contactList;
+   // public static boolean groupView;
     public static ContactListView contactListView;
     public static GroupsListView groupListView;
-	public static Groups groups;
+   // public static Groups groups;
     public static VBox v;
-	public static StackPane contactSearch, groupSearch;
+    public static StackPane contactSearch, groupSearch;
+    private ContactList contactList;
+    private boolean groupView;
+    private Groups groups;
 
     @FXML
-    Button addButton, visualizeGroupsButton, addGroupButton; 
+    Button addButton, visualizeGroupsButton, addGroupButton;
 
     @FXML
-    public void handlerAddButton(){
-        addButton.setOnAction(e-> {
+    public void handlerAddButton() {
+        addButton.setOnAction(e -> {
             System.out.println("sono nell'header" + contactList);
             AddContactView view = new AddContactView();
             view.showModal("Aggiungi Contatto", (Stage) addButton.getScene().getWindow(), contactList);
@@ -56,83 +59,82 @@ public class HeaderController {
     }
 
     @FXML
-    public void handlerAddGroupButton(MouseEvent event){
-			try {
-				AddGroupModalView.showModal("Aggiungi Gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), groups);
-			} catch (IOException ex) {
-				Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
-			}
+    public void handlerAddGroupButton(MouseEvent event) {
+        try {
+            AddGroupModalView.showModal("Aggiungi Gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), groups);
+        } catch (IOException ex) {
+            Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     @FXML
-    public void handlerVisualizeGroupsButton(){
-        visualizeGroupsButton.setOnAction(e->{
-			groupView = !groupView;
-			if(groupView) {
-				visualizeGroupsButton.setText("Contatti");
-				v.getChildren().remove(contactSearch);
-				v.getChildren().add(groupSearch);
-				v.getChildren().remove(contactListView);
-				v.getChildren().add(groupListView);
-				addGroupButton.setVisible(true);
-				addButton.setVisible(false);
-			}
-			else {
-				visualizeGroupsButton.setText("Gruppi");
-				v.getChildren().remove(groupSearch);
-				v.getChildren().add(contactSearch);
-				v.getChildren().remove(groupListView);
-				v.getChildren().add(contactListView);
-				addButton.setVisible(true);
-				addGroupButton.setVisible(false);
-			}
+    public void handlerVisualizeGroupsButton() {
+        visualizeGroupsButton.setOnAction(e -> {
+            groupView = !groupView;
+            if (groupView) {
+                visualizeGroupsButton.setText("Contatti");
+                v.getChildren().remove(contactSearch);
+                v.getChildren().add(groupSearch);
+                v.getChildren().remove(contactListView);
+                v.getChildren().add(groupListView);
+                addGroupButton.setVisible(true);
+                addButton.setVisible(false);
+            } else {
+                visualizeGroupsButton.setText("Gruppi");
+                v.getChildren().remove(groupSearch);
+                v.getChildren().add(contactSearch);
+                v.getChildren().remove(groupListView);
+                v.getChildren().add(contactListView);
+                addButton.setVisible(true);
+                addGroupButton.setVisible(false);
+            }
         });
     }
 
-	@FXML
-	public void handleExport() throws IOException {
-		exportToFile(new File("rubrica.vcf"));	
+    @FXML
+    public void handleExport() throws IOException {
+        exportToFile(new File("rubrica.vcf"));
 
-	}
-    
-
-	@FXML
-	public void handleImport() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
-		importFromFile();
-	}
+    }
 
     @FXML
-    public void initialize(){
-		addGroupButton.setVisible(false);
+    public void handleImport() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
+        importFromFile();
+    }
+
+    @FXML
+    public void initialize() {
+        addGroupButton.setVisible(false);
         handlerAddButton();
         handlerVisualizeGroupsButton();
     }
-    
-	private void exportToFile(File exportFile) throws FileNotFoundException, IOException {
-		((Rubrica)contactList).saveVCF("rubrica.vcf");
+
+    private void exportToFile(File exportFile) throws FileNotFoundException, IOException {
+        ((Rubrica) contactList).saveVCF("rubrica.vcf");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("vCard File", "*.vcf"));
-		File destination = fileChooser.showSaveDialog(null);
-                
-                if(destination == null)
-                    return;
+        File destination = fileChooser.showSaveDialog(null);
+
+        if (destination == null) {
+            return;
+        }
 
         // Show save file dialog
         if (exportFile != null) {
             try (FileInputStream fis = new FileInputStream(exportFile);
-             FileOutputStream fos = new FileOutputStream(destination)) {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fis.read(buffer)) > 0) {
-                fos.write(buffer, 0, length);
+                    FileOutputStream fos = new FileOutputStream(destination)) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = fis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, length);
+                }
             }
-        }
         }
     }
 
-	private void importFromFile() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
-		FileChooser fileChooser = new FileChooser();
+    private void importFromFile() throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select File to Import");
         File sourceFile = fileChooser.showOpenDialog(null);
 
@@ -148,32 +150,39 @@ public class HeaderController {
             }
         }
 
-		ContactList list = Rubrica.readVCF("rubrica.vcf");
+        ContactList list = Rubrica.readVCF("rubrica.vcf");
 
-		list.getContacts().forEach((Contact contact) -> {
-			try {
-				contactList.addContact(contact);
-			} catch (InvalidContactException ex) {
-				Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
-			}
-			System.out.println(contactList.getContacts());
-			((TextField)contactSearch.getChildren().get(0)).setText("a");
-			((TextField)contactSearch.getChildren().get(0)).setText("");
-		});
+        list.getContacts().forEach((Contact contact) -> {
+            try {
+                contactList.addContact(contact);
+            } catch (InvalidContactException ex) {
+                Logger.getLogger(HeaderController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(contactList.getContacts());
+            ((TextField) contactSearch.getChildren().get(0)).setText("a");
+            ((TextField) contactSearch.getChildren().get(0)).setText("");
+        });
 
-	}
+    }
 
     private void copyFile(File source, File destination) throws IOException {
         // Use FileInputStream and FileOutputStream to copy the file content
-		System.out.println(source.toString());
+        System.out.println(source.toString());
         try (FileInputStream fis = new FileInputStream(source);
-             FileOutputStream fos = new FileOutputStream(destination)) {
+                FileOutputStream fos = new FileOutputStream(destination)) {
             byte[] buffer = new byte[1024];
             int length;
             while ((length = fis.read(buffer)) > 0) {
                 fos.write(buffer, 0, length);
             }
         }
-    }        
-  
+    }
+    
+    public void initializeData(ContactList contactList, boolean groupView, Groups groups) {
+    this.contactList = contactList;
+    this.groupView = groupView;
+    this.groups = groups;
+}
+
+
 }

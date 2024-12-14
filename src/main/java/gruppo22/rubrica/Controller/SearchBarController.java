@@ -23,56 +23,55 @@ import javafx.scene.layout.StackPane;
  * @author loreal
  */
 public class SearchBarController {
-	private ContactList rubrica;
-	private Groups groups;
-	public static ContactListController contactListController;
-	public static GroupsListController groupsListController;
 
-	@FXML 
-	private TextField contactTextField, groupTextField;
+    private ContactList rubrica;
+    private Groups groups;
+    public static ContactListController contactListController;
+    public static GroupsListController groupsListController;
 
-	@FXML
-	private StackPane groupSearch, contactSearch;
+    @FXML
+    private TextField contactTextField, groupTextField;
 
-	public SearchBarController(ContactList rubrica, Groups groups) {
-		this.rubrica = (Rubrica)rubrica;
-		this.groups = groups;
-	} 
+    @FXML
+    private StackPane groupSearch, contactSearch;
 
-	/**
-	 * Initializes the contactListController class.
-	 */
-	@FXML
-	public void initialize() {
-		HeaderController.groupSearch=groupSearch;
-		HeaderController.contactSearch=contactSearch;
-		MainView.contactSearch=contactSearch;
-		AddContactController.contactSearch = contactTextField;
-		AddGroupModalController.groupSearch=groupTextField;
-		DeleteModalController.contactTextField=contactTextField;
+    public SearchBarController(ContactList rubrica, Groups groups) {
+        this.rubrica = (Rubrica) rubrica;
+        this.groups = groups;
+    }
 
-		contactTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-			contactListController.filterList(newValue);
-		});
+    /**
+     * Initializes the contactListController class.
+     */
+    @FXML
+    public void initialize() {
+        HeaderController.groupSearch = groupSearch;
+        HeaderController.contactSearch = contactSearch;
+        MainView.contactSearch = contactSearch;
+        AddContactController.contactSearch = contactTextField;
+        AddGroupModalController.groupSearch = groupTextField;
+        DeleteModalController.contactTextField = contactTextField;
+
+        contactTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            contactListController.filterList(newValue);
+        });
         contactTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // If newValue is false, the TextField lost focus
-				contactTextField.setText("a");
-				contactTextField.setText("");
+                contactTextField.setText("a");
+                contactTextField.setText("");
             }
         });
 
-		groupTextField.textProperty().addListener((observable, oldValue, newValue) ->{
-			groupsListController.filterList(newValue);
-		});
+        groupTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            groupsListController.filterList(newValue);
+        });
         groupTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // If newValue is false, the TextField lost focus
-				groupTextField.setText("a");
-				groupTextField.setText("");
+                groupTextField.setText("a");
+                groupTextField.setText("");
             }
         });
 
-	}	
+    }
 
-
-	
 }

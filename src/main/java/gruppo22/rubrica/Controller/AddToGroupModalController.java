@@ -31,86 +31,85 @@ import javafx.stage.Stage;
  */
 public class AddToGroupModalController {
 
-	private Contact contact;
-	private ContactList rubrica;
-	private Stage stage;
+    private Contact contact;
+    private ContactList rubrica;
+    private Stage stage;
 
-	@FXML
-	private ListView<Group> listView;
-	
-	private Groups groups;
+    @FXML
+    private ListView<Group> listView;
 
-	public AddToGroupModalController(Stage stage, Contact contact, Groups groups){
-		this.groups = groups;
-		this.stage = stage;
-		this.contact = contact;
-	}
+    private Groups groups;
 
-	/**
-	 * Initializes the controller class.
-	 */
-	@FXML
-	public void initialize() {
-		listView.setCellFactory(param -> new ListCell<Group>() {
-			@Override
-			protected void updateItem(Group group, boolean empty) {
-				super.updateItem(group, empty);
-				if(empty || contact == null){
-					setGraphic(null);
-					setText(null);
-				} else {
-					Pane pane = new Pane(new Label(group.getName()));
-					setGraphic(pane);
-				}
-			}
-		});
+    public AddToGroupModalController(Stage stage, Contact contact, Groups groups) {
+        this.groups = groups;
+        this.stage = stage;
+        this.contact = contact;
+    }
 
-		listView.setItems(groups.getGroups());
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    public void initialize() {
+        listView.setCellFactory(param -> new ListCell<Group>() {
+            @Override
+            protected void updateItem(Group group, boolean empty) {
+                super.updateItem(group, empty);
+                if (empty || contact == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    Pane pane = new Pane(new Label(group.getName()));
+                    setGraphic(pane);
+                }
+            }
+        });
 
-	}	
+        listView.setItems(groups.getGroups());
 
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
+    }
 
-	public void setContactList(ContactList rubrica) {
-		this.rubrica = rubrica;
-	}
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
-	public void setGroups(Groups groups){
-		this.groups = groups;
-	}
+    public void setContactList(ContactList rubrica) {
+        this.rubrica = rubrica;
+    }
 
-	public void setStage(Stage modalStage) {
-		this.stage = modalStage;
-	}
+    public void setGroups(Groups groups) {
+        this.groups = groups;
+    }
 
-	@FXML
-	public void handleConfirm() throws InvalidContactException {
-		Group selected = listView.getSelectionModel().getSelectedItem();
-		System.out.println(selected.getName());
+    public void setStage(Stage modalStage) {
+        this.stage = modalStage;
+    }
 
-		System.out.println(groups.getGroups());
+    @FXML
+    public void handleConfirm() throws InvalidContactException {
+        Group selected = listView.getSelectionModel().getSelectedItem();
+        System.out.println(selected.getName());
 
-		if(!groups.getGroups().get(groups.getGroups().indexOf(selected)).getContacts().contains(contact))
-			groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
-		else
-		{
-			ErrorModalView errorModal = new ErrorModalView();
-			errorModal.showModal("Errore",(Stage) listView.getScene().getWindow(), "Il Contatto è già presente nel gruppo e non può essere aggiunto");
-		}
+        System.out.println(groups.getGroups());
 
-		groups.getGroups().forEach((Group group) -> {
-			System.out.println(group.getContacts());
-		});
-		//System.out.println(groups.getGroups().get(groups.getGroups().indexOf(selected)));
-		stage.close();
-		
-	}
+        if (!groups.getGroups().get(groups.getGroups().indexOf(selected)).getContacts().contains(contact)) {
+            groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
+        } else {
+            ErrorModalView errorModal = new ErrorModalView();
+            errorModal.showModal("Errore", (Stage) listView.getScene().getWindow(), "Il Contatto è già presente nel gruppo e non può essere aggiunto");
+        }
 
-	@FXML
-	public void handleUndo() {
-		stage.close();
-	}
+        groups.getGroups().forEach((Group group) -> {
+            System.out.println(group.getContacts());
+        });
+        //System.out.println(groups.getGroups().get(groups.getGroups().indexOf(selected)));
+        stage.close();
+
+    }
+
+    @FXML
+    public void handleUndo() {
+        stage.close();
+    }
 
 }
