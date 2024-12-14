@@ -175,10 +175,5 @@ public class HeaderController {
             }
         }
     }        
-            
-            
-    /*public void setContactList(ContactList contactList){
-        System.out.println("Sono nel metodo ContactList dell'headerController " + contactList);
-        this.contactList=contactList;
-    }*/
+  
 }
