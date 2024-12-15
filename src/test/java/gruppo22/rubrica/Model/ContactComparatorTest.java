@@ -32,14 +32,10 @@ public class ContactComparatorTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception{
         instance = new ContactComparator();
-        try {
-            c1 = new Contact("John", "Doe", null, null, null);
-            c2 = new Contact("John", "Doe", null, null, null);
-        } catch (Exception e) {
-            fail("Setup dei contatti fallito: " + e.getMessage());
-        }
+        c1 = new Contact("John", "Doe", null, null, null);
+        c2 = new Contact("John", "Doe", null, null, null);
     }
     
     @AfterEach
@@ -52,14 +48,14 @@ public class ContactComparatorTest {
     @Test
     public void testCompareContactsWithEqualNames() {
         System.out.println("compare");
-        assertEquals(0, instance.compare(c1, c2));
+        assertEquals(0, instance.compare(c1, c2)); //the result will match 0 and pass, if the 2 contacts share the same names
         
     }
     
     @Test
     public void testCompareContactsWithEqualSurnames() {
         System.out.println("compare");
-        assertEquals(0, instance.compare(c1, c2));
+        assertEquals(0, instance.compare(c1, c2)); //the result will match 0 and pass, if the 2 contacts share the same surnames
     }
     
      @Test
@@ -67,22 +63,31 @@ public class ContactComparatorTest {
         System.out.println("compareContactsWithtNameBefore");
         c1.setName("Abigail");
         c2.setName("Bryan");
-        assertTrue(instance.compare(c1 , c2) < 0);
+        assertTrue(instance.compare(c1 , c2) < 0); //the result will be true and pass, if c1's name will show up on top of c2's one
     }
     
     @Test
-    public void testCompareContactsWithSurnameBefore(){
+    public void testCompareContactsWithSurnameBeforeSameNames(){
         System.out.println("compareContactsWithSurnameBefore");
         c1.setSurname("Gibson");
         c2.setSurname("Smith");
-        assertTrue(instance.compare(c1, c2) > 0);
+        assertTrue(instance.compare(c1, c2) < 0); //the result will be true and pass, if c1's surname will show up on top of c2's one (equal names case)
+    }
+    
+    @Test
+    public void testCompareContactsWithSurnameBeforeDifferentNames(){
+        System.out.println("compareContactsWithSurnameBefore");
+        c1.setSurname("Gibson");
+        c2.setSurname("Smith");
+        c1.setName ("Z");
+        assertTrue(instance.compare(c1, c2) < 0); //the result will be true and pass, if c1's surname will show up on top of c2's one (different names case)
     }
     
     @Test
     public void testCompareContactsWithNullName() {
         System.out.println("compareContactsWithNullName");
         c1.setName ("");
-        assertTrue(instance.compare(c1, c2) < 0);
+        assertTrue(instance.compare(c1, c2) < 0); //the result will be true and pass, if c1's name will show up on top of c2's one (equal surnames)
     }
     
 }
