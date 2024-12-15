@@ -27,9 +27,9 @@ import javafx.stage.Stage;
  */
 public class ModifyContactController {
 
-    public static Contact contact;
-    public static ContactList rubrica;
-    List<TextField> emailInputFields, phoneNumberInputFields;
+    public static Contact contact;//contiene il contatto da modificare
+    public static ContactList rubrica;//contiene la lista di contatti della rubrica
+    List<TextField> emailInputFields, phoneNumberInputFields;//liste di campi email o numeri di telefono per gestirli al meglio
 
     @FXML
     Button cancelButton, saveButton;//pulsanti per gestire l'annullamento e il salvataggio
@@ -46,7 +46,7 @@ public class ModifyContactController {
     }
 
     @FXML
-    public void handlerSaveButton() throws InvalidContactException {
+    public void handlerSaveButton(){
         saveButton.setOnAction(e -> {
             try {
 
@@ -74,7 +74,6 @@ public class ModifyContactController {
             } catch (InvalidContactException ice) {//cattura l'eccezione se il nome e il cognome sono entrambi vuoti
                 ErrorModalView errorModal = new ErrorModalView();//crea la vista del modale di errore
                 errorModal.showModal("Invalid Contact Exception", (Stage) saveButton.getScene().getWindow(), "Il nome e il cognome non possono essere entrambi vuoti!!");//lancia la vista del modale di errore personalizzata
-
             } catch (InvalidPhoneNumberException ipne) {//cattura l'eccezione se i numeri di telefono non sono validi
                 ErrorModalView errorModal = new ErrorModalView();//crea la vista del modale di errore
                 errorModal.showModal("Invalid PhoneNumber Exception", (Stage) saveButton.getScene().getWindow(), "Inserire un numero di telefono valido!!");//lancia la vista del modale di errore personalizzata
@@ -85,10 +84,14 @@ public class ModifyContactController {
         });
     }
 
+    /*
+    recupera le stringhe dei numeri di telefono dai campi di testo per i numeri di telefono
+    nel caso non siano validi lancia l'eccezione 
+    */
     private PhoneNumber getInputPhoneNumber() throws InvalidPhoneNumberException {
-
         PhoneNumber phoneNumber = new PhoneNumber();
-        for (TextField phoneNumberField : phoneNumberInputFields) {
+        
+        for (TextField phoneNumberField : phoneNumberInputFields) {//Per ogni campo di testo per i numeri di telefono recupera la stringa e la aggiunge alla lista dei numeri di telefono
             String phoneNumberText = phoneNumberField.getText().trim();
             phoneNumber.addPhoneNumber(phoneNumberText);
         }
@@ -96,32 +99,18 @@ public class ModifyContactController {
         return phoneNumber;
     }
 
+    /*
+    recupera le stringhe delle email dai campi di testo per le email
+    nel caso non siano valide lancia l'eccezione 
+    */
     private Email getInputEmail() throws InvalidEmailException {
         Email email = new Email();
 
-        for (TextField emailField : emailInputFields) {
+        for (TextField emailField : emailInputFields) {//Per ogni campo di testo per le email recupera la stringa e la aggiunge alla lista delle email
             String emailText = emailField.getText().trim();
             email.addEmail(emailText);
         }
         return email;
-    }
-
-    @FXML
-    public void initialize() {
-        emailInputFields = new ArrayList<>();
-        emailInputFields.add(inputEmail_1);//aggiunge alla lista i campi di testo per le email per gestirle meglio
-        emailInputFields.add(inputEmail_2);
-        emailInputFields.add(inputEmail_3);
-        phoneNumberInputFields = new ArrayList<>();
-        phoneNumberInputFields.add(inputPhoneNumber_1);//aggiunge alla lista i campi di testo per i numeri di telefono per gestirli meglio
-        phoneNumberInputFields.add(inputPhoneNumber_2);
-        phoneNumberInputFields.add(inputPhoneNumber_3);
-
-        this.inputName.setText(this.contact.getName());// Inserisce il nome nel campo di testo per il nome
-        this.inputSurname.setText(this.contact.getSurname());// Inserisce il cognome nel campo di testo per il cognome
-        setInputPhoneNumber();//Inserisce le email nei campi di testo per le email
-        setInputEmail();//Inserisce i numeri di telefono nei campi di testo per i numeri di telefono
-        this.inputDescription.setText(this.contact.getDescription());// Inserisce la descrizione nel campo di testo per la descrizione
     }
 
     private void setInputEmail() {
@@ -148,5 +137,25 @@ public class ModifyContactController {
                 phoneNumberInputFields.get(i).setText(""); // Svuota il campo se non ci sono numeri di telefono
             }
         }
+    }
+    
+    @FXML
+    public void initialize() {
+        emailInputFields = new ArrayList<>();
+        emailInputFields.add(inputEmail_1);//aggiunge alla lista i campi di testo per le email per gestirle meglio
+        emailInputFields.add(inputEmail_2);
+        emailInputFields.add(inputEmail_3);
+        phoneNumberInputFields = new ArrayList<>();
+        phoneNumberInputFields.add(inputPhoneNumber_1);//aggiunge alla lista i campi di testo per i numeri di telefono per gestirli meglio
+        phoneNumberInputFields.add(inputPhoneNumber_2);
+        phoneNumberInputFields.add(inputPhoneNumber_3);
+
+        this.inputName.setText(this.contact.getName());// Inserisce il nome nel campo di testo per il nome
+        this.inputSurname.setText(this.contact.getSurname());// Inserisce il cognome nel campo di testo per il cognome
+        setInputPhoneNumber();//Inserisce le email nei campi di testo per le email
+        setInputEmail();//Inserisce i numeri di telefono nei campi di testo per i numeri di telefono
+        this.inputDescription.setText(this.contact.getDescription());// Inserisce la descrizione nel campo di testo per la descrizione
+        handlerCancelButtonAction();//inizializza il pulsante annulla
+        handlerSaveButton();//inizializza il pulsante salva
     }
 }

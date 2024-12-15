@@ -1,8 +1,5 @@
 package gruppo22.rubrica.View;
 
-import gruppo22.rubrica.Model.Contact;
-import gruppo22.rubrica.Controller.ModifyContactController;
-import gruppo22.rubrica.Model.ContactList;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,13 +15,16 @@ import javafx.stage.Stage;
 public class ModifyContactView extends Pane {
 	public static void showModal(String message, Stage ownerStage) throws IOException {
 		try{
-			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/modifyContact.fxml"));
-			Parent modalRoot = loader.load();                        
-			ModifyContactController controller = loader.getController();	
+			FXMLLoader loader = new FXMLLoader(ModifyContactView.class.getResource("/src/main/resources/gruppo22/rubrica/modifyContact.fxml"));// Carica la vista FXML
+			Parent modalRoot = loader.load();  // Carica il nodo root dal file FXML                      
+                        
+                        // Crea e configura il stage modale
 			Stage modalStage = new Stage();
 			modalStage.setTitle("Dialogo Modale");
-			modalStage.initModality(Modality.WINDOW_MODAL);
-			modalStage.initOwner(ownerStage);			
+			modalStage.initModality(Modality.WINDOW_MODAL);// Imposta la finestra come modale
+			modalStage.initOwner(ownerStage);// Impedisce interazione con il parent stage
+                        
+                        // Crea la scena e imposta la vista FXML
 			modalStage.setScene(new Scene(modalRoot));
 			modalStage.showAndWait();
 		} catch (Exception e) {

@@ -5,8 +5,6 @@
  */
 package gruppo22.rubrica.View;
 
-import gruppo22.rubrica.Controller.HeaderController;
-import gruppo22.rubrica.Model.ContactList;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
