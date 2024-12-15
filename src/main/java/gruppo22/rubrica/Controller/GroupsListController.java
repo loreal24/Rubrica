@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file GroupsListController.java
+ * @author loreal
+ * @brief Controller class for managing the display and interaction of the
+ * groups list in the application.
  */
 package gruppo22.rubrica.Controller;
 
-import gruppo22.rubrica.Model.Contact;
 import gruppo22.rubrica.Model.ContactList;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
-import gruppo22.rubrica.View.ContactListView;
 import gruppo22.rubrica.View.GroupListView;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -22,31 +18,37 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class for managing the list of groups.
  *
- * @author loreal
+ * This class handles the initialization of the groups list view, the display of
+ * group details, and the filtering of groups based on user input.
  */
 public class GroupsListController {
 
-	private Groups groups;
-	private ContactList rubrica;
+	private Groups groups; ///< The model containing the list of groups.
+	private ContactList rubrica; ///< The contact list model.
 
 	@FXML
-	private ListView<Group> groupsListView;
+	private ListView<Group> groupsListView; ///< The ListView component for displaying groups.
 
+	/**
+	 * Constructor for GroupsListController.
+	 *
+	 * @param rubrica The contact list to be used in the controller.
+	 * @param groups The groups model to be used in the controller.
+	 */
 	public GroupsListController(ContactList rubrica, Groups groups) {
 		this.rubrica = rubrica;
 		this.groups = groups;
 	}
 
 	/**
-	 * Initializes the controller class.
+	 * Initializes the controller class. This method sets up the ListView cell
+	 * factory and populates the ListView with groups.
 	 */
 	@FXML
 	public void initialize() {
@@ -65,7 +67,7 @@ public class GroupsListController {
 					hbox.setMaxHeight(50);
 					hbox.setMinWidth(550);
 
-					// Creazione del primo VBox (immagine a sinistra)
+					// Create the first VBox (image on the left)
 					VBox leftVBox = new VBox();
 					leftVBox.setAlignment(javafx.geometry.Pos.CENTER);
 					leftVBox.setPrefHeight(60.0);
@@ -76,7 +78,7 @@ public class GroupsListController {
 					leftImageView.setPreserveRatio(true);
 					leftVBox.getChildren().add(leftImageView);
 
-					// Creazione del secondo VBox (dettagli del contatto)
+					// Create the second VBox (contact details)
 					VBox centerVBox = new VBox();
 					centerVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 					centerVBox.setPrefHeight(50.0);
@@ -89,7 +91,7 @@ public class GroupsListController {
 					}
 					centerVBox.getChildren().addAll(nameLabel, descriptionLabel);
 
-					// Creazione del terzo VBox (immagine a destra)
+					// Create the third VBox (image on the right)
 					VBox rightVBox = new VBox();
 					rightVBox.setAlignment(javafx.geometry.Pos.CENTER);
 					rightVBox.setPrefHeight(50.0);
@@ -100,7 +102,7 @@ public class GroupsListController {
 					rightImageView.setPreserveRatio(true);
 					rightVBox.getChildren().add(rightImageView);
 
-					// Aggiunta dei VBox all'HBox
+					// Add the VBoxes to the HBox
 					hbox.getChildren().addAll(leftVBox, centerVBox, rightVBox);
 					hbox.setOnMouseClicked((MouseEvent event) -> {
 						GroupListView.showModal("Vista Dettagliata gruppo", (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(), rubrica, group, groups);
@@ -113,6 +115,14 @@ public class GroupsListController {
 		groupsListView.setItems(groups.getGroups());
 	}
 
+	/**
+	 * Filters the list of groups based on the provided query.
+	 *
+	 * This method updates the ListView to display only the groups that match
+	 * the query.
+	 *
+	 * @param query The search query used to filter the groups.
+	 */
 	public void filterList(String query) {
 		System.out.println(query);
 		groupsListView.setItems(groups.contactFilter(query, groups.getGroups()).getGroups());

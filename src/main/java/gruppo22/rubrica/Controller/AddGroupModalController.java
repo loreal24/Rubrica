@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file AddGroupModalController.java
+ * @author loreal
+ * @brief Controller for managing the Add Group modal in the application.
+ *
+ * This file contains the implementation of the AddGroupModalController class,
+ * which handles user input for creating a new group, including validation and
+ * interaction with the Groups model.
  */
 package gruppo22.rubrica.Controller;
 
@@ -18,65 +22,95 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author loreal
+ * FXML Controller class for managing the Add Group modal. This class handles
+ * the user input for creating a new group, including validation and interaction
+ * with the Groups model.
  */
 public class AddGroupModalController {
 
-    private Groups groups;
+	/**
+	 * The Groups model that holds all the groups.
+	 */
+	private Groups groups;
 
-    public static TextField groupSearch;
-    private Stage stage;
+	/**
+	 * A static TextField for searching groups.
+	 */
+	public static TextField groupSearch;
 
-    @FXML
-    private TextField groupNameTextField;
+	/**
+	 * The stage for the modal dialog.
+	 */
+	private Stage stage;
 
-    @FXML
-    private TextArea groupDescriptionTextArea;
+	/**
+	 * TextField for entering the group name.
+	 */
+	@FXML
+	private TextField groupNameTextField;
 
-    public AddGroupModalController(Stage ownerStage, Groups groups) {
-        this.stage = ownerStage;
-        this.groups = groups;
-    }
+	/**
+	 * TextArea for entering the group description.
+	 */
+	@FXML
+	private TextArea groupDescriptionTextArea;
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    public void initialize(URL url, ResourceBundle rb) {
-    }
+	/**
+	 * Constructor for the AddGroupModalController.
+	 *
+	 * @param ownerStage The owner stage of the modal.
+	 * @param groups The Groups model to manage group data.
+	 */
+	public AddGroupModalController(Stage ownerStage, Groups groups) {
+		this.stage = ownerStage;
+		this.groups = groups;
+	}
 
-    public void setGroups(Groups groups) {
-        this.groups = groups;
-    }
+	/**
+	 * Sets the Groups model.
+	 *
+	 * @param groups The Groups model to set.
+	 */
+	public void setGroups(Groups groups) {
+		this.groups = groups;
+	}
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+	/**
+	 * Sets the stage for the modal dialog.
+	 *
+	 * @param stage The stage to set.
+	 */
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
 
-    @FXML
-    public void handleConfirm() {
-		if(groupNameTextField.getText().isEmpty() || groupNameTextField.getText() == null){
+	/**
+	 * Handles the confirm action when the user submits the group information.
+	 * Validates the input and adds a new group to the Groups model. Displays an
+	 * error modal if the group name is empty.
+	 */
+	@FXML
+	public void handleConfirm() {
+		if (groupNameTextField.getText().isEmpty() || groupNameTextField.getText() == null) {
 			ErrorModalView modal = new ErrorModalView();
 			modal.showModal("Errore", stage, "Il nome del gruppo non può essere vuoto");
+		} else {
+			Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
+			System.out.println(groups);
+			groups.addGroup(group);
+			System.out.println(groupSearch);
+			groupSearch.setText("a");
+			groupSearch.setText("");
+
+			stage.close();
 		}
-		else{
+	}
 
-        Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
-        System.out.println(groups);
-        groups.addGroup(group);
-		System.out.println(groupSearch);
-        groupSearch.setText("a");
-        groupSearch.setText("");
-
-        stage.close();
-		}
-    }
-
-    @FXML
-    public void handleUndo() {
-        stage.close();
-    }
-
+	/**
+	 * Handles the undo action, closing the modal without making changes.
+	 */
+	@FXML
+	public void handleUndo() {
+		stage.close();
+	}
 }
