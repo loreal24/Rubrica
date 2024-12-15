@@ -84,7 +84,7 @@ public class GroupsListController {
 					centerVBox.setPrefHeight(50.0);
 					centerVBox.setPrefWidth(380.0);
 					Label nameLabel = new Label();
-					nameLabel.setText(group.getName());
+					nameLabel.setText(group.getName().replace("\u200d", ""));
 					Label descriptionLabel = new Label("");
 					if (group.getDescription() != null && !group.getDescription().isEmpty()) {
 						descriptionLabel.setText(group.getDescription());

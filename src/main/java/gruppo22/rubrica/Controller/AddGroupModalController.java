@@ -12,8 +12,14 @@ package gruppo22.rubrica.Controller;
 import gruppo22.rubrica.Model.Group;
 import gruppo22.rubrica.Model.Groups;
 import gruppo22.rubrica.View.ErrorModalView;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -98,7 +104,13 @@ public class AddGroupModalController {
 			Group group = new Group(groupNameTextField.getText(), groupDescriptionTextArea.getText());
 			System.out.println(groups);
 			groups.addGroup(group);
-			System.out.println(groupSearch);
+
+			try {
+				group.saveVCF(group.getName() + ".vcf");
+			} catch (IOException ex) {
+				Logger.getLogger(AddGroupModalController.class.getName()).log(Level.SEVERE, null, ex);
+			}
+
 			groupSearch.setText("a");
 			groupSearch.setText("");
 
