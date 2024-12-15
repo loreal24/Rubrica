@@ -21,7 +21,7 @@ public class ContactComparator implements Comparator<Contact> {
     @Override
     public int compare(Contact c1, Contact c2) {
         if (!c1.getSurname().equals(c2.getSurname())) {
-            return c1.getSurname().toLowerCase().compareToIgnoreCase(c2.getSurname());
+            return c1.getSurname().compareToIgnoreCase(c2.getSurname());
         }
         return c1.getName().compareToIgnoreCase(c2.getName());
 
