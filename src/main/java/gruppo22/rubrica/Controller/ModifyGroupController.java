@@ -106,16 +106,23 @@ public class ModifyGroupController {
             }
 
             group.setName(groupNameTextField.getText());
+			groupSearch.setText("a");
+			groupSearch.setText("");
             if (groupDescriptionTextArea.getText() != null && !groupDescriptionTextArea.getText().isEmpty()) {
                 group.setDescription(groupDescriptionTextArea.getText());
+				groupSearch.setText("a");
+				groupSearch.setText("");
             }
 
             groups.addGroup(group);
 
-            groupSearch.setText("a");
+           groupSearch.setText("a");
             groupSearch.setText("");
 
             stage.close();
+
+            groupSearch.setText("a");
+            groupSearch.setText("");
         }
     }
 

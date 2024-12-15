@@ -137,11 +137,12 @@ public class AddToGroupModalController {
 	@FXML
 	public void handleConfirm() throws InvalidContactException {
 		Group selected = listView.getSelectionModel().getSelectedItem();
-		System.out.println(selected.getName());
-
-		System.out.println(groups.getGroups());
-
-		if (!groups.getGroups().get(groups.getGroups().indexOf(selected)).getContacts().contains(contact)) {
+		
+		if(selected == null){
+			ErrorModalView errorModal = new ErrorModalView();
+			errorModal.showModal("Errore", (Stage) listView.getScene().getWindow(), "Nessun gruppo selezionato");
+		}
+		else if (!groups.getGroups().get(groups.getGroups().indexOf(selected)).getContacts().contains(contact)) {
 			groups.getGroups().get(groups.getGroups().indexOf(selected)).addContact(contact);
 		} else {
 			ErrorModalView errorModal = new ErrorModalView();

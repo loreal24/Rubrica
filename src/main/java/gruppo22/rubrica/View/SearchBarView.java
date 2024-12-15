@@ -1,31 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file SearchBarView.java
+ * @brief This class represents the view for the search bar in the contact
+ * management application. It initializes the search bar view and loads the
+ * associated FXML layout.
+ *
+ * @author Loreal
  */
 package gruppo22.rubrica.View;
 
-import gruppo22.rubrica.Controller.SearchBarController;
-import gruppo22.rubrica.Model.ContactList;
-import gruppo22.rubrica.Model.Groups;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 /**
- *
- * @author loreal
+ * @class SearchBarView
+ * @brief A class that provides the view for the search bar in the application.
  */
 public class SearchBarView extends Pane {
-	public SearchBarView(){
-		try{
+
+	/**
+	 * @brief Constructs a SearchBarView and initializes the FXML for the search
+	 * bar.
+	 */
+	public SearchBarView() {
+		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/searchBar.fxml"));
-			loader.getController();
-			Parent root = loader.load();
-			getChildren().add(root);
+			loader.getController(); // Retrieve the controller (currently unused)
+			Parent root = loader.load(); // Load the root node from the FXML file
+			getChildren().add(root); // Add the loaded root to this pane
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // Print the stack trace in case of an IOException
 		}
-	}	
+	}
 }

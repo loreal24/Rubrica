@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file DeleteModalGroupView.java
+ * @brief This class represents the view for the modal dialog used to delete a
+ * group in the contact management application. It initializes the delete group
+ * modal view and sets up the associated controller.
+ *
+ * @author lpane
  */
 package gruppo22.rubrica.View;
 
@@ -11,19 +14,25 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 /**
- *
- * @author lpane
+ * @class DeleteModalGroupView
+ * @brief A class that provides the modal view for deleting a group.
  */
-public class DeleteModalGroupView extends Pane{
-    public DeleteModalGroupView(){
+public class DeleteModalGroupView extends Pane {
+
+	/**
+	 * @brief Constructs a DeleteModalGroupView and initializes the FXML for the
+	 * delete group modal.
+	 */
+	public DeleteModalGroupView() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/deleteModalGroup.fxml"));
 
+		// Set the controller for the FXML file
 		loader.setController(getClass().getResource("DeleteModalGroupController.java"));
-		try{
+		try {
 			Parent root = loader.load();
 			getChildren().add(root);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 }

@@ -116,7 +116,7 @@ public class GroupsTest {
         instance.addGroup(group2);
         instance.addGroup(group3);
 
-        Groups filteredGroups = instance.contactFilter("Agroup1", instance.getGroups());
+        Groups filteredGroups = instance.groupFilter("Agroup1", instance.getGroups());
 
         ObservableList<Group> filteredList = filteredGroups.getGroups();
         assertEquals(2, filteredList.size()); //verifico che il metodo ritorni entrambi i gruppi contenenti la stringa passata
@@ -133,7 +133,7 @@ public class GroupsTest {
         instance.addGroup(group1);
         instance.addGroup(group2);
 
-        Groups filteredGroups = instance.contactFilter("", instance.getGroups());
+        Groups filteredGroups = instance.groupFilter("", instance.getGroups());
 
         ObservableList<Group> filteredList = filteredGroups.getGroups();
         assertEquals(2, filteredList.size()); //verifico che in caso di stringa vuota la lista filtri tutti i gruppi presenti
@@ -146,7 +146,7 @@ public class GroupsTest {
         instance.addGroup(group1);
         instance.addGroup(group2);
 
-        Groups filteredGroups = instance.contactFilter("Nonexistent", instance.getGroups());
+        Groups filteredGroups = instance.groupFilter("Nonexistent", instance.getGroups());
 
         ObservableList<Group> filteredList = filteredGroups.getGroups();
         assertTrue(filteredList.isEmpty()); //verifico che la lista sia vuota quando manca una corrispondenza

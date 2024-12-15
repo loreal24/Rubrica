@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file HeaderView.java
+ * @brief This class represents the view for the header section of the contact
+ * management application. It initializes the header view and sets up the
+ * associated controller.
+ *
+ * @author Loreal
  */
 package gruppo22.rubrica.View;
 
@@ -11,20 +14,24 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 /**
- *
- * @author loreal
+ * @class HeaderView
+ * @brief A class that provides the view for the header of the application.
  */
 public class HeaderView extends Pane {
-	public HeaderView(){
+
+	/**
+	 * @brief Constructs a HeaderView and initializes the FXML for the header.
+	 */
+	public HeaderView() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/header.fxml"));
 
+		// Set the controller for the FXML file
 		loader.setController(getClass().getResource("HeaderController.java"));
-		try{
+		try {
 			Parent root = loader.load();
-                       
 			getChildren().add(root);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 }
