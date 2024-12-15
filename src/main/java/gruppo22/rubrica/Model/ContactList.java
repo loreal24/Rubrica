@@ -7,7 +7,6 @@ package gruppo22.rubrica.Model;
 
 import gruppo22.rubrica.Exceptions.InvalidContactException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
