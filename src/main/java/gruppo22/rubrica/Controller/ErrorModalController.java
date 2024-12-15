@@ -32,8 +32,8 @@ public class ErrorModalController {
     @FXML
     public void close() {
         goBackButton.setOnAction(e -> {
-            Stage stage = (Stage) goBackButton.getScene().getWindow();
-            stage.close();
+            Stage stage = (Stage) goBackButton.getScene().getWindow();//recupera la finestra dal pulsante stesso
+            stage.close();//chiude la finestra
         });
     }
 
