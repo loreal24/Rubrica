@@ -125,6 +125,6 @@ public class GroupsListController {
 	 */
 	public void filterList(String query) {
 		System.out.println(query);
-		groupsListView.setItems(groups.contactFilter(query, groups.getGroups()).getGroups());
+		groupsListView.setItems(groups.groupFilter(query, groups.getGroups()).getGroups());
 	}
 }

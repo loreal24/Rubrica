@@ -116,7 +116,7 @@ public class ModifyGroupController {
 
             groups.addGroup(group);
 
-            groupSearch.setText("a");
+           groupSearch.setText("a");
             groupSearch.setText("");
 
             stage.close();

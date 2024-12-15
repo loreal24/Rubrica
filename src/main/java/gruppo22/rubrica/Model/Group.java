@@ -1,7 +1,7 @@
 /**
  * @file Group.java
  * @brief This file contains the implementation of the Group feature
- * 
+ *
  * More detailed information about the file and its role in the project.
  * @author simon
  * @date December 2, 2024
@@ -17,113 +17,109 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class Group extends ContactList {
-    
-    private String name;
-    private String description;
+
+	private String name;
+	private String description;
 
 	public Group() {
 		super();
 	}
-    
-    /**
-     * @brief Constructor
-     * @param[in] name represents the group name
-     * @param[in] description represents the description of the name
-     */
-    public Group(String name, String description){
-        super();
-        this.name=name;
-        this.description=description;
-    }
-    
-    /**
-      * @brief Returns the contact name
-      * @return A String that represents the group name
-      */
-    public String getName(){
-        return this.name;
-    }
-    
-     /**
-      * @brief Set the contact name
-      * @param[in] name A String that represents the group name
-      */
-    public void setName(String name){
-        this.name=name;
-    }
-    
-    /**
-      * @brief Return the description of the group
-      * @return A String that represent the description of the group
-      */
-    public String getDescription(){
-        return this.description;
-    }
-    
-    /**
-      * @brief Set the description of the group
-      * @param[in] description A String that represents the description of the group
-      */
-    public void setDescription(String description){
-        this.description=description;
-    }
 
+	/**
+	 * @brief Constructor
+	 * @param[in] name represents the group name
+	 * @param[in] description represents the description of the name
+	 */
+	public Group(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
 
-    /**
-     * @brief Allows to save group information in a file
-     * @param[in] filename
-     * @throws IOException 
-     */
+	/**
+	 * @brief Returns the contact name
+	 * @return A String that represents the group name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * @brief Set the contact name
+	 * @param[in] name A String that represents the group name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @brief Return the description of the group
+	 * @return A String that represent the description of the group
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+
+	/**
+	 * @brief Set the description of the group
+	 * @param[in] description A String that represents the description of the
+	 * group
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @brief Allows to save group information in a file
+	 * @param[in] filename
+	 * @throws IOException
+	 */
 	public void saveVCF(String filename) throws IOException {
 
-		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
 			bw.write("NOME:" + this.name);
 			bw.newLine();
 			bw.write("DESCRIZIONE:" + this.description);
 			bw.newLine();
-			for(Contact c: contacts) {
+			for (Contact c : contacts) {
 				bw.write("BEGIN:VCARD");
 				bw.newLine();
 				bw.write("VERSION:3.0");
 				bw.newLine();
 
-				if(c.getName() != null && c.getSurname() != null){
-					bw.write("FN:"+ c.getSurname() + " " + c.getName());
+				if (c.getName() != null && c.getSurname() != null) {
+					bw.write("FN:" + c.getSurname() + " " + c.getName());
 					bw.newLine();
-					bw.write("N:" + c.getSurname() + ";" + c.getName()+";;;");
+					bw.write("N:" + c.getSurname() + ";" + c.getName() + ";;;");
 					bw.newLine();
-				}
-					
-				else if(c.getName() != null){
+				} else if (c.getName() != null) {
 					bw.write("FN:" + c.getName());
 					bw.newLine();
-					bw.write("N:" + c.getName()+ ";;;");
+					bw.write("N:" + c.getName() + ";;;");
 					bw.newLine();
-				}
-				else if(c.getSurname() != null) {
+				} else if (c.getSurname() != null) {
 					bw.write("FN:" + c.getSurname());
 					bw.newLine();
 					bw.write("N:" + c.getSurname());
 					bw.newLine();
 				}
 
-				for(int i = 0; i < c.getEmail().getEmailList().size(); i++){
-					if (c.getEmail().getEmailList().toArray()[i] != null){
-						bw.write("EMAIL:"+ c.getEmail().getEmailList().toArray()[i].toString());
+				for (int i = 0; i < c.getEmail().getEmailList().size(); i++) {
+					if (c.getEmail().getEmailList().toArray()[i] != null) {
+						bw.write("EMAIL:" + c.getEmail().getEmailList().toArray()[i].toString());
 						bw.newLine();
 					}
 				}
 
-				for(int i = 0; i < c.getPhoneNumber().getPhoneNumbers().size(); i++){
-					if (c.getPhoneNumber().getPhoneNumbers().toArray()[i] != null){
+				for (int i = 0; i < c.getPhoneNumber().getPhoneNumbers().size(); i++) {
+					if (c.getPhoneNumber().getPhoneNumbers().toArray()[i] != null) {
 						bw.write("TEL:" + c.getPhoneNumber().getPhoneNumbers().toArray()[i].toString());
 						bw.newLine();
 					}
 				}
 
-				if(c.getDescription() != null){
+				if (c.getDescription() != null) {
 					bw.write("NOTE:" + c.getDescription());
 					bw.newLine();
 
@@ -138,144 +134,141 @@ public class Group extends ContactList {
 	/**
 	 * @brief Allows to read group information from a file
 	 * @param[in] nomeFile
-	 * @return A Group instance with the information from the specified 
-	 * file
+	 * @return A Group instance with the information from the specified file
 	 * @throws IOException
 	 * @throws InvalidEmailException
 	 * @throws InvalidPhoneNumberException
 	 * @throws InvalidContactException
 	 */
-	public static Group readVCF(String nomeFile) throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException { 
+	public static Group readVCF(String nomeFile) throws IOException, InvalidEmailException, InvalidPhoneNumberException, InvalidContactException {
 
-			Group c = new Group();
-		 try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
+		Group c = new Group();
+		try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
 			String riga;
-		while ((riga = br.readLine()) != null) {
-			
-			String nomeGruppo, descrizioneGruppo;
-			if(riga.startsWith("NOME")) {
-				c.setName(riga.substring(5));
-				riga = br.readLine();
-				if(riga==null) break;
-			}
-			if(riga.startsWith("DESCRIZIONE")) {
-				c.setDescription(riga.substring(12));
-				if(riga==null) break;
-			}
+			while ((riga = br.readLine()) != null) {
 
+				String nomeGruppo, descrizioneGruppo;
+				if (riga.startsWith("NOME")) {
+					c.setName(riga.substring(5));
+					riga = br.readLine();
+					if (riga == null) {
+						break;
+					}
+				}
+				if (riga.startsWith("DESCRIZIONE")) {
+					c.setDescription(riga.substring(12));
+					if (riga == null) {
+						break;
+					}
+				}
 
-			// Stampa la riga letta
-			String nome="", cognome="", descrizione="", fullname[];
-			Email email = new Email();
-			PhoneNumber phoneNumber = new PhoneNumber();
-			if (riga.startsWith("BEGIN:VCARD")) {
-				riga = br.readLine();
-				if(riga == null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
+				// Stampa la riga letta
+				String nome = "", cognome = "", descrizione = "", fullname[];
+				Email email = new Email();
+				PhoneNumber phoneNumber = new PhoneNumber();
+				if (riga.startsWith("BEGIN:VCARD")) {
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
 				}
-			} 
-			if(riga.startsWith("VERSION:")){
-				riga = br.readLine();
-				if(riga==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
+				if (riga.startsWith("VERSION:")) {
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
 				}
-			}
-			if (riga.startsWith("FN:")) {
-				fullname = riga.substring(3).split(" ");
-				cognome = fullname[0];
-				if(fullname.length > 1)
-					nome = fullname[1];
-				riga = br.readLine();
-				if(riga ==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
+				if (riga.startsWith("FN:")) {
+					fullname = riga.substring(3).split(" ");
+					cognome = fullname[0];
+					if (fullname.length > 1) {
+						nome = fullname[1];
+					}
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
 				}
-			}
-			if(riga.startsWith("N:")){
-				riga = br.readLine();
-				if(riga==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
+				if (riga.startsWith("N:")) {
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					}
 				}
-			}
-			if (riga.startsWith("EMAIL:")) {
-				System.out.println(riga);
-				email.addEmail(riga.substring(6));
-				riga = br.readLine();
-				if(riga == null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-				else if(riga.startsWith("EMAIL:")){
-				System.out.println(riga);
+				if (riga.startsWith("EMAIL:")) {
+					System.out.println(riga);
 					email.addEmail(riga.substring(6));
 					riga = br.readLine();
-					if(riga == null) {
+					if (riga == null) {
 						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 						break;
-					}	
-					else if(riga.startsWith("EMAIL:")) {
-				System.out.println(riga);
+					} else if (riga.startsWith("EMAIL:")) {
+						System.out.println(riga);
 						email.addEmail(riga.substring(6));
 						riga = br.readLine();
-						if(riga == null){
+						if (riga == null) {
 							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-							System.out.println(c.getContacts());
 							break;
+						} else if (riga.startsWith("EMAIL:")) {
+							System.out.println(riga);
+							email.addEmail(riga.substring(6));
+							riga = br.readLine();
+							if (riga == null) {
+								c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+								System.out.println(c.getContacts());
+								break;
+							}
 						}
 					}
 				}
-			}
-			if (riga.startsWith("TEL:")) {
-				phoneNumber.addPhoneNumber(riga.substring(4));
-				riga = br.readLine();
-				if(riga ==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-				else if(riga.startsWith("TEL:")) {
+				if (riga.startsWith("TEL:")) {
 					phoneNumber.addPhoneNumber(riga.substring(4));
-					riga = br.readLine();	
-					if(riga == null) {
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
+					} else if (riga.startsWith("TEL:")) {
+						phoneNumber.addPhoneNumber(riga.substring(4));
+						riga = br.readLine();
+						if (riga == null) {
+							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+							break;
+						} else if (riga.startsWith("TEL:")) {
+							phoneNumber.addPhoneNumber(riga.substring(4));
+							riga = br.readLine();
+							if (riga == null) {
+								c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+								break;
+							}
+						}
+					}
+				}
+				if (riga.startsWith("NOTE:")) {
+					descrizione = riga.substring(5);
+					riga = br.readLine();
+					if (riga == null) {
 						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
 						break;
 					}
-					else if (riga.startsWith("TEL:")){
-						phoneNumber.addPhoneNumber(riga.substring(4));
-						riga = br.readLine();	
-						if(riga == null) {
-							c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-							break;
-						}
+				}
+				if (riga.startsWith("END:VCARD")) {
+					System.out.println("Fine del contatto.\n");
+					riga = br.readLine();
+					if (riga == null) {
+						c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
+						break;
 					}
 				}
-			} 
-			if (riga.startsWith("NOTE:")) {
-				descrizione = riga.substring(5);
-				riga = br.readLine();
-				if(riga==null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-			} 
-			if (riga.startsWith("END:VCARD")) {
-				System.out.println("Fine del contatto.\n");
-				riga = br.readLine();
-				if(riga == null) {
-					c.addContact(new Contact(nome, cognome, email, phoneNumber, descrizione));
-					break;
-				}
-			}
 
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
 		return c;
 	}
 
-    
-    
 }

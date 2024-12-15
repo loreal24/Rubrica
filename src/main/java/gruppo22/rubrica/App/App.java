@@ -57,7 +57,6 @@ public class App extends Application {
 	public void start(Stage stage) throws IOException, InvalidContactException, InterruptedException, InvalidEmailException, InvalidPhoneNumberException {
 		ContactList rubrica = Rubrica.readVCF("rubrica.vcf");
 		List<ContactList> contactLists = new ArrayList<>();
-		List<Groups> groupsList = new ArrayList<>();
 		Groups groups = new Groups();
 
 		Path startDir = Paths.get("./");

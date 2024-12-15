@@ -7,8 +7,9 @@
 package gruppo22.rubrica.Model;
 
 public class PhoneChecker implements Checker {
+
 	/**
-	 * 
+	 *
 	 * @param phoneNumber The phone number you want to check the validity of
 	 * @return true if valid, false if not valid
 	 */
@@ -16,5 +17,5 @@ public class PhoneChecker implements Checker {
 	public boolean isValid(String phoneNumber) {
 		return phoneNumber.matches("^\\d+$");
 	}
-	
+
 }

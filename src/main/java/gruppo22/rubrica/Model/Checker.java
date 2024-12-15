@@ -1,12 +1,13 @@
 /**
  * @file Checker.java
- * @brief This file contains an interface, generalizing a checker for phonenumbers
- * and emails
+ * @brief This file contains an interface, generalizing a checker for
+ * phonenumbers and emails
  * @author loreal
  */
 package gruppo22.rubrica.Model;
 
 public interface Checker {
+
 	/**
 	 * @brief Abstract method
 	 * @param s The string to check the validity of
@@ -14,5 +15,5 @@ public interface Checker {
 	 */
 
 	public boolean isValid(String s);
-	
+
 }
