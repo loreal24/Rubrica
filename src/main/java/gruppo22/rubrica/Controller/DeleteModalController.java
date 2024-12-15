@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file DeleteModalController.java
+ * @author loreal
+ * @brief Controller for managing the delete contact modal in the application.
+ *
+ * This file contains the implementation of the DeleteModalController class,
+ * which handles the user interface for confirming the deletion of a contact.
  */
 package gruppo22.rubrica.Controller;
 
@@ -17,63 +20,103 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author loreal
+ * FXML Controller class for managing the delete contact modal. This class
+ * handles the user input for confirming the deletion of a contact from both the
+ * contact list and any associated groups.
  */
 public class DeleteModalController {
 
-    private Contact contact;
-    private ContactList rubrica;
-    private Groups groups;
-    private Stage stage;
+	/**
+	 * The contact to be deleted.
+	 */
+	private Contact contact;
 
-    public static TextField contactTextField;
+	/**
+	 * The contact list (rubrica) containing all contacts.
+	 */
+	private ContactList rubrica;
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    public void initialize() {
-        // TODO
-    }
+	/**
+	 * The Groups model that holds all the groups.
+	 */
+	private Groups groups;
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+	/**
+	 * The stage for the modal dialog.
+	 */
+	private Stage stage;
 
-    public void setStage(Stage modalStage) {
-        this.stage = modalStage;
-    }
+	/**
+	 * Static TextField for displaying contact information.
+	 */
+	public static TextField contactTextField;
 
-    public void setContactList(ContactList rubrica) {
-        this.rubrica = rubrica;
-    }
+	/**
+	 * Sets the contact to be deleted.
+	 *
+	 * @param contact The contact to set.
+	 */
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
 
-    public void setGroups(Groups groups) {
-        this.groups = groups;
-    }
+	/**
+	 * Sets the stage for the modal dialog.
+	 *
+	 * @param modalStage The stage to set.
+	 */
+	public void setStage(Stage modalStage) {
+		this.stage = modalStage;
+	}
 
-    @FXML
-    public void confirmDelete() throws InvalidContactException {
-        groups.getGroups().forEach((Group group) -> {
-            if (group.getContacts().contains(contact))
+	/**
+	 * Sets the contact list (rubrica).
+	 *
+	 * @param rubrica The contact list to set.
+	 */
+	public void setContactList(ContactList rubrica) {
+		this.rubrica = rubrica;
+	}
+
+	/**
+	 * Sets the Groups model.
+	 *
+	 * @param groups The Groups model to set.
+	 */
+	public void setGroups(Groups groups) {
+		this.groups = groups;
+	}
+
+	/**
+	 * Confirms the deletion of the contact. This method removes the contact
+	 * from all groups and the contact list.
+	 *
+	 * @throws InvalidContactException If the contact is invalid during
+	 * deletion.
+	 */
+	@FXML
+	public void confirmDelete() throws InvalidContactException {
+		groups.getGroups().forEach((Group group) -> {
+			if (group.getContacts().contains(contact)) {
 				try {
-                group.removeContact(contact);
-            } catch (InvalidContactException ex) {
-                Logger.getLogger(DeleteModalController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        rubrica.removeContact(contact);
-        contactTextField.setText("a");
-        contactTextField.setText("");
+					group.removeContact(contact);
+				} catch (InvalidContactException ex) {
+					Logger.getLogger(DeleteModalController.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		});
+		rubrica.removeContact(contact);
+		contactTextField.setText("a");
+		contactTextField.setText("");
 
-        stage.close();
-    }
+		stage.close();
+	}
 
-    @FXML
-    public void undoDelete() {
-        stage.close();
-    }
-
+	/**
+	 * Handles the undo action, closing the modal without making changes.
+	 */
+	@FXML
+	public void undoDelete() {
+		stage.close();
+	}
 }

@@ -18,13 +18,10 @@ import javafx.scene.layout.Pane;
  * @author loreal
  */
 public class SearchBarView extends Pane {
-	public SearchBarView(ContactList rubrica, Groups groups){
+	public SearchBarView(){
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/main/resources/gruppo22/rubrica/searchBar.fxml"));
-			loader.setControllerFactory((param -> {
-				return new SearchBarController(rubrica, groups);
-			}));
-
+			loader.getController();
 			Parent root = loader.load();
 			getChildren().add(root);
 		} catch (IOException e) {
