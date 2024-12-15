@@ -6,7 +6,7 @@
 package gruppo22.rubrica.Model;
 
 import java.util.List;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +38,7 @@ public class PhoneNumberTest {
     
     @AfterEach
     public void tearDown() {
+        instance = null;
     }
 
     /**
@@ -46,10 +47,11 @@ public class PhoneNumberTest {
     @Test
     public void testGetPhoneNumbers() throws InvalidPhoneNumberException {
         System.out.println("getPhoneNumbers");
-        instance.addPhoneNumber("3349135107");
-        List<String> expResult = new LinkedList<>();
+        String phoneNumber = "3349135107";
+        instance.addPhoneNumber(phoneNumber); // added phonenumber
+        List<String> expResult = new ArrayList<>();
         expResult.add("3349135107");
-        assertEquals(expResult, instance.getPhoneNumbers());
+        assertEquals(expResult, instance.getPhoneNumbers()); //the test will check if the expected number will match with the one previously added
     }
 
     /**
@@ -59,16 +61,15 @@ public class PhoneNumberTest {
     public void testAddPhoneNumber() throws InvalidPhoneNumberException{
         System.out.println("addPhoneNumber");
         String phoneNumber = "3349135107";
-        PhoneNumber instance = new PhoneNumber();
-        instance.addPhoneNumber(phoneNumber);
-        assertTrue(instance.getPhoneNumbers().contains(phoneNumber)); 
+        instance.addPhoneNumber(phoneNumber); // adds a phonenumber
+        assertTrue(instance.getPhoneNumbers().contains(phoneNumber)); //the result will be true and the test pass if the phoneNumbers contains the phone number we chose
     }
     
     /**
      * Test of addPhoneNumber in case is Invalid
      */
     
-     @Test
+    @Test
     public void testAddPhoneNumber_InvalidPhoneNumber(){
         System.out.println("addPhoneNumber - invalid");
         String invalid = "invalid-PhoneNumber";
@@ -79,13 +80,14 @@ public class PhoneNumberTest {
      * Test in case number of PhoneNumbers exceeds the limit
      */
 
+    
     @Test
     public void testMaxPhoneNumbers() throws InvalidPhoneNumberException{
         System.out.println("addPhoneNumber - maxsize");
         for (int i = 0; i < 4; i++) {
         instance.addPhoneNumber("334913510" + i);
     }
-    assertEquals(3, instance.getPhoneNumbers().size());
+    assertEquals(3, instance.getPhoneNumbers().size()); //the test will pass if the number of phonenumbers is equal to 3
         }
     
 
@@ -93,29 +95,27 @@ public class PhoneNumberTest {
      * Test of removePhoneNumber method, of class PhoneNumber.
      */
     @Test
-    public void testRemovePhoneNumber() throws Exception {
+    public void testRemovePhoneNumber() throws InvalidPhoneNumberException {
         System.out.println("removePhoneNumber");
         String phoneNumber = "3349135107";
-        PhoneNumber instance = new PhoneNumber();
-        instance.addPhoneNumber(phoneNumber); // Aggiungi prima il numero
+        instance.addPhoneNumber(phoneNumber); // number added
         String expResult = phoneNumber;
         String result = instance.removePhoneNumber(phoneNumber);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result); //the test will pass if the phone number is successfully removed
     }
 
     /**
      * Test of modifyPhoneNumber method, of class PhoneNumber.
      */
     @Test
-    public void testModifyPhoneNumber() throws Exception {
+    public void testModifyPhoneNumber() throws InvalidPhoneNumberException{
         System.out.println("modifyPhoneNumber");
         String oldPhoneNumber = "3349135107";
-        String newPhoneNumber = "3892129007";
-        PhoneNumber instance = new PhoneNumber();
-        instance.addPhoneNumber(oldPhoneNumber); // Aggiunta vecchio numero
-        instance.modifyPhoneNumber(oldPhoneNumber, newPhoneNumber); // Modifica numero
-        assertFalse(instance.getPhoneNumbers().contains(oldPhoneNumber)); // Rimozione vecchio numero
-        assertTrue(instance.getPhoneNumbers().contains(newPhoneNumber)); // creazione nuovo numero
+        String newPhoneNumber = "78990";
+        instance.addPhoneNumber(oldPhoneNumber); // add old number
+        instance.modifyPhoneNumber(oldPhoneNumber, newPhoneNumber); // modify that number
+        assertFalse(instance.getPhoneNumbers().contains(oldPhoneNumber)); // it'll result false if the number didn't change and the test will fail
+        assertTrue(instance.getPhoneNumbers().contains(newPhoneNumber)); // it'll result true if the number changed and the test will pass
     }
     
 }

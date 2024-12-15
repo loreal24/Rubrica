@@ -11,11 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
-import java.util.LinkedList;
 import gruppo22.rubrica.Exceptions.InvalidContactException;
-import java.util.LinkedList;
-import java.util.List;
+import gruppo22.rubrica.Exceptions.InvalidEmailException;
+import gruppo22.rubrica.Exceptions.InvalidPhoneNumberException;
 
 /**
  *
@@ -36,20 +34,17 @@ public class ContactTest {
     }
     
     @BeforeEach
-    public void setUp() throws InvalidContactException{
-        try{
+    public void setUp() throws Exception {
         Email email = new Email();
-        email.addEmail("example@example.com"); // Inizializza con una mail valida
+        email.addEmail("example@example.com"); // insert valid mail
         PhoneNumber phoneNumber = new PhoneNumber();
-        phoneNumber.addPhoneNumber("3349135107"); // Inizializza con un numero valido
-        instance = new Contact("John", "Doe", email , phoneNumber, "Sono io John Doe"); //Crea un nuovo contatto prima di ogni test
-         } catch (Exception e) {
-            fail("Setup fallito a causa di un'eccezione: " + e.getMessage());
-        }
+        phoneNumber.addPhoneNumber("3349135107"); // insert valid number
+        instance = new Contact("John", "Doe", email , phoneNumber, "Sono io John Doe"); // create a new contact
     }
     
     @AfterEach
     public void tearDown() {
+        instance = null;
     }
 
     /**
@@ -59,7 +54,7 @@ public class ContactTest {
     public void testGetName() {
         System.out.println("getName");
         String expResult = "John";
-        assertEquals(expResult, instance.getName());
+        assertEquals("John", instance.getName()); //the test will pass if the expected result, will match the name in the contact created (beforeeach)
     }
 
     /**
@@ -68,9 +63,9 @@ public class ContactTest {
     @Test
     public void testSetName() {
         System.out.println("setName");
-        String newName = "Jane";
-        instance.setName(newName);
-        assertTrue(instance.getName().contains(newName));
+        String newName = "Jane"; 
+        instance.setName(newName); // will set a different name
+        assertTrue(instance.getName().contains(newName)); //the result will be true and the test pass, if the new name "Jane" is contained in the contact
     }
 
     /**
@@ -80,7 +75,7 @@ public class ContactTest {
     public void testGetSurname() {
         System.out.println("getSurname");
         String expResult = "Doe";
-        assertEquals(expResult, instance.getSurname());
+        assertEquals(expResult, instance.getSurname()); //the test will pass if the expected result, will match the surname in the contact created (beforeeach)
     }
 
     /**
@@ -89,9 +84,9 @@ public class ContactTest {
     @Test
     public void testSetSurname() {
         System.out.println("setSurname");
-        String newSurname = "Smith";
-        instance.setSurname(newSurname);
-        assertTrue(instance.getSurname().contains(newSurname));
+        String newSurname = "Smith"; 
+        instance.setSurname(newSurname); // will set a different surname
+        assertTrue(instance.getSurname().contains(newSurname)); //the result will be true and the test pass, if the new surname "Jane" is contained in the contact
     }
 
     /**
@@ -100,8 +95,8 @@ public class ContactTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmail");
-        assertNotNull(instance.getEmail()); //Verifica che lo spazio email non sia nullo
-        assertTrue(instance.getEmail().getEmailList().contains("example@example.com")); //Veirfica che la email corrisponda
+        assertNotNull(instance.getEmail()); // check that the email's space isn't null
+        assertTrue(instance.getEmail().getEmailList().contains("example@example.com")); // the result will be true and the test pass if the mail contained in the contact
     }
 
     /**
@@ -109,8 +104,8 @@ public class ContactTest {
      */
     @Test
     public void testGetPhoneNumber() {
-        assertNotNull(instance.getPhoneNumber()); //Verifica che lo spazio phoneNumber non sia nullo
-        assertTrue(instance.getPhoneNumber().getPhoneNumbers().contains("3349135107")); //Verifica che la mail corrisponda
+        assertNotNull(instance.getPhoneNumber()); // verifies that the phonenumber's spot isn't null
+        assertTrue(instance.getPhoneNumber().getPhoneNumbers().contains("3349135107")); //the result will be true and the test pass if the phonenumber contained in the contact
     }
 
     /**
@@ -119,18 +114,18 @@ public class ContactTest {
     @Test
     public void testGetDescription() {
         System.out.println("getDescription");
-        assertEquals ("Sono io John Doe", instance.getDescription()); //Verifica che la descriziona corrisponda
+        assertEquals ("Sono io John Doe", instance.getDescription()); //check that the description matches with the one in the contact
     }
 
     /**
      * Test of setDescription method, of class Contact.
      */
     @Test
-    public void testSetDescription() {
+    public void testSetDescription() { 
         System.out.println("setDescription");
         String newDescription = "Ho 20 anni";
-        instance.setDescription(newDescription);
-        assertTrue(instance.getDescription().contains(newDescription));
+        instance.setDescription(newDescription); // will set a new description 
+        assertTrue(instance.getDescription().contains(newDescription)); //the result will be true and the test pass, if the new description is contained in the contact
     }
     
 }
